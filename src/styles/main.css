@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.decor-line{
+  filter: drop-shadow(0px -5px 4px #CF688C80); 
+  /* First drop shadow */
+}
+button:active,
+button:focus,
+button:focus-visible {
+  color: hsl(220, 98%, 61%);
+  font-weight: bold;
+}     

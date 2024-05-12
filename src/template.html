@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courgette&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@100..900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Glos</title>
+  </head>
+  <body class="font-[inter] h-[100vh] flex flex-col md:flex-row">
+    <div class="pt-6 pr-6 fixed top-0 right-0">
+      <button class="button button_theme-switch">
+        <svg
+          class="theme_svg w-5 h-5"
+          viewBox="0 0 45 45"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            class="fill-black"
+            cx="22.5"
+            cy="22.5"
+            r="22.5"
+            fill="white"
+          />
+          <path
+            class="fill-white"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M22.5 3.75L22.5 41.25C32.8553 41.25 41.25 32.8553 41.25 22.5C41.25 12.1447 32.8553 3.75 22.5 3.75Z"
+          />
+        </svg>
+      </button>
+    </div>
+    <header>
+      <h1 class="page-logo font-[Courgette] hidden md:block">Glos</h1>
+      <nav class="w-full fixed flex flex-col-reverse bottom-0 md:static md:top-0 md:flex-row">
+        <ul
+          class="nav-tab flex justify-around items-center text-center list-none"
+        >
+          <li class="nav-button py-6">
+            <button class="button button_bookmark">
+              <a class="flex flex-col justify-center items-center" href="">
+                <svg
+                  class="fill-[#8A8A8A] w-6 h-6"
+                  viewBox="0 0 27 32"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.09214 31.4245C2.20322 32.0195 0.963623 31.4285 0.963623 30.4098V5.41667C0.963623 2.42512 3.57062 0 6.78654 0H20.2211C23.437 0 26.044 2.42512 26.044 5.41667V30.4098C26.044 31.4285 24.8044 32.0195 23.9155 31.4245L13.5038 24.4563L3.09214 31.4245Z"
+                  />
+                </svg>
+                <p class="button-text text-xs pt-[2px] hidden">Bookmarks</p>
+              </a>
+            </button>
+          </li>
+          <li class="nav-button py-6">
+            <button class="button button_home">
+              <a class="flex flex-col justify-center items-center" href="">
+                <svg
+                  class="fill-[#8A8A8A] w-6 h-6"
+                  viewBox="0 0 33 32"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19.0993 1.22201C17.5979 0.0436735 15.4021 0.0436735 13.9007 1.22201L1.80683 10.7129C0.898901 11.4254 0.375 12.4742 0.375 13.5792V29.0877C0.375 30.6985 1.77877 32.0044 3.51042 32.0044H8.88542C10.6171 32.0044 12.0208 30.6985 12.0208 29.0877V22.4167C12.0208 21.2845 12.9916 20.3634 14.2011 20.334H18.7989C20.0084 20.3634 20.9792 21.2845 20.9792 22.4167V29.0877C20.9792 30.6985 22.3829 32.0044 24.1146 32.0044H29.4896C31.2212 32.0044 32.625 30.6985 32.625 29.0877V13.5792C32.625 12.4742 32.1011 11.4254 31.1931 10.7129L19.0993 1.22201Z"
+                  />
+                </svg>
+                <p class="button_text text-xs pt-[2px] hidden">Home</p>
+              </a>
+            </button>
+          </li>
+          <li class="nav-button text-center py-6">
+            <button class="button button_recent">
+              <a class="flex flex-col justify-center items-center" href="">
+                <svg
+                  class="fill-[#8A8A8A] w-8 h-8"
+                  viewBox="0 0 33 30"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.5 3.33333C23.4266 3.33333 29.0417 8.55668 29.0417 15C29.0417 21.4433 23.4266 26.6667 16.5 26.6667C9.57343 26.6667 3.95833 21.4433 3.95833 15C3.95833 14.5047 3.99141 14.0173 4.05546 13.5395C4.1779 12.6262 3.48116 11.7933 2.49925 11.6795C1.51735 11.5656 0.622107 12.2137 0.499664 13.1272C0.417319 13.7413 0.375 14.3665 0.375 15C0.375 23.2843 7.59441 30 16.5 30C25.4057 30 32.625 23.2843 32.625 15C32.625 6.71573 25.4057 0 16.5 0C13.1854 0 10.1035 0.931333 7.54167 2.52625V1.66667C7.54167 0.7462 6.7395 0 5.75 0C4.7605 0 3.95833 0.7462 3.95833 1.66667V6.66667C3.95833 7.58713 4.7605 8.33333 5.75 8.33333H11.125C12.1145 8.33333 12.9167 7.58713 12.9167 6.66667C12.9167 5.7462 12.1145 5 11.125 5H10.0357C11.9237 3.9414 14.135 3.33333 16.5 3.33333ZM18.2917 8.33333C18.2917 7.41287 17.4895 6.66667 16.5 6.66667C15.5105 6.66667 14.7083 7.41287 14.7083 8.33333V15C14.7083 15.9205 15.5105 16.6667 16.5 16.6667H20.9792C21.9687 16.6667 22.7708 15.9205 22.7708 15C22.7708 14.0795 21.9687 13.3333 20.9792 13.3333H18.2917V8.33333Z"
+                  />
+                </svg>
+                <p class="button_text text-xs pt-[2px]">Recent</p>
+              </a>
+            </button>
+          </li>
+        </ul>
+      <div class="decor-line w-full border-y-[3px] border-white h-0 md:w-6 md:h-[100vh] md:border-black md:border-2 md:drop-shadow-none"></div>
+      </nav>
+    </header>
+    <main class="container">
+      section class="bookmark mt-24">
+        <h2 class="bookmark_info font-bold text-sm text-center px-6">
+          Your recently searched words will appear here!
+        </h2>
+        <p
+          class="bookmark_cta text-xs text-center text-[#8A8A8A] leading-4 px-20 mt-2 hidden"
+        >
+          You have not search for any word yet! Click on the search option or
+          voice recording to look up a word!
+        </p>
+        <div class="bookmark_container">
+          <ul class="bookmark_list list-disc ml-[71px] mt-6">
+            <li class="bookmark_list--item">Ethereal</li>
+            <li class="bookmark_list--item">Generous</li>
+            <li class="bookmark_list--item">Severe</li>
+            <li class="bookmark_list--item">Undermine</li>
+          </ul>
+          <button class="underline font-[Courgette] text-[#CF688C] pl-6 mt-6" href="">Clear history?</button>
+        </div>
+        <div class="bookmark_modal hidden">
+          <div class="bookmark_cta">
+            <p>Are you sure you want to clear your recent searches?</p>
+            <button>Yes,clear it all.</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
