@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,7 @@
     />
     <title>Glos</title>
   </head>
-  <body class="font-[inter] h-[100vh] flex flex-col md:flex-row">
+  <body class="font-[inter] h-[100vh] flex flex-col md:flex-row  dark:text-white dark:bg-black">
     <div class="pt-6 pr-6 fixed top-0 right-0 md:pt-10 md:pr-10">
       <button class="button button_theme-switch">
         <svg
@@ -21,14 +21,14 @@
           xmlns="http://www.w3.org/2000/svg"
         >
           <circle
-            class="fill-black"
+            class="fill-black dark:fill-white"
             cx="22.5"
             cy="22.5"
             r="22.5"
             fill="white"
           />
           <path
-            class="fill-white"
+            class="fill-white dark:fill-black"
             fill-rule="evenodd"
             clip-rule="evenodd"
             d="M22.5 3.75L22.5 41.25C32.8553 41.25 41.25 32.8553 41.25 22.5C41.25 12.1447 32.8553 3.75 22.5 3.75Z"
@@ -38,18 +38,25 @@
     </div>
     <header class="flex">
       <nav
-        class="w-full fixed flex flex-col-reverse bottom-0 shadow-[0px_-5px_0_0_rgba(207,104,140,0.5)] md:static md:top-0 md:flex-row"
+        class="w-full fixed flex flex-col-reverse bottom-0 shadow-[0px_-5px_4px_0_rgba(207,104,140,0.5)] md:static md:top-0 md:flex-row"
       >
-      <div>
-        <h1 class="page-logo font-[Courgette] hidden md:block text-[#B81E53] text-4xl pt-12 pr-5 pl-9 pb-7 xl:text-[45px] xl:pt-14 xl:pr-6 xl:pb-11">Glos</h1>
-        <ul
-          class="nav-tab flex justify-around items-center text-center list-none md:flex-col"
-        >
-        <!-- for mobile button shows fully and changes color on click -->
-        <!-- for desktop button shows and has dropshadow on click,focus,active -->
+        <div>
+          <h1
+            class="page-logo font-[Courgette] hidden md:block text-[#B81E53] text-4xl pt-12 pr-5 pl-9 pb-7 xl:text-[45px] xl:pt-14 xl:pr-6 xl:pb-11"
+          >
+            Glos
+          </h1>
+          <ul
+            class="nav-tab flex justify-around items-center text-center list-none md:flex-col"
+          >
+            <!-- for mobile button shows fully and changes color on click -->
+            <!-- for desktop button shows and has dropshadow on click,focus,active -->
 
-          <li class="nav-button py-6 md:order-2- md:mb-11 md:py-0">
-              <button class="button button_bookmark flex flex-col justify-center items-center" href="">
+            <li class="nav-button py-6 md:order-2- md:mb-11 md:py-0">
+              <button
+                class="button button_bookmark flex flex-col justify-center items-center"
+                href=""
+              >
                 <svg
                   class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8"
                   viewBox="0 0 27 32"
@@ -60,10 +67,12 @@
                   />
                 </svg>
                 <p class="button-text text-xs pt-[2px] hidden">Bookmarks</p>
-            </button>
-          </li>
-          <li class="nav-button py-6 md:order-1 md:mb-11 md:py-0">
-              <button class="button button_home flex flex-col justify-center items-center md:hover:border-2">
+              </button>
+            </li>
+            <li class="nav-button py-6 md:order-1 md:mb-11 md:py-0">
+              <button
+                class="button button_home flex flex-col justify-center items-center md:hover:border-2"
+              >
                 <svg
                   class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8"
                   viewBox="0 0 33 32"
@@ -75,9 +84,11 @@
                 </svg>
                 <p class="button_text text-xs pt-[2px] hidden">Home</p>
               </button>
-          </li>
-          <li class="nav-button text-center py-6 md:order-3 md:mb-11 md:py-0">
-              <button class="button button_recent flex flex-col justify-center items-center">
+            </li>
+            <li class="nav-button text-center py-6 md:order-3 md:mb-11 md:py-0">
+              <button
+                class="button button_recent flex flex-col justify-center items-center"
+              >
                 <svg
                   class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8"
                   viewBox="0 0 33 30"
@@ -88,67 +99,84 @@
                   />
                 </svg>
                 <p class="button_text text-xs pt-[2px] hidden">Recent</p>
-            </button>
-          </li>
-        </ul>    
-      </div>
-      <div class="decor-line bg-[#333333] hidden md:block md:fixed md:left-[115px] md:w-[3px] md:h-[100vh] xl:left-36"></div>  
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="decor-line bg-[#333333] hidden md:block md:fixed md:left-[115px] md:w-[3px] md:h-[100vh] xl:left-36"
+        ></div>
       </nav>
     </header>
     <main class="container">
       <section class="page mt-24 md:mt-36 xl:mt-28">
-        <h2 class="page_info font-bold text-sm text-center px-6 md:text-xl xl:text-[28px]">
+        <h2
+          class="page_info font-bold text-sm text-center px-6 md:text-xl xl:text-[28px] dark:text-[#F8E9EE]"
+        >
           Your recently searched words will appear here!
         </h2>
         <p
-          class=" hidden page_cta text-xs text-center text-[#8A8A8A] leading-4 px-20 mt-2 md:mt-4 md:w-[260px] md:px-0 mx-auto md:text-sm xl:w-full xl:text-xl xl:mt-6"
+          class=" page_cta text-xs text-center text-[#8A8A8A] leading-4 px-20 mt-2 md:mt-4 md:w-[260px] md:px-0 mx-auto md:text-sm xl:w-full xl:text-xl xl:mt-6"
         >
           You have not search for any word yet! Click on the search option or
           voice recording to look up a word!
         </p>
-        <div class="hidden_container md:ml-[163px] lg:mx-[31%] xl:mx-[31%]"> 
-          <ul class="page_list list-disc text-sm pl-[71px] md:pl-0 mt-6 md:mt-11 md:text-xl xl:mt-7">
+        <div class="hidden hidden_container md:ml-[163px] lg:mx-[31%] xl:mx-[31%]">
+          <ul
+            class="page_list list-disc text-sm pl-[71px] md:pl-0 mt-6 md:mt-11 md:text-xl xl:mt-7"
+          >
             <li class="page_list--item">Ethereal</li>
             <li class="page_list--item">Generous</li>
             <li class="page_list--item">Severe</li>
             <li class="page_list--item">Undermine</li>
           </ul>
           <button
-            class="button clear_button underline font-[Courgette] text-sm text-[#CF688C]  pl-6 mt-6 md:pl-0 md:ml-[-5.05%] md:mt-11 md:text-2xl xl:mt-10"
+            class="button clear_button underline font-[Courgette] text-sm text-[#CF688C] pl-6 mt-6 md:pl-0 md:ml-[-5.05%] md:mt-11 md:text-2xl xl:mt-10 dark:text-[#DE98B0]"
           >
             Clear history?
           </button>
         </div>
         <!-- modal box -->
         <div
-          class="hidden z-10 absolute w-full h-[100vh] top-0 left-0 bookmark_modal bg-[#00000099] justify-center items-center"
+          class="flex z-10 absolute w-full h-[100vh] top-0 left-0 bookmark_modal bg-[#00000099] justify-center items-center"
         >
-          <div class="flex flex-col clear page_clear bg-white w-[273px] border-2 border-[#8A8A8A] rounded-2xl justify-center items-center text-xs font-bold sm:w-[48%] md:w-[64%] lg:w-[600px]">
+          <div
+            class="flex flex-col clear page_clear bg-white dark:bg-black w-[273px] border-2 border-[#8A8A8A] dark:border-[#FFE5EE] rounded-2xl justify-center items-center text-xs font-bold sm:w-[48%] md:w-[64%] lg:w-[600px]"
+          >
             <button class="clear_cancel pt-2 self-end pr-2 md:pt-4 md:pr-4">
-              <svg class=" w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8"
+              <svg
+                class="w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8"
                 viewBox="0 0 15 15"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <circle cx="7.5" cy="7.5" r="7" fill="white" stroke="#CF688C" />
+                <circle class="fill-white dark:fill-black stroke-[#CF688C] dark:stroke-white" cx="7.5" cy="7.5" r="7" />
                 <line
+                  class="stroke-[#CF688C] dark:stroke-white"
                   x1="11.2714"
                   y1="11.0411"
                   x2="3.77145"
                   y2="3.54105"
-                  stroke="#CF688C"
                 />
                 <line
+                class="stroke-[#CF688C] dark:stroke-white"
                   x1="3.20895"
                   y1="11.0839"
                   x2="10.7089"
                   y2="3.58395"
-                  stroke="#CF688C"
                 />
               </svg>
             </button>
-            <p class="px-8 mt-3 mb-6 font-bold text-center md:mt-2 md:mb-12 md:text-lg md:px-24 lg:text-2xl lg:px-20">Are you sure you want to clear your recent searches?</p>
-            <button class="button_clear px-4 py-3 mb-6text-[#B81E53] rounded-[50px] shadow-[2px_2px_4px_0_rgba(207,104,140,1)] md:px-8 md:py-4 md:text-sm md:mb-12 xl:">Yes,clear it all.</button>
+            <p
+              class="px-8 mt-3 mb-6 font-bold text-center md:mt-2 md:mb-12 md:text-lg md:px-24 lg:text-2xl lg:px-20"
+            >
+              Are you sure you want to clear your recent searches?
+            </p>
+            <button
+              class="button_clear px-4 py-3 mb-6 bg-white dark:bg-[#CF688C] text-[#B81E53] dark:text-white rounded-[50px]  shadow-[2px_2px_4px_0_rgba(204,104,140,1)] dark:shadow-[2px_2px_4px_0_rgba(255,255,255,1)] md:px-8 md:py-4 md:text-sm md:mb-12"
+            >
+              Yes,clear it all.
+            </button>
           </div>
         </div>
       </section>
