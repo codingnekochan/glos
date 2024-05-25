@@ -2,32 +2,29 @@
 
 /* pulse animation for microphone on listening */
 .pulse-1{
-   animation-delay: -3s;
+   animation-delay: -5s;
 }
 .pulse-2{
-  animation-delay: -2.5s;
+  animation-delay: -4.5s;
 }
 .pulse-3{
-  animation-delay: -2s;
+  animation-delay: -3.5s;
 }
 .pulse-4{
-  animation-delay: -1.5s;
+  animation-delay: -2.5s;
 }
 .pulse-5{
-  animation-delay: -1s;
+  animation-delay: -1.5s;
 }
 .pulse-6{
   animation-delay: -0.5s;
 }
 /* page loading animation */
 .loader {
-  width: 40px;
-  height: 40px;
-  padding: 6px;
   border-radius: 50%;
-  background: #B81E53;
+  background: linear-gradient(to right, #B81E53 10%, #F8E9EE 100%);
   --_m: 
-    conic-gradient(#0000 10%,#000),
+    conic-gradient(#000 10%,#000),
     linear-gradient(#000 0 0) content-box;
   -webkit-mask: var(--_m);
           mask: var(--_m);

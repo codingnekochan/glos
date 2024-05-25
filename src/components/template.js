@@ -1,4 +1,4 @@
-` <section class="h-full page mt-24 md:mt-36 xl:mt-28">
+let pageTemplate =` <section class="h-full page mt-24 md:mt-36 xl:mt-28">
         <h2
           class="page_info font-bold text-sm text-center px-6 md:text-xl xl:text-[28px] dark:text-[#F8E9EE]"
         >
