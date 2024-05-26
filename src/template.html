@@ -6,20 +6,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Courgette&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@100..900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Courgette&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@100..900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
     <title>Glos</title>
   </head>
   <body
-    class="font-[inter] h-[100vh] flex flex-col md:flex-row dark:text-white dark:bg-black"
+    class="font-[inter] h-[100vh] flex flex-col md:flex-row dark:text-white bg:white dark:bg-black"
   >
     <div
-      class="button_container hidden md:block pt-6 pr-6 fixed top-0 right-0 md:pt-10 md:pr-10"
+      class="buttons_container hidd/en flex gap-4 justify-end pt-6 pr-6 md:w-[300px] md:absolute md:top-0 md:right-0 md:pt-10 md:pr-10"
     >
-      <button class="button button_theme-switch">
+      <button class="button button_theme-switch xl:order-2">
         <svg
-          class="theme_svg w-5 h-5 md:w-[35px] md:h-[35px] xl:w-[45px] xl:h-[45px]"
+          class="theme_svg w-5 h-5 md:w-[35px] md:h-[35px] 2xl:w-[45px] 2xl:h-[45px]"
           viewBox="0 0 45 45"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -39,14 +39,53 @@
           />
         </svg>
       </button>
+      <div class="hidden font-options xl:order-1">
+        <button
+          class="py-2 flex items-center gap-2 md:gap-3 button button_font-change text-sm md:text-base md:pr-5"
+        >
+          <p class="font_applied">San Serif</p>
+          <svg
+            class="w-[15px] h-[8px] md:w-[20px] md:h-[10px] md:pl"
+            width="15"
+            height="8"
+            viewBox="0 0 15 8"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path class="fill-black dark:fill-white" d="M0 0L7.5 8L15 0H0Z"" />
+          </svg>
+        </button>
+        <div
+          class="font-list hidden f/lex flex-col absolute right-6 top-24 md:right-10 z-20 px-4 md:px-6 py-6 md:py-10 2xl:py-14 bg-[#CF688C] dark:bg-[#8A8A8A] text-sm md:text-lg 2xl:text-2xl text-white rounded-[30px]"
+        >
+          <button
+            class="font-family font-['Inter'] border-[1px] border-[#F8E9EE] hover:bg-[#F8E9EE] px-10 md:px-12 py-2 hover:text-black"
+            data-value="san-serif"
+          >
+            San Serif
+          </button>
+          <button
+            class="font-family my-2 font-['Libre_Calson'] border-[1px] border-[#F8E9EE] px-10 md:px-12 py-2 hover:bg-[#F8E9EE] hover:text-black"
+            data-value="serif"
+          >
+            Serif
+          </button>
+          <button
+            class="font-family font-['Courier_Prime'] border-[1px] border-[#F8E9EE] px-10 py-2 hover:bg-[#F8E9EE] hover:text-black"
+            data-value="mono-space"
+          >
+            Mono space
+          </button>
+        </div>
+      </div>
     </div>
     <header class="min-[2560px]:w-[10%]">
       <nav
-        class="w-full fixed flex flex-col-reverse bottom-0 shadow-[0px_-5px_4px_0_rgba(207,104,140,0.5)] md:static md:top-0 md:flex-row md:shadow-none min-[2560px]:justify-between"
+        class="w-full fixed flex flex-col-reverse left-0 bottom-0 z-100 md:z-0 shadow-[0px_-5px_4px_0_rgba(207,104,140,0.5)] md:static md:top-0 md:flex-row md:shadow-none min-[2560px]:justify-between bg-white dark:bg-black"
       >
         <div class="nav-container min-[2560px]:mx-auto">
           <h1
-            class="page-logo font-[Courgette] hidden md:block text-[#B81E53] dark:text-[#E9B9CA] text-4xl pt-12 pr-5 pl-9 pb-7 md:pr-4 md:pl-9 md:pt-12 md:text-[35px] xl:text-[45px] xl:pt-14 xl:pr-6 xl:pb-11"
+            class="page-logo font-['Courgette'] hidden md:block text-[#B81E53] dark:text-[#E9B9CA] text-4xl pt-12 pr-5 pl-9 pb-7 md:pr-4 md:pl-9 md:pt-12 md:text-[35px] xl:text-[45px] xl:pt-14 xl:pr-6 xl:pb-11"
           >
             Glos
           </h1>
@@ -113,7 +152,7 @@
       </nav>
     </header>
     <main class="max-w-full h-full container">
-     
+    
     </main>
   </body>
 </html>

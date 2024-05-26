@@ -9,6 +9,7 @@
 import { mainContainer } from "..";
 import { landingPage } from "../components/landing";
 import { pulseMic } from "../components/pulse";
+import { searchResultComponent } from "../components/results";
 import { searchComponent } from "../components/search";
 import { timeoutErrorMessage } from "../components/timeout";
 import { searchErrorMessage } from "../components/wordError";
@@ -59,9 +60,9 @@ export function listeningError() {
     "Sorry, didn’t get that.";
 }
 // Search Page Component
-const searchBar = document.createElement("div");
+const searchBar = document.createElement("section");
 searchBar.innerHTML = searchComponent;
-searchBar.className = "home_search w-full";
+searchBar.className = "home_search-form w-full mt-6 md:mt-0";
 
 export function displaySearchBar(){
   homePage.innerHTML = '';
@@ -71,7 +72,7 @@ export function displaySearchBar(){
 const searchErrorPage = document.createElement('div')
 searchErrorPage.innerHTML = searchErrorMessage;
 searchErrorPage.className =
-  "home_error-page--result mx-auto mt-48 md:mt-[284px] lg:mt-[252px] xl:mt-[200px] 2xl:mt-[216px] text-center";
+  "home_error-page--result mx-auto relative top-[30%] md:top-[25%]  text-center";
 
 export function displaySearchErrorPage(){
   homePage.append(searchErrorPage)
@@ -80,7 +81,16 @@ export function displaySearchErrorPage(){
 const timeoutErrorPage = document.createElement('div');
 timeoutErrorPage.innerHTML = timeoutErrorMessage;
 timeoutErrorPage.className =
-  "home_error-page--timeout mx-auto mt-48 md:mt-[284px] lg:mt-[252px] xl:mt-[200px] 2xl:mt-[216px] text-center text-[#545454] text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl";
+  "home_error-page--timeout mx-auto relative top-[30%] md:top-[25%] text-center text-[#545454] text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl";
   export function displayTimeoutErrorPage(){
   homePage.append(timeoutErrorPage)
   }
+
+// Search Results Page
+const searchResultsPage = document.createElement('section');
+searchResultsPage.className =
+  "word_results-container md:h-full lg:h-[55%] xl:h-full home_results px-6 pb-10 lg:pb-0 xl:pb-14 2xl:pb-24 md:pl-12 lg:pl-24 md:pr-14 mt-4 md:mt-8 xl:mt-9 grid grid-cols-4 grid-rows-5 gap-4 lg:grid-cols-5 lg:grid-rows-4 lg:gap-6";
+searchResultsPage.innerHTML = searchResultComponent;
+export function displaySearchResults(){
+  homePage.append(searchResultsPage)
+}
