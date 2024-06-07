@@ -1,5 +1,5 @@
 // import { mainContainer } from "..";
-import { homePage } from "../pages/home";
+import { homePage } from "../pages/home"
 
 const loaderPage = document.createElement('div');
 loaderPage.className = 'loader_page m-auto'
@@ -10,6 +10,6 @@ loaderPage.append(loader);
 export function displayLoader(){
     homePage.append(loaderPage);
 }
-export function hideLoader(){
+export function removeLoader(){
     loader.remove();
 }

@@ -1,5 +1,5 @@
 
-export const landingPage = `<div class="home_landing w-full">
+const landingPageComponent = `<div class="home_landing w-full">
   <div class="main_logo mb-4 md:mb-8">
     <svg
       class="w-[89px] h-[38px] mx-auto md:w-[186px] md:h-[70px] xl:w-[278px] xl:h-[125px]"
@@ -60,3 +60,16 @@ export const landingPage = `<div class="home_landing w-full">
     </button>
   </div>
 </div>`;
+
+const homeLanding = document.createElement("div");
+homeLanding.innerHTML = landingPageComponent;
+homeLanding.className =
+  "home_landing h-full w-full flex justify-center items-center";
+
+export function landingPageUI(page) {
+  page.innerHTML = "";
+  page.append(homeLanding);
+}
+export function removeLandingPageUI() {
+  homeLanding.remove();
+}

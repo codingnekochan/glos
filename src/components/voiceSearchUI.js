@@ -1,4 +1,4 @@
-export const pulseMic =`
+const  microphoneComponent =`
    <div class="listening_page--cancel self-end p-6 md:px-10 md:pt-10 md:pb-0">
           <svg
             class="w-[25px] md:w-10 h-[25px] md:h-10"
@@ -81,6 +81,34 @@ export const pulseMic =`
           </div>
         </div>
 `;
+
+const userMic = document.createElement("div");
+userMic.className =
+  "home_listening w-full h-full flex flex-col justify-center items-center";
+userMic.innerHTML = microphoneComponent;
+
+export function onVoiceSearchStartUI(page) {
+  document.querySelector(".button_theme-switch").classList.add("hidden");
+  page.innerHTML = "";
+  page.append(userMic);
+}
+export function onListenUI(page) {
+  userMic.querySelectorAll("circle").forEach((circle) => {
+    circle.classList.add("animate-pulse");
+  });
+  page.querySelector(".listening_page--text").textContent = "Listening...";
+}
+export function onVoiceSearchFinishUI() {
+  document.querySelector(".button_theme-switch").classList.remove("hidden");
+  userMic.remove();
+}
+export function onVoiceSearchErrorUI(page) {
+  userMic.querySelectorAll("circle").forEach((circle) => {
+    circle.classList.remove("animate-pulse");
+  });
+  page.querySelector(".listening_page--text").textContent =
+    "Sorry, didn’t get that.";
+}
 
 
 

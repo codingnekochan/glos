@@ -1,6 +1,8 @@
-export const searchComponent = `    
+import { homePage } from "../pages/home";
+
+const searchFormComponent = `    
          <div
-            class="relative left-4 md:static md:left-0 max-sm:h-[47px] search_form md:mt-[116px] xl:mt-[140px] mx-auto xl:ml-32 2xl:ml-64 w-[80%] md:w-[549px] xl:w-[50%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0 bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit"
+            class="search_form-container relative left-4 md:static md:left-0 max-sm:h-[47px] md:mt-[116px] 2xl:mt-[140px] mx-auto xl:ml-32 2xl:ml-64 w-[80%] md:w-[549px] xl:w-[50%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0 bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit"
           >
             <button class="button_back md:hidden relative right-14">
               <svg
@@ -62,3 +64,14 @@ export const searchComponent = `
               <li class="search_suggestions--item">Hahaha</li>
             </ul>
           </div>   `;
+
+const searchForm = document.createElement("section");
+searchForm.innerHTML = searchFormComponent;
+searchForm.className = "home_search-form w-full mt-6 md:mt-0";
+
+export function displaySearchFormUI(page) {
+  page.append(searchForm);
+}
+export function removeSearchFormUI(page){
+  page.remove(searchForm);
+}
