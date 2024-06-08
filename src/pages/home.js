@@ -8,34 +8,51 @@
  */
 import { mainContainer } from "..";
 import { landingPageUI} from "../components/landingPageUI";
-import { displayRequiredResult, displaySearchResults, searchResultComponent } from "../components/searchResultsUI";
-import { displaySearchFormUI, searchFormUI } from "../components/searchFormUI";
+import { displayRequiredResult} from "../components/searchResultsUI";
+import { displaySearchFormUI } from "../components/searchFormUI";
 import { onListenUI, onVoiceSearchErrorUI, onVoiceSearchFinishUI, onVoiceSearchStartUI } from "../components/voiceSearchUI";
 import { displayWordSearchErrorUI} from "../components/wordErrorUI";
 import { displayTimeoutErrorUI } from "../components/timeoutErrorUI";
 import { displayLoader } from "../components/loaderUI";
-import { getSearchRequest } from "../features/search";
+// import { getSearchRequest } from "../features/search";
 // HOME PAGE
 export const homePage = document.createElement("section");
 homePage.className = "home w-full h-[90%] md:h-full flex flex-col";
+export const homeContainer = document.createElement('section');
+homeContainer.className = 'home_container h-full border-4'
+homePage.append(homeContainer);
+displaySearchFormUI(homePage,homeContainer);
+// Landing Page
 export function createHomeSection(){
   mainContainer.append(homePage);
 }
-// Landing Page
-// landingPageUI(homePage)
+// landingPageUI(homePage);
+
 // Voice Search Page
 // onVoiceSearchStartUI(homePage)
 // onListenUI(homePage);
 // onVoiceSearchErrorUI(homePage);
 // onVoiceSearchFinishUI();
 // Search Page Component
-displaySearchFormUI(homePage);
-// Search Error Page
-// displayWordSearchErrorUI(homePage)
-// Timeout Error Page
-// displayTimeoutErrorUI(homePage)
+const searchFormInput = homePage.querySelector('#search_input');
+const searchForm = homePage.querySelector('#search_form');
+
+searchForm.addEventListener('submit',handleUserSubmit)
+
+function handleUserSubmit(e){
+ e.preventDefault();
+ const searchRequest = searchFormInput.value;
+ if (searchRequest) {
+   homeContainer.innerHTML = "";
+   displayLoader();
+   setTimeout(() => {
+     displayRequiredResult(homeContainer,searchRequest);
+   }, 3000);
+   console.log(searchRequest);
+   searchFormInput.value = "";
+ }
+}
 // Search Results Page
-// displaySearchResults(homePage);
 // Loading Page
 // displayLoader()
-displayRequiredResult(homePage)
+// displayRequiredResult(homePage)

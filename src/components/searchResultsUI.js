@@ -2,6 +2,8 @@ import { getSearchRequest } from "../features/search";
 import { displayWordSearchErrorUI } from "./wordErrorUI";
 import { displayTimeoutErrorUI } from "./timeoutErrorUI";
 import { displaySearchedWord, displayDefinitionsList } from "../features/resultsDisplayHandler";
+import { removeLoader } from "./loaderUI";
+
 const searchResultComponent = `<div
             class="word_results overflow-auto xl:ml-6 2xl:ml-40 p-6 lg:p-10 col-span-full row-span-3 lg:col-span-3 lg:row-span-full rounded-[20px] shadow-[2px_2px_4px_0_rgba(255,209,225,0.5)] border-[#FFD1E140] border"
           >
@@ -81,31 +83,22 @@ const searchResultComponent = `<div
             >
             </ul>
           </div>`;
+
 const searchResultsUI = document.createElement("section");
 searchResultsUI.className =
-  "word_results-container md:h-full lg:h-[55%] xl:h-full home_results px-6 pb-10 lg:pb-0 xl:pb-14 2xl:pb-24 md:pl-12 lg:pl-24 md:pr-14 mt-4 md:mt-8 xl:mt-9 grid grid-cols-4 grid-rows-5 gap-4 lg:grid-cols-5 lg:grid-rows-4 lg:gap-6";
+  "word_results-container md:h-[75%] lg:h-[55%] xl:h-[45%] border-4 home_results px-6 pb-10 lg:pb-0 xl:pb-14 2xl:pb-24 md:pl-12 lg:pl-24 md:pr-14 mt-4 md:mt-8 xl:mt-9 grid grid-cols-4 grid-rows-5 gap-4 lg:grid-cols-5 lg:grid-rows-4 lg:gap-6";
 searchResultsUI.innerHTML = searchResultComponent;
 
-function displaySearchResults(page, data) {
-  page.append(searchResultsUI);
-  displaySearchedWord(page,data)
-  displayDefinitionsList(page, data);
-}
-
-export function removeSearchResults(page) {
-  page.remove(searchResultsUI);
-}
 // handles the display of either results or errors
-export async function displayRequiredResult(page) {
-  try {
-    const myResult = await getSearchRequest();
-    console.log(myResult.entryWord);
-    displaySearchResults(page, myResult);
-  } catch (error) {
-    console.log(error);
+export function displayRequiredResult(page,searchRequest) {
+  getSearchRequest(searchRequest).then((myResult)=>{
+   removeLoader()
+  displaySearchResults(page, myResult);
+  }).catch ((error)=> {
+    console.log(error)
     if (error.name === "TypeError" || error === 404) {
       console.error("Word not found");
-      displayWordSearchErrorUI(page);
+      displayWordSearchErrorUI(page,searchRequest);
     } else if (error.name === "TimeoutError" || error.name === "ERR_NETWORK") {
       console.error("Request timed out");
       displayTimeoutErrorUI(page);
@@ -113,7 +106,18 @@ export async function displayRequiredResult(page) {
       console.error("User aborted fetch");
     } else {
       console.error(error);
-    }
+    
   }
+})
 }
 
+function displaySearchResults(page, data) {
+  page.innerHTML = '';
+  page.append(searchResultsUI);
+  displaySearchedWord(page,data);
+  displayDefinitionsList(page,data);
+}
+
+export function removeSearchResults(page) {
+  page.remove(searchResultsUI);
+}

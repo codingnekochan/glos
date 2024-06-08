@@ -1,10 +1,13 @@
-export const searchRequest = "fit";
-const controller = new AbortController();
-const userAbortSignal = controller.signal;
-const timeoutAbortSignal = AbortSignal.timeout(10000);
-const abortSignalArray = AbortSignal.any([userAbortSignal, timeoutAbortSignal]);
 
-export async function getSearchRequest() {
+export async function getSearchRequest(searchRequest) {
+  const controller = new AbortController();
+  const userAbortSignal = controller.signal;
+  const timeoutAbortSignal = AbortSignal.timeout(10000);
+  const abortSignalArray = AbortSignal.any([
+    userAbortSignal,
+    timeoutAbortSignal,
+  ]);
+
   const response = await fetch(
     `https://api.dictionaryapi.dev/api/v2/entries/en/${searchRequest}`,
     { signal: abortSignalArray }
@@ -17,12 +20,12 @@ export async function getSearchRequest() {
 }
 
 function consoleResult(results) {
-  console.log(results);
+   console.log(results);
   if (results.length === 1) {
     return retrieveResults(results[0]);
   } else if (results.length > 1) {
     let firstResult =
-      results.find(findFirstSearchResult) || results[1] ;
+      results.find(findFirstSearchResult) || results[0];
     if (firstResult) {
       console.log(firstResult)
       return retrieveResults(firstResult);

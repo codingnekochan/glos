@@ -1,8 +1,7 @@
-import { homePage } from "../pages/home";
-
+//  xl:ml-32 2xl:ml-64
 const searchFormComponent = `    
          <div
-            class="search_form-container relative left-4 md:static md:left-0 max-sm:h-[47px] md:mt-[116px] 2xl:mt-[140px] mx-auto xl:ml-32 2xl:ml-64 w-[80%] md:w-[549px] xl:w-[50%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0 bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit"
+            class="search_form-container relative left-4 md:static md:left-0 max-sm:h-[47px] md:mt-[116px] 2xl:mt-[140px] mx-auto w-[80%] md:w-[549px] xl:w-[65%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0 bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit"
           >
             <button class="button_back md:hidden relative right-14">
               <svg
@@ -20,9 +19,14 @@ const searchFormComponent = `
             </button>
 
             <form
-              class="search_form flex md:w-[455px] md:h-[70px] xl:w-[80%] max-w-[946px] 2xl:h-[120px] md:rounded-[90px] md:pl-10 md:bg-[#FFEDF4] md:dark:bg-[#333333]"
-            >
+            id="search_form"
+            action = "#"
+              class="search_form flex md:w-[455px] md:h-[70px] xl:w-[83%] max-w-[946px] 2xl:h-[120px] md:rounded-[90px] md:pl-10 md:bg-[#FFEDF4] md:dark:bg-[#333333]"
+            > 
+              <label for= "search" class="sr-only">search form</label>
               <input
+              name= "search"
+              id = "search_input"
                 type="search"
                 class="search_input my-auto w-[85%] md:w-[60%] bg-inherit outline-none self-center placeholder:text-xs md:placeholder:text-sm xl:placeholder:text-lg 2xl:placeholder:text-xl"
                 placeholder="Type in a word to look up..."
@@ -63,15 +67,15 @@ const searchFormComponent = `
               <li class="search_suggestions--item">Yes yes</li>
               <li class="search_suggestions--item">Hahaha</li>
             </ul>
-          </div>   `;
+          </div>  
+`;
+const searchFormUI = document.createElement("section");
+searchFormUI.innerHTML = searchFormComponent;
+searchFormUI.className = "home_search-form w-full mt-6 md:mt-0";
 
-const searchForm = document.createElement("section");
-searchForm.innerHTML = searchFormComponent;
-searchForm.className = "home_search-form w-full mt-6 md:mt-0";
-
-export function displaySearchFormUI(page) {
-  page.append(searchForm);
+export function displaySearchFormUI(page, container) {
+ return page.insertBefore(searchFormUI, container);
 }
-export function removeSearchFormUI(page){
-  page.remove(searchForm);
+export function removeSearchFormUI(page) {
+  page.remove(searchFormUI);
 }
