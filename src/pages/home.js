@@ -19,7 +19,7 @@ import { displayLoader } from "../components/loaderUI";
 export const homePage = document.createElement("section");
 homePage.className = "home w-full h-[90%] md:h-full flex flex-col";
 export const homeContainer = document.createElement('section');
-homeContainer.className = 'home_container h-full border-4'
+homeContainer.className = 'home_container h-full'
 homePage.append(homeContainer);
 displaySearchFormUI(homePage,homeContainer);
 // Landing Page
@@ -42,8 +42,15 @@ searchForm.addEventListener('submit',handleUserSubmit)
 function handleUserSubmit(e){
  e.preventDefault();
  const searchRequest = searchFormInput.value;
- if (searchRequest) {
+   if (searchRequest === ''){
+    console.log('empty string')
+   document.querySelector('.validation-message').classList.remove('hidden');
+   return
+   }
+   else{
+    document.querySelector(".validation-message").classList.add("hidden");
    homeContainer.innerHTML = "";
+
    displayLoader();
    setTimeout(() => {
      displayRequiredResult(homeContainer,searchRequest);
@@ -55,4 +62,3 @@ function handleUserSubmit(e){
 // Search Results Page
 // Loading Page
 // displayLoader()
-// displayRequiredResult(homePage)

@@ -1,7 +1,7 @@
 //  xl:ml-32 2xl:ml-64
 const searchFormComponent = `    
          <div
-            class="search_form-container relative left-4 md:static md:left-0 max-sm:h-[47px] md:mt-[116px] 2xl:mt-[140px] mx-auto w-[80%] md:w-[549px] xl:w-[65%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0 bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit"
+            class="search_form-container relative left-4 md:static md:left-0 max-sm:h-[47px] md:mt-[100px] 2xl:mt-[120px] mx-auto w-[80%] md:w-[549px] xl:w-[65%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0 bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit"
           >
             <button class="button_back md:hidden relative right-14">
               <svg
@@ -55,8 +55,9 @@ const searchFormComponent = `
               <p>Cancel</p>
             </button>
           </div>
+          <p class="absolute left-[30%] mt-2 validation-message hidden text-[#981010] text-xs lg:text-base">Please enter a word!</p>
           <div
-            class="hidden fle/x search_suggestions relative -z-10 top-[-75px] md:top-[-80px] lg:top-[-81px] xl:top-[-83px] 2xl:top-[-130px] mx-auto w-[80%] md:w-[549px] xl:w-[50%] max-w-[1106px] justify-between items-center py-[18px] px-6 md:px-0 md:py-0 text-sm md:text-lg xl:text-xl 2xl:text-2xl rounded-t-[49px] rounded-b-[50px] search-container"
+            class="hidden fl/ex search_suggestions relative -z-10 top-[-75px] md:top-[-80px] lg:top-[-81px] xl:top-[-83px] 2xl:top-[-130px] mx-auto w-[80%] md:w-[549px] xl:w-[50%] max-w-[1106px] justify-between items-center py-[18px] px-6 md:px-0 md:py-0 text-sm md:text-lg xl:text-xl 2xl:text-2xl rounded-t-[49px] rounded-b-[50px] search-container"
           >
             <ul
               class="search_suggestions--list pt-16 md:pt-20 xl:pt-24 2xl:pt-[116px] pb-6 w-full md:w-[455px] xl:w-[80%] max-w-[946px] md:rounded-[50px] md:pl-14 text-black dark:text-white leading-loose px-6 md:bg-[#FFEDF4] md:dark:bg-[#333333]"

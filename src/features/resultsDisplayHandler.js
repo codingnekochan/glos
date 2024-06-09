@@ -7,7 +7,7 @@ export function displaySearchedWord(page, data) {
   page.querySelector(".word-link").href = data.entryWordSource;
   page.querySelector(".word-link").setAttribute("target", "_blank");
   // allow audio play
-  playAudio(page)
+  playAudio(page);
 }
 
 export function displayDefinitionsList(page, data) {
@@ -96,15 +96,30 @@ function displayAntonyms(meanings, list) {
 }
 function playAudio(page) {
   const audioPlayButton = page.querySelector(".play-audio");
-   const audioFile = document.getElementById("audio-file");
-   audioFile.load();
+  const audioFile = document.getElementById("audio-file");
+  const audioSource = document.getElementById("pronunciation-audio").src;
+  const toolTip = document.querySelector('.tool-tip');
+
   audioPlayButton.addEventListener("click", () => {
-    if (audioFile) {
-      console.log(audioFile);
-      audioFile.play();
-      console.log("Audio is playing");
-    } else {
-      console.error("Audio player element not found");
+
+      console.log(audioSource);
+       audioFile.load();
+      if (
+        audioFile &&
+        audioFile.src !== window.location.href &&
+        audioFile.src !== ""
+      ) {
+        audioFile.play();
+        console.log("Audio is playing");
+      }
+     else{
+      toolTip.classList.add('animated')
+      setTimeout(() => {
+        toolTip.classList.remove("animated");
+      }, 2000);
+      console.log("Error" + "Audio player element not found");
     }
+
   });
+
 }

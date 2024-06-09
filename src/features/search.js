@@ -50,7 +50,7 @@ function retrieveResults(result) {
 
 function findAudio(result) {
   let validAudio = result.phonetics?.find(findObjectWithValidAudio)?.audio;
-  return validAudio || '';
+  return validAudio;
 }
 function findPhonetic(result){
   let validPhonetic = result.phonetics?.find(findObjectWithValidAudio)?.text;
