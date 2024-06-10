@@ -12,7 +12,6 @@
 .entry-word_antonyms--list {
   list-style-image: url("/src/assets/list-img.svg");
 }
-
 .tool-tip {
   visibility: hidden;
   opacity: 0;
@@ -66,4 +65,9 @@
                 opacity: 0;
                 visibility: hidden;
             }
+        }
+@media (min-width : 768px) {
+          .tool-tip{
+             top: 5%;
+          } 
         }

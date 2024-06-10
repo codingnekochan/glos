@@ -42,7 +42,7 @@ function retrieveResults(result) {
   return {
     entryWord: result.word,
     pronunciationKey: result.phonetic || findPhonetic(result),
-    pronunciationAudio: findAudio(result),
+    pronunciationAudio: findAudio(result) || '',
     entryWordMeanings: printEntryWordMeanings(result),
     entryWordSource: result.sourceUrls?.[0] || '',
   };

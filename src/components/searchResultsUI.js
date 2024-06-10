@@ -5,10 +5,10 @@ import { displaySearchedWord, displayDefinitionsList } from "../features/results
 import { removeLoader } from "./loaderUI";
 
 const searchResultComponent = `<div
-            class="word_results h-full overflow-auto p-6 lg:p-10 col-span-full row-span-3 xl:col-span-3 xl:row-span-full rounded-[20px] shadow-[5px_5px_4px_0_rgba(255,209,225,0.5)] dark:shadow-[2px_2px_4px_0_rgba(255,209,225,0.5)] border-[#FFD1E140] border"
+            class="word_results h-full overflow-auto p-6 lg:p-10 lg:mx-4 col-span-full row-span-3 xl:col-span-3 xl:row-span-full rounded-[20px] shadow-[5px_5px_4px_0_rgba(255,209,225,0.5)] dark:shadow-[2px_2px_4px_0_rgba(255,209,225,0.5)] border-[#FFD1E140] border"
           >
             <div
-              class="searched-word  flex max-[375px]:justify-between max-[37px]:gap-0 max-[375px]:flex-wrap justify-start gap-3 items-center px-2 mb-6 border-b-2 border-black dark:border-white dark:text-[#F8E9EE] pb-2 xl:pb-3"
+              class="searched-word flex max-[375px]:justify-between max-[37px]:gap-0 max-[375px]:flex-wrap justify-start gap-3 items-center px-2 mb-6 border-b-2 border-black dark:border-white dark:text-[#F8E9EE] pb-2 xl:pb-3"
             >
               <span
                 class="entry-word font-['Oswald'] text-xl mr-3 md:text-2xl xl:text-3xl 2xl:text-[40px]"
@@ -18,7 +18,7 @@ const searchResultComponent = `<div
                 class="pronunciation-key text-sm md:text-base lg:text-lg xl:text-xl 2xl:2xl"
                 ></span
               >
-              <button class="play-audio">
+              <button class="play-audio relative">
                 <svg
                   width="20"
                   height="18"
@@ -72,7 +72,7 @@ const searchResultComponent = `<div
             </ul>
           </div>
           <div
-            class="entry-word_antonym overflow-auto col-span-2 row-span-2 xl:col-span-2 xl:row-span-2 p-4 lg:p-6 lg:mx-4 lg:mt-2 xl:mx-12 2xl:ml-24 2xl:mr-32 border border-[#FFD1E140] rounded-[20px] shadow-[4px_4px_4px_0_rgba(255,209,225,0.5)] dark:shadow-[1px_1px_4px_0_rgba(255,209,225,0.25)]"
+            class="entry-word_antonym overflow-auto col-span-2 row-span-2 xl:col-span-2 xl:row-span-2 p-4 lg:p-6 lg:mx-4 lg:mb-2 xl:mx-12 2xl:ml-24 2xl:mr-32 border border-[#FFD1E140] rounded-[20px] shadow-[4px_4px_4px_0_rgba(255,209,225,0.5)] dark:shadow-[1px_1px_4px_0_rgba(255,209,225,0.25)]"
           >
             <h3
               class="antonyms font-bold border-b-2 border-black dark:border-white mx-auto text-center text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-[33px] dark:text-[##F8E9EE] pb-1"
