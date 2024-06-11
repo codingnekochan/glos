@@ -1,3 +1,9 @@
+// THIS FILE MODULE HANDLES THE DISPLAY OF RESULTS RETRIEVED FROM API RESPONSE
+
+import playAudio from "./audioPlay";
+
+/*this function diplays the searched word,phonetic sound, 
+it also adds the see-more link and audio file*/
 export function displaySearchedWord(page, data) {
   page.querySelector(".entry-word").textContent = data.entryWord;
   page.querySelector(
@@ -6,15 +12,20 @@ export function displaySearchedWord(page, data) {
   document.getElementById("pronunciation-audio").src = data.pronunciationAudio;
   page.querySelector(".word-link").href = data.entryWordSource;
   page.querySelector(".word-link").setAttribute("target", "_blank");
-  // allow audio play
-  playAudio(page);
+  playAudio(page)
 }
-
+/*
+this function handles display of the list of meanings for a searched word including
+the parts of speech; and the defintions and examples availabe for each part of 
+speech.
+*/
 export function displayDefinitionsList(page, data) {
+  // clears 
   const entryWordMeaningsList = page.querySelector(
     ".search-word_meaning--list"
   );
   entryWordMeaningsList.innerHTML = "";
+  // clears syno
   const synonymsList = page.querySelector(".entry-word_synonyms--list");
   synonymsList.innerHTML = "";
   console.log("synonym list cleared");
@@ -74,47 +85,25 @@ export function displayDefinitionsList(page, data) {
     displayAntonyms(meaningsItem, antonymsList);
   });
 }
+// handles display of synonyms
 function displaySynonyms(meanings, list) {
   meanings.entryWordSynonyms.forEach((synonym) => {
     const item = document.createElement("li");
     const synonymButton = document.createElement("button");
-    synonymButton.className = "synonym-button capitalize";
+    synonymButton.className = "word-button synonym-button capitalize";
     synonymButton.textContent = synonym;
     item.append(synonymButton);
     list.append(item);
   });
 }
+// handles display of anotonyms
 function displayAntonyms(meanings, list) {
   meanings.entryWordAntonyms.forEach((antonym) => {
     const item = document.createElement("li");
     const antonymButton = document.createElement("button");
-    antonymButton.className = "antonym-button capitalize";
+    antonymButton.className = "word-button antonym-button capitalize";
     antonymButton.textContent = antonym;
     item.append(antonymButton);
     list.append(item);
-  });
-}
-function playAudio(page) {
-  const audioPlayButton = page.querySelector(".play-audio");
-  const audioFile = document.getElementById("audio-file");
-  const audioSource = document.getElementById("pronunciation-audio");
-  const toolTip = document.querySelector(".tool-tip");
-  audioFile.load();
-  audioPlayButton.addEventListener("click", () => {
-    if (
-      audioSource.src &&
-      audioSource.src !== window.location.href) {
-      console.log(audioSource);
-      console.log(window.location.href);
-      audioFile.play();
-      console.log("Audio is playing");
-    } else {
-      console.log(toolTip)
-      toolTip.classList.add("animated");
-      setTimeout(() => {
-        toolTip.classList.remove("animated");
-      }, 2000);
-      console.log("Error" + "Audio player element not found");
-    }
   });
 }

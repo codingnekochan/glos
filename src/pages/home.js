@@ -3,18 +3,17 @@
  landing page
  search page
  voice search page
- result page
- error pages
+ result page#
+ error pages#
  */
 import { mainContainer } from "..";
 import { landingPageUI} from "../components/landingPageUI";
 import { displayRequiredResult} from "../components/searchResultsUI";
 import { displaySearchFormUI } from "../components/searchFormUI";
-import { onListenUI, onVoiceSearchErrorUI, onVoiceSearchFinishUI, onVoiceSearchStartUI } from "../components/voiceSearchUI";
-import { displayWordSearchErrorUI} from "../components/wordErrorUI";
-import { displayTimeoutErrorUI } from "../components/timeoutErrorUI";
+import {onListenUI, onVoiceSearchCancel, onVoiceSearchErrorUI, onVoiceSearchFinishUI, onVoiceSearchStartUI } from "../components/voiceSearchUI";
 import { displayLoader } from "../components/loaderUI";
-// import { getSearchRequest } from "../features/search";
+import { handleVoiceSearch, wordRecognition} from "../features/voiceSearch";
+import { audioPlayButton, handleAudioPlayback, playAudio } from "../features/audioPlay";
 // HOME PAGE
 export const homePage = document.createElement("section");
 homePage.className = "home w-full h-[90%] md:h-full flex flex-col";
@@ -28,37 +27,38 @@ export function createHomeSection(){
 }
 // landingPageUI(homePage);
 
-// Voice Search Page
-// onVoiceSearchStartUI(homePage)
-// onListenUI(homePage);
-// onVoiceSearchErrorUI(homePage);
-// onVoiceSearchFinishUI();
 // Search Page Component
 const searchFormInput = homePage.querySelector('#search_input');
 const searchForm = homePage.querySelector('#search_form');
-
-searchForm.addEventListener('submit',handleUserSubmit)
-
-function handleUserSubmit(e){
+const voiceSearchButton = homePage.querySelector("#button_voice-search");
+// Home Page EventListener
+searchForm.addEventListener('submit',handleUserSearch)
+voiceSearchButton.addEventListener("click", () => {
+  homeContainer.innerHTML = ''
+  handleVoiceSearch(homePage);
+  const cancelButton = document.querySelector(".button_listening-cancel");
+  cancelButton.addEventListener("click", () => {
+    wordRecognition.abort();
+    onVoiceSearchCancel(homePage);
+  });
+});
+export function handleUserSearch(e, transcript){
  e.preventDefault();
- const searchRequest = searchFormInput.value;
+ const searchRequest = searchFormInput.value || transcript;
    if (searchRequest === ''){
-    console.log('empty string')
+  console.log('empty string')
    document.querySelector('.validation-message').classList.remove('hidden');
    return
    }
    else{
     document.querySelector(".validation-message").classList.add("hidden");
    homeContainer.innerHTML = "";
-
    displayLoader();
    setTimeout(() => {
-     displayRequiredResult(homeContainer,searchRequest);
+     displayRequiredResult(homeContainer,searchRequest)
    }, 3000);
    console.log(searchRequest);
    searchFormInput.value = "";
  }
 }
-// Search Results Page
-// Loading Page
-// displayLoader()
+

@@ -1,8 +1,8 @@
 import { getSearchRequest } from "../features/search";
 import { displayWordSearchErrorUI } from "./wordErrorUI";
 import { displayTimeoutErrorUI } from "./timeoutErrorUI";
-import { displaySearchedWord, displayDefinitionsList } from "../features/resultsDisplayHandler";
-import { removeLoader } from "./loaderUI";
+import { displaySearchedWord, displayDefinitionsList, playAudio } from "../features/resultsDisplayHandler";
+import { audioPlayButton, handleAudioPlayback } from "../features/audioPlay";
 
 const searchResultComponent = `<div
             class="word_results h-full overflow-auto p-6 lg:p-10 lg:mx-4 col-span-full row-span-3 xl:col-span-3 xl:row-span-full rounded-[20px] shadow-[5px_5px_4px_0_rgba(255,209,225,0.5)] dark:shadow-[2px_2px_4px_0_rgba(255,209,225,0.5)] border-[#FFD1E140] border"
@@ -92,7 +92,6 @@ searchResultsUI.innerHTML = searchResultComponent;
 // handles the display of either results or errors
 export function displayRequiredResult(page,searchRequest) {
   getSearchRequest(searchRequest).then((myResult)=>{
-   removeLoader()
   displaySearchResults(page, myResult);
   }).catch ((error)=> {
     console.log(error)
@@ -112,7 +111,7 @@ export function displayRequiredResult(page,searchRequest) {
 }
 
 function displaySearchResults(page, data) {
-  page.innerHTML = '';
+  page.innerHTML = ''; 
   page.append(searchResultsUI);
   displaySearchedWord(page,data);
   displayDefinitionsList(page,data);

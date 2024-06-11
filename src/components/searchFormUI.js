@@ -32,7 +32,7 @@ const searchFormComponent = `
                 placeholder="Type in a word to look up..."
               />
             </form>
-            <button class="mic-icon">
+            <button id="button_voice-search" class="mic-icon">
               <svg
                 class="w-[30px] h-[31px] md:w-[70px] md:h-[70px] 2xl:w-[120px] 2xl:h-[120px]"
                 viewBox="0 0 30 31"

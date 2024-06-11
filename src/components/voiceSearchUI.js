@@ -1,5 +1,7 @@
-const  microphoneComponent =`
-   <div class="listening_page--cancel self-end p-6 md:px-10 md:pt-10 md:pb-0">
+import { wordRecognition } from "../features/voiceSearch";
+
+const microphoneComponent = `
+   <button class="button_listening-cancel self-end p-6 md:px-10 md:pt-10 md:pb-0">
           <svg
             class="w-[25px] md:w-10 h-[25px] md:h-10"
             viewBox="0 0 40 40"
@@ -30,8 +32,8 @@ const  microphoneComponent =`
               stroke-width="2"
             />
           </svg>
-        </div>
-        <div class="lsitening_page--mic m-auto md:relative lg:statc md:left-[-4%] md:top-[-5%] lg:flex lg:justify-center lg:items-center lg:gap-[60px]">
+        </button>
+        <div class="listening_page--mic m-auto md:relative lg:statc md:left-[-4%] md:top-[-5%] lg:flex lg:justify-center lg:items-center lg:gap-[60px]">
           <div class="flex justify-center">
             <svg
               class="w-[190px] md:w-[170px] xl:w-[270px] h-[190px] md:h-[170px] xl:h-[270px]"
@@ -77,29 +79,44 @@ const  microphoneComponent =`
             </svg>
           </div>
           <div class="mt-8 text-center text-[16px] md:text-lg xl:text-xl 2xl:text-3xl">
-            <p class="listening_page--text">Say a word to look up!</p>
+            <p class="listening_page--text"></p>
           </div>
         </div>
 `;
 
 const userMic = document.createElement("div");
 userMic.className =
-  "home_listening w-full h-full flex flex-col justify-center items-center";
+  "home_listening w-full h-full flex flex-col justify-center items-center absolute top-0 left-0 bg-white dark:bg-black";
 userMic.innerHTML = microphoneComponent;
 
 export function onVoiceSearchStartUI(page) {
-  document.querySelector(".button_theme-switch").classList.add("hidden");
-  page.innerHTML = "";
+  console.log('mariam o')
   page.append(userMic);
+  document.querySelector(".button_theme-switch").classList.add("hidden");
+  page.querySelector(".home_search-form").classList.add("hidden");
+  page.querySelector(".listening_page--text").textContent =
+    "Say a word to look up!";
+  
 }
 export function onListenUI(page) {
+  console.log('I hate myself')
   userMic.querySelectorAll("circle").forEach((circle) => {
     circle.classList.add("animate-pulse");
   });
   page.querySelector(".listening_page--text").textContent = "Listening...";
 }
-export function onVoiceSearchFinishUI() {
+export function onVoiceSearchFinishUI(page) {
+  page.querySelector(".listening_page--text").textContent = "";
+  document.querySelector(".home_search-form").classList.remove("hidden");
   document.querySelector(".button_theme-switch").classList.remove("hidden");
+  userMic.remove();
+}
+export function onVoiceSearchCancel(page) {
+  wordRecognition.abort();
+  console.log("word search aborted");
+  document.querySelector(".button_theme-switch").classList.remove("hidden");
+  document.querySelector(".home_search-form").classList.remove("hidden");
+  page.querySelector(".listening_page--text").textContent = "";
   userMic.remove();
 }
 export function onVoiceSearchErrorUI(page) {
@@ -109,6 +126,3 @@ export function onVoiceSearchErrorUI(page) {
   page.querySelector(".listening_page--text").textContent =
     "Sorry, didn’t get that.";
 }
-
-
-
