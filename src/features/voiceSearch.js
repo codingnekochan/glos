@@ -4,7 +4,7 @@ import {
   onVoiceSearchStartUI,
   onVoiceSearchFinishUI,
 } from "../components/voiceSearchUI";
-import { handleUserSearch, homeContainer } from "../pages/home";
+import { handleUserSearch} from "../pages/home";
 import { homePage } from "../pages/home";
 
 const SpeechRecognition =
@@ -14,19 +14,17 @@ wordRecognition.continuous = false;
 wordRecognition.lang = "en";
 wordRecognition.interimResults = false;
 
-export function handleVoiceSearch(page) {
-    // Indicate the start of voice recognition in the UI
+export function handleVoiceSearch(page) { // Indicate the start of voice recognition in the UI
   onVoiceSearchStartUI(page);
   console.log("Starting voice recognition");
   wordRecognition.start();
-
 }
 
 wordRecognition.addEventListener("speechstart", handleSpeechStart);
 wordRecognition.addEventListener("result", handleSpeechResult);
 wordRecognition.addEventListener("speechend", handleSpeechEnd);
 wordRecognition.addEventListener("error", handleSpeechError);
-// wordRecognition.addEventListener("nomatch", handleNoMatch);
+wordRecognition.addEventListener("nomatch", handleNoMatch);
 
 function handleSpeechStart(e) {
   onListenUI(homePage);
@@ -34,12 +32,18 @@ function handleSpeechStart(e) {
 }
 function handleSpeechResult(e) {
   // Ensure that we have a valid result
-  if (e.results && e.results[0] && e.results[0][0]) {
-    const transcript = e.results[0][0].transcript.trim();
-    console.log("Result: " + transcript);
-    handleUserSearch(e, transcript);
-    return transcript;
-  } else {
+  try {
+    if (e.results && e.results[0] && e.results[0][0]) {
+      const transcript = e.results[0][0].transcript.trim();
+      console.log("Result: " + transcript);
+      handleUserSearch(e, transcript);
+      return transcript;
+    }
+    else{
+      console.log('did not recognise')
+    }
+  } catch (error) {
+    console.log(error);
     console.error("No valid speech result found");
     onVoiceSearchErrorUI(homePage);
   }
@@ -56,9 +60,8 @@ function handleSpeechError(e) {
   wordRecognition.abort();
   console.error("Error occurred during speech recognition");
 }
-
-wordRecognition.onnomatch = function(e) {
+function handleNoMatch(e) {
   onVoiceSearchErrorUI(homePage);
   wordRecognition.abort();
   console.log("No match found");
-}
+};

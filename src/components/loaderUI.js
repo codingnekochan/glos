@@ -1,4 +1,3 @@
-// import { mainContainer } from "..";
 import { homeContainer } from "../pages/home";
 export function displayLoader() {
 const loaderPage = document.createElement("div");

@@ -1,3 +1,6 @@
+import { fetchWordSuggestions, debounceFetch } from "../features/autocomplete";
+import { homeContainer } from "../pages/home";
+
 //  xl:ml-32 2xl:ml-64
 const searchFormComponent = `    
          <div
@@ -57,26 +60,53 @@ const searchFormComponent = `
           </div>
           <p class="absolute left-[30%] mt-2 validation-message hidden text-[#981010] text-xs lg:text-base">Please enter a word!</p>
           <div
-            class="hidden fl/ex search_suggestions relative -z-10 top-[-75px] md:top-[-80px] lg:top-[-81px] xl:top-[-83px] 2xl:top-[-130px] mx-auto w-[80%] md:w-[549px] xl:w-[50%] max-w-[1106px] justify-between items-center py-[18px] px-6 md:px-0 md:py-0 text-sm md:text-lg xl:text-xl 2xl:text-2xl rounded-t-[49px] rounded-b-[50px] search-container"
+            class="hidden search_suggestions relative -z-10 top-[-75px] md:top-[-80px] lg:top-[-81px] xl:top-[-83px] 2xl:top-[-130px] mx-auto w-[80%] md:w-[549px] xl:w-[80%] max-w-[1106px] justify-between items-center py-[18px] px-6 md:px-0 md:py-0 text-sm md:text-lg xl:text-xl 2xl:text-2xl rounded-t-[49px] rounded-b-[50px] search-container"
           >
             <ul
               class="search_suggestions--list pt-16 md:pt-20 xl:pt-24 2xl:pt-[116px] pb-6 w-full md:w-[455px] xl:w-[80%] max-w-[946px] md:rounded-[50px] md:pl-14 text-black dark:text-white leading-loose px-6 md:bg-[#FFEDF4] md:dark:bg-[#333333]"
             >
-              <li class="search_suggestions--item">Word one</li>
-              <li class="search_suggestions--item">Suggested two</li>
-              <li class="search_suggestions--item">Hello three</li>
-              <li class="search_suggestions--item">Yes yes</li>
-              <li class="search_suggestions--item">Hahaha</li>
             </ul>
           </div>  
 `;
 const searchFormUI = document.createElement("section");
 searchFormUI.innerHTML = searchFormComponent;
 searchFormUI.className = "home_search-form w-full mt-6 md:mt-0";
+const searchInput = searchFormUI.querySelector('#search_input');
+const suggestionBox = searchFormUI.querySelector('.search_suggestions');
+const suggestionList = searchFormUI.querySelector('.search_suggestions--list');
 
 export function displaySearchFormUI(page, container) {
  return page.insertBefore(searchFormUI, container);
 }
 export function removeSearchFormUI(page) {
   page.remove(searchFormUI);
+}
+function displayWordSuggestions(userInput){
+  fetchWordSuggestions(userInput).then((wordSuggestions)=>{
+    wordSuggestions.forEach((suggestion)=>{
+      const suggestedWord = document.createElement('li');
+      suggestedWord.className = "search_suggestions--item";
+      suggestedWord.addEventListener('click',(e)=>{
+        // searchInput.value = e.textContent
+        console.log('new value is :' + e.textContent)
+      })
+      suggestedWord.textContent = suggestion;
+      suggestionList.append(suggestedWord)
+    })
+  })
+}
+searchInput.addEventListener('input',()=>{
+  let userInput = searchInput.value;
+  homeContainer.innerHTML = ''
+  suggestionBox.classList.remove('hidden');
+  suggestionBox.classList.add('flex')
+  console.log('Input is :'+userInput)
+  suggestionList.innerHTML =''
+  debounceFetch(displayWordSuggestions(userInput), 3000);
+})
+
+export function removeSuggestions(){
+  suggestionList.innerHTML= ''
+  suggestionBox.classList.remove("flex");
+  suggestionBox.classList.add("hidden");
 }

@@ -10,5 +10,6 @@ export const mainContainer = document.querySelector("main");
 const themeSwitchButton = document.querySelector('.button_theme-switch');
 
 defaultTheme(htmlBody);
-createHomeSection();
+// Home Section
+ createHomeSection();
 themeSwitchButton.addEventListener("click",()=> toggleDarkMode(htmlBody));

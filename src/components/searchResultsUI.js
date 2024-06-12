@@ -1,8 +1,7 @@
 import { getSearchRequest } from "../features/search";
 import { displayWordSearchErrorUI } from "./wordErrorUI";
 import { displayTimeoutErrorUI } from "./timeoutErrorUI";
-import { displaySearchedWord, displayDefinitionsList, playAudio } from "../features/resultsDisplayHandler";
-import { audioPlayButton, handleAudioPlayback } from "../features/audioPlay";
+import { displaySearchedWord, displayDefinitionsList } from "../features/resultsDisplayHandler";
 
 const searchResultComponent = `<div
             class="word_results h-full overflow-auto p-6 lg:p-10 lg:mx-4 col-span-full row-span-3 xl:col-span-3 xl:row-span-full rounded-[20px] shadow-[5px_5px_4px_0_rgba(255,209,225,0.5)] dark:shadow-[2px_2px_4px_0_rgba(255,209,225,0.5)] border-[#FFD1E140] border"

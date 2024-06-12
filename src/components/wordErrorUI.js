@@ -1,4 +1,3 @@
-// const seachResult = document.querySelector('')
 export function displayWordSearchErrorUI(page,searchRequest) {
 const wordErrorMessage = ` 
           <p class="error-message text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
