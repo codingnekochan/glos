@@ -102,10 +102,10 @@ function displayWordSuggestions(userInput) {
 }
 
 searchInput.addEventListener("input", (container) => {
+  suggestionList.innerHTML = "";
   let userInput = searchInput.value;
   container = document.querySelector(".home_container");
   container.innerHTML = "";
-  suggestionList.innerHTML = ""
   validationMessage.classList.add("hidden");
   suggestionBox.classList.remove("hidden");
   suggestionBox.classList.add("flex");
