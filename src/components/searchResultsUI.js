@@ -1,13 +1,13 @@
 import { getSearchRequest } from "../features/search";
 import { displayWordSearchErrorUI } from "./wordErrorUI";
 import { displayTimeoutErrorUI } from "./timeoutErrorUI";
-import { displaySearchedWord, displayDefinitionsList } from "../features/resultsDisplayHandler";
+import {displaySearchedWord, displayDefinitionsList} from "../features/resultsDisplayHandler";
 
 const searchResultComponent = `<div
-            class="word_results h-full overflow-auto p-6 lg:p-10 lg:mx-4 col-span-full row-span-3 xl:col-span-3 xl:row-span-full rounded-[20px] shadow-[5px_5px_4px_0_rgba(255,209,225,0.5)] dark:shadow-[2px_2px_4px_0_rgba(255,209,225,0.5)] border-[#FFD1E140] border"
+            class="word_results h-full overflow-auto p-6 lg:p-10 lg:mx-4 col-span-full row-span-3 xl:col-span-3 xl:row-span-full rounded-[20px] shadow-[5px_5px_4px_0_rgba(255,209,225,0.5)] dark:shadow-[2px_2px_4px_0_rgba(255,209,225,0.5)] border-[#FFD1E140] border 2xl:ml-[22%]"
           >
             <div
-              class="searched-word flex max-[375px]:justify-between max-[37px]:gap-0 max-[375px]:flex-wrap justify-start gap-3 items-center px-2 mb-6 border-b-2 border-black dark:border-white dark:text-[#F8E9EE] pb-2 xl:pb-3"
+              class="searched-word flex max-[375px]:justify-between max-[375px]:gap-0 max-[375px]:flex-wrap justify-start gap-3 items-center px-2 mb-6 border-b-2 border-black dark:border-white dark:text-[#F8E9EE] pb-2 xl:pb-3"
             >
               <span
                 class="entry-word font-['Oswald'] text-xl mr-3 md:text-2xl xl:text-3xl 2xl:text-[40px]"
@@ -84,7 +84,7 @@ const searchResultComponent = `<div
             </ul>
           </div>`;
 
-const searchResultsUI = document.createElement("section");
+export const searchResultsUI = document.createElement("section");
 searchResultsUI.className =
   "word_results-container h-[90%] md:h-[810px] lg:min-h-[75%] lg:max-h-full xl:h-[830px] home_results px-6 pb-10 lg:pb-0 lg:px-16 xl:px-0 xl:pb-14 2xl:pb-24 md:pl-12 xl:pl-24 md:pr-14 mt-4 md:mt-8 xl:mt-9 grid grid-cols-4 grid-rows-5 gap-4 xl:grid-cols-5 xl:grid-rows-4 xl:gap-6";
 searchResultsUI.innerHTML = searchResultComponent;

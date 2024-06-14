@@ -9,11 +9,11 @@
       href="https://fonts.googleapis.com/css2?family=Courgette&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@100..900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="">
+    <link rel="icon" href="/public/icon.svg">
     <title>Glos</title>
   </head>
   <body
-    class="font-[inter] h-[100vh] flex flex-col md:flex-row dark:text-white bg:white dark:bg-black"
+    class="font-[Inter] h-[100vh] flex flex-col md:flex-row dark:text-white bg:white dark:bg-black"
   >
     <div
       class="buttons_container hidd/en flex gap-4 justify-end pt-6 pr-6 md:w-[300px] md:absolute md:top-0 md:right-0 md:pt-10 md:pr-10"
@@ -40,11 +40,11 @@
           />
         </svg>
       </button>
-      <div class="hidden font-options xl:order-1">
+      <div class=" font-options xl:order-1">
         <button
           class="py-2 flex items-center gap-2 md:gap-3 button button_font-change text-sm md:text-base md:pr-5"
         >
-          <p class="font_applied">San Serif</p>
+          <p class="font_applied"></p>
           <svg
             class="w-[15px] h-[8px] md:w-[20px] md:h-[10px] md:pl"
             width="15"
@@ -57,25 +57,27 @@
           </svg>
         </button>
         <div
-          class="font-list hidden f/lex flex-col absolute right-6 top-24 md:right-10 z-20 px-4 md:px-6 py-6 md:py-10 2xl:py-14 bg-[#CF688C] dark:bg-[#8A8A8A] text-sm md:text-lg 2xl:text-2xl text-white rounded-[30px]"
+          class="font-list hidden absolute right-6 top-24 md:right-10 z-20 px-4 md:px-6 py-6 md:py-10 2xl:py-14 bg-[#CF688C] dark:bg-[#8A8A8A] text-center text-sm md:text-lg 2xl:text-2xl text-white rounded-[30px]"
         >
           <button
-            class="font-family font-['Inter'] border-[1px] border-[#F8E9EE] hover:bg-[#F8E9EE] px-10 md:px-12 py-2 hover:text-black"
-            data-value="san-serif"
+            class="font-family font-['Inter'] border-[1px] border-[#F8E9EE] hover:bg-[#F8E9EE] py-2 h-[33px] w-[110px] md:w-[200px] 2xl:w-[224px] md:h-[45px] hover:text-black"
+            data-font="sans-serif"
           >
-            San Serif
+            Sans Serif
           </button>
+          <br>
           <button
-            class="font-family my-2 font-['Libre_Calson'] border-[1px] border-[#F8E9EE] px-10 md:px-12 py-2 hover:bg-[#F8E9EE] hover:text-black"
-            data-value="serif"
+            class="font-family font-['Libre_Calson_Text'] border-[1px] my-2 border-[#F8E9EE] py-2 h-[33px] w-[110px]  md:w-[200px] 2xl:w-[224px] md:h-[45px] hover:bg-[#F8E9EE] hover:text-black"
+            data-font="serif"
           >
             Serif
           </button>
+          <br>
           <button
-            class="font-family font-['Courier_Prime'] border-[1px] border-[#F8E9EE] px-10 py-2 hover:bg-[#F8E9EE] hover:text-black"
-            data-value="mono-space"
+            class="font-family font-['Courier_Prime'] border-[1px] border-[#F8E9EE] py-2 h-[33px] w-[110px]  md:w-[200px] 2xl:w-[224px] md:h-[45px] hover:bg-[#F8E9EE] hover:text-black"
+            data-font="mono-space"
           >
-            Mono space
+            Monospace
           </button>
         </div>
       </div>
