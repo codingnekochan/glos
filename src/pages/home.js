@@ -28,13 +28,14 @@ homeContainer.className = "home_container h-full";
 homePage.append(homeContainer);
 displaySearchFormUI(homePage, homeContainer);
 // Landing Page
-export function createHomeSection(container) {
+export function diplayHomePage(container) {
+  container.innerHTML = ''
   container.append(homePage);
-  // landingPageUI(homePage);
+  landingPageUI(homePage);
 }
 
 // Search Page Component
-const voiceSearchButton = homePage.querySelector("#button_voice-search");
+const voiceSearchButton = homePage.querySelector(".button_voice-search");
 // Home Page EventListener
 searchForm.addEventListener("submit", handleUserSearch);
 voiceSearchButton.addEventListener("click", () => {
@@ -46,6 +47,7 @@ voiceSearchButton.addEventListener("click", () => {
     onVoiceSearchCancel(homePage);
   });
 });
+
 export function handleUserSearch(e, transcript) {
   e.preventDefault();
   removeSuggestions();
