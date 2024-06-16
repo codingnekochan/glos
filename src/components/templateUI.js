@@ -28,7 +28,7 @@ export const pageTemplateComponent = ` <div class="h-full page">
         </div>
         <!-- modal box -->
         <div
-          class="hidde/n flex z-10 absolute w-full h-full top-0 left-0 bookmark_modal bg-[#00000099] justify-center items-center"
+          class="hidden fle/x z-10 absolute w-full h-full top-0 left-0 bookmark_modal bg-[#00000099] justify-center items-center"
         >
           <div
             class="flex flex-col clear page_clear bg-white dark:bg-black w-[273px] border-2 border-[#8A8A8A] dark:border-[#FFE5EE] rounded-2xl justify-center items-center text-xs font-bold sm:w-[48%] md:w-[64%] lg:w-[600px]"
