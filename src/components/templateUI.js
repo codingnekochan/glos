@@ -15,20 +15,15 @@ export const pageTemplateComponent = ` <div class="h-full page">
           <ul
             class="page_list list-disc text-sm pl-[71px] md:pl-0 mt-6 md:mt-11 md:text-xl xl:mt-7"
           >
-            <li class="page_list--item">Ethereal</li>
-            <li class="page_list--item">Generous</li>
-            <li class="page_list--item">Severe</li>
-            <li class="page_list--item">Undermine</li>
           </ul>
           <button
             class="button clear_button underline font-[Courgette] text-sm text-[#CF688C] pl-6 mt-6 md:pl-0 md:ml-[-5.05%] md:mt-11 md:text-2xl xl:mt-10 dark:text-[#DE98B0]"
           >
-            Clear history?
           </button>
         </div>
         <!-- modal box -->
         <div
-          class="hidden fle/x z-10 absolute w-full h-full top-0 left-0 bookmark_modal bg-[#00000099] justify-center items-center"
+          class="hidden z-10 absolute w-full h-full top-0 left-0 modal-box bg-[#00000099] justify-center items-center"
         >
           <div
             class="flex flex-col clear page_clear bg-white dark:bg-black w-[273px] border-2 border-[#8A8A8A] dark:border-[#FFE5EE] rounded-2xl justify-center items-center text-xs font-bold sm:w-[48%] md:w-[64%] lg:w-[600px]"

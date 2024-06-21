@@ -19,6 +19,7 @@ import {
 import { onVoiceSearchCancel } from "../components/voiceSearchUI";
 import { displayLoader } from "../components/loaderUI";
 import { handleVoiceSearch, wordRecognition } from "../features/voiceSearch";
+import { saveRecents } from "../features/storage";
 // HOME PAGE
 export const homePage = document.createElement("section");
 homePage.className = "home w-full h-[90%] md:h-full flex flex-col";
@@ -31,7 +32,7 @@ displaySearchFormUI(homePage, homeContainer);
 export function diplayHomePage(container) {
   container.innerHTML = ''
   container.append(homePage);
-  landingPageUI(homePage);
+  // landingPageUI(homePage);
 }
 
 // Search Page Component
@@ -58,6 +59,7 @@ export function handleUserSearch(e, transcript) {
     validationMessage.classList.remove("hidden");
     return;
   } else {
+    saveRecents({word : searchRequest})
     document.querySelector(".validation-message").classList.add("hidden");
     homeContainer.innerHTML = "";
     displayLoader(homeContainer);

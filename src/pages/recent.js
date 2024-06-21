@@ -1,17 +1,44 @@
 import { pageTemplateComponent } from "../components/templateUI";
+import { clearRecents, displayRecentsList } from "../features/storage";
 
-const recentPage = document.createElement('section');
-recentPage.className = "recent mt-24 md:mt-36 xl:mt-28";
-recentPage.id = "recent";
-recentPage.innerHTML = pageTemplateComponent;
-const recentPageInfo = recentPage.querySelector('.page_info');
-const recentPageCta = recentPage.querySelector('.page_cta');
-const recentClearAlert = recentPage.querySelector(".clear_alert");
+const recentsPage = document.createElement('section');
+recentsPage.className = "recent mt-20 md:mt-36 xl:mt-28";
+recentsPage.id = "recent";
+recentsPage.innerHTML = pageTemplateComponent;
+const recentPageInfo = recentsPage.querySelector('.page_info');
+const recentPageCta = recentsPage.querySelector('.page_cta');
+const recentClearAlert = recentsPage.querySelector(".clear_alert");
+const recentsList = recentsPage.querySelector(".page_list");
+const recentsContainer = recentsPage.querySelector(".words_container");
+const recentsClearButton = recentsPage.querySelector(".clear_button");
+const recentsModal = recentsPage.querySelector(".modal-box");
+const cancelRecentClearButton = recentsPage.querySelector(".clear_cancel");
+const clearRecentButton = recentsPage.querySelector(".button_clear");
 recentPageInfo.textContent = `Your recently searched words will appear here!`;
-recentPageCta.textContent = `You have not search for any word yet! Click on the search option or voice recording to look up a word!`
-recentClearAlert.textContent = `Are you sure you want to clear your recent searches?
-`;
+recentPageCta.textContent =`You have have not search for any word yet! Click on the search option or voice recording to look up a word!`
+recentClearAlert.textContent = `Are you sure you want to clear your recent searches?`
+recentsClearButton.textContent = 'Clear history?'
+recentsClearButton.addEventListener('click',showRecentsModal);
+cancelRecentClearButton.addEventListener('click', hideRecentsModal);
+clearRecentButton.addEventListener('click', handleRecentsEvents)
+
 export function displayRecentPage(container){
     container.innerHTML = ''
-    container.append(recentPage);
+    container.append(recentsPage);
 }
+function showRecentsModal() {
+  recentsModal.classList.remove("hidden");
+  recentsModal.classList.add("flex");
+}
+function hideRecentsModal() {
+  recentsModal.classList.add("hidden");
+  recentsModal.classList.remove("flex");
+}
+function handleRecentsEvents() {
+  clearRecents();
+  hideRecentsModal();
+  recentsContainer.classList.add("hidden");
+  recentPageCta.textContent =
+"You have not search for any word yet! Click on the search option or voice recording to look up a word!";
+}
+displayRecentsList(recentsList, recentPageCta, recentsContainer);

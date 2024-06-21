@@ -1,8 +1,11 @@
 import { getSearchRequest } from "../features/search";
 import { displayWordSearchErrorUI } from "./wordErrorUI";
 import { displayTimeoutErrorUI } from "./timeoutErrorUI";
-import {displaySearchedWord, displayDefinitionsList} from "../features/resultsDisplayHandler";
-
+import {
+  displaySearchedWord,
+  displayDefinitionsList,
+} from "../features/resultsDisplayHandler";
+import {saveBookmarks, deleteBookmark } from "../features/storage";
 const searchResultComponent = `<div
             class="word_results h-full overflow-auto p-6 lg:p-10 lg:mx-4 col-span-full row-span-3 xl:col-span-3 xl:row-span-full rounded-[20px] shadow-[5px_5px_4px_0_rgba(255,209,225,0.5)] dark:shadow-[2px_2px_4px_0_rgba(255,209,225,0.5)] border-[#FFD1E140] border 2xl:ml-[22%]"
           >
@@ -32,18 +35,9 @@ const searchResultComponent = `<div
                 </svg>
                 <div class ="tool-tip"><span class="tool-tip_text">No audio found</span></div>
               </button>
-              <button class="button add-to-bookmark">
-                <svg
-                  class="w-5 h-5"
-                  viewBox="0 0 27 32"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    class="stroke-[#B81E53] stroke-2 fill-none dark:stroke-[#CF688C]"
-                    d="M3.09214 31.4245C2.20322 32.0195 0.963623 31.4285 0.963623 30.4098V5.41667C0.963623 2.42512 3.57062 0 6.78654 0H20.2211C23.437 0 26.044 2.42512 26.044 5.41667V30.4098C26.044 31.4285 24.8044 32.0195 23.9155 31.4245L13.5038 24.4563L3.09214 31.4245Z"
-                  />
-                </svg>
-              </button>
+              <div class= 'button-container relative top-1'>
+             
+              </div>
             </div>
             <div class="search-word_meaning--list grid gap-1">
             </div>
@@ -83,39 +77,93 @@ const searchResultComponent = `<div
             >
             </ul>
           </div>`;
-
 export const searchResultsUI = document.createElement("section");
 searchResultsUI.className =
   "word_results-container h-[90%] md:h-[810px] lg:min-h-[75%] lg:max-h-full xl:h-[830px] home_results px-6 pb-10 lg:pb-0 lg:px-16 xl:px-0 xl:pb-14 2xl:pb-24 md:pl-12 xl:pl-24 md:pr-14 mt-4 md:mt-8 xl:mt-9 grid grid-cols-4 grid-rows-5 gap-4 xl:grid-cols-5 xl:grid-rows-4 xl:gap-6";
 searchResultsUI.innerHTML = searchResultComponent;
+const searchedWord = searchResultsUI.querySelector(".entry-word");
+const buttonDiv = searchResultsUI.querySelector('.button-container')
+// handles events that happen when user clicks on bookmark
 // handles the display of either results or errors
-export function displayRequiredResult(page,searchRequest) {
-  getSearchRequest(searchRequest).then((myResult)=>{
-  displaySearchResults(page, myResult);
-  }).catch ((error)=> {
-    console.log(error)
-    if (error.name === "TypeError" || error === 404) {
-      console.error("Word not found");
-      displayWordSearchErrorUI(page,searchRequest);
-    } else if (error.name === "TimeoutError" || error.name === "ERR_NETWORK") {
-      console.error("Request timed out");
-      displayTimeoutErrorUI(page);
-    } else if (error.name === "AbortError") {
-      console.error("User aborted fetch");
-    } else {
-      console.error(error);
-    
-  }
-})
+export function displayRequiredResult(page, searchRequest) {
+  getSearchRequest(searchRequest)
+    .then((myResult) => {
+      displaySearchResults(page, myResult);
+    })
+    .catch((error) => {
+      console.log(error);
+      if (error.name === "TypeError" || error === 404) {
+        console.error("Word not found");
+        displayWordSearchErrorUI(page, searchRequest);
+      } else if (
+        error.name === "TimeoutError" ||
+        error.name === "ERR_NETWORK"
+      ) {
+        console.error("Request timed out");
+        displayTimeoutErrorUI(page);
+      } else if (error.name === "AbortError") {
+        console.error("User aborted fetch");
+      } else {
+        console.error(error);
+      }
+    });
 }
 
 function displaySearchResults(page, data) {
-  page.innerHTML = ''; 
+  page.innerHTML = "";
   page.append(searchResultsUI);
-  displaySearchedWord(page,data);
-  displayDefinitionsList(page,data);
+  displaySearchedWord(page, data);
+  displayDefinitionsList(page, data);
+  createBookmark(data.entryWord);
+  bookmarkEventListener()
 }
-
+function toggleBookmarkButton() {
+  searchResultsUI
+    .querySelector(".bookmark-state")
+    .classList.toggle("fill-none");
+  searchResultsUI
+    .querySelector(".bookmark-state")
+    .classList.toggle("fill-[#CF688C]");
+   
+}
+function createBookmark(word) {
+  buttonDiv.innerHTML = ''
+  const bookmarkButton = document.createElement("button");
+  bookmarkButton.className = "button button_add-bookmark relative";
+  bookmarkButton.setAttribute("data-word", word);
+  bookmarkButton.innerHTML = ` <input type ="checkbox" id="checkbox" class="absolute right-1 top-1 left-1 bottom-1 checked:bg-[#CF688C]"/>
+                 <svg
+                  class="w-5 h-5"
+                  viewBox="0 0 27 32"
+                   xmlns="http://www.w3.org/2000/svg"
+                 >
+                   <path
+                  class="bookmark-state stroke-[#B81E53] stroke-2 fill-none dark:stroke-[#CF688C]"
+                   d="M3.09214 31.4245C2.20322 32.0195 0.963623 31.4285 0.963623 30.4098V5.41667C0.963623 2.42512 3.57062 0 6.78654 0H20.2211C23.437 0 26.044 2.42512 26.044 5.41667V30.4098C26.044 31.4285 24.8044 32.0195 23.9155 31.4245L13.5038 24.4563L3.09214 31.4245Z"
+                   />
+                 </svg>`;
+buttonDiv.append(bookmarkButton);
+}
 export function removeSearchResults(page) {
   page.remove(searchResultsUI);
 }
+function bookmarkEventListener(){
+const addBookmark = searchResultsUI.querySelector(".button_add-bookmark");
+const checkbox = searchResultsUI.querySelector("#checkbox");
+addBookmark.addEventListener("click",(e)=>{
+  if(checkbox.checked){
+  saveBookmarks(e)
+  searchResultsUI.querySelector(".bookmark-state").classList.remove("fill-none");
+  searchResultsUI
+    .querySelector(".bookmark-state")
+    .classList.add("fill-[#CF688C]");
+    }else{
+  deleteBookmark(e);
+  searchResultsUI.querySelector(".bookmark-state").classList.add("fill-none");
+  searchResultsUI
+    .querySelector(".bookmark-state")
+    .classList.remove("fill-[#CF688C]");
+    }
+});
+}
+
