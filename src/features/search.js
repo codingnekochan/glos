@@ -20,14 +20,12 @@ export async function getSearchRequest(searchRequest) {
 }
 
 function consoleResult(results) {
-   console.log(results);
   if (results.length === 1) {
     return retrieveResults(results[0]);
   } else if (results.length > 1) {
     let firstResult =
       results.find(findFirstSearchResult) || results[0];
     if (firstResult) {
-      console.log(firstResult)
       return retrieveResults(firstResult);
     }
   }

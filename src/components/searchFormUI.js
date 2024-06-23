@@ -91,7 +91,6 @@ function displayWordSuggestions(userInput) {
         if (suggestedWord) {
           searchInput.value = e.target.textContent || "";
           searchInput.focus();
-          console.log("new value is :" + searchInput.value);
           return searchInput.value;
         }
       });
@@ -109,7 +108,6 @@ searchInput.addEventListener("input", (container) => {
   validationMessage.classList.add("hidden");
   suggestionBox.classList.remove("hidden");
   suggestionBox.classList.add("flex");
-  console.log("Input is :" + userInput);
   debouncedFetchSuggestions(userInput);
 });
 

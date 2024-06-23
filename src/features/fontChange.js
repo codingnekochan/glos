@@ -37,7 +37,6 @@ function handleFontChange(button) {
       searchResultsUI.style.fontFamily = fontFamily;
       fontApplied.textContent = font;
       fontFamilyList.classList.toggle("hidden");
-      console.log("font changed");
       break;
     case "serif":
       fontFamily = "Libre Calson Text";
@@ -45,8 +44,6 @@ function handleFontChange(button) {
       searchResultsUI.style.fontFamily = fontFamily;
       fontApplied.textContent = font;
       fontFamilyList.classList.toggle("hidden");
-      console.log("font changed");
-
       break;
     case "mono-space":
       fontFamily = "Courier Prime";
@@ -54,8 +51,6 @@ function handleFontChange(button) {
       searchResultsUI.style.fontFamily = fontFamily;
       fontApplied.textContent = font;
       fontFamilyList.classList.toggle("hidden");
-      console.log("font changed");
-
       break;
     default:
       searchResultsUI.style.fontFamily = userFontFamily;

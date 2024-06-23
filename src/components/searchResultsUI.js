@@ -5,7 +5,8 @@ import {
   displaySearchedWord,
   displayDefinitionsList,
 } from "../features/resultsDisplayHandler";
-import {saveBookmarks, deleteBookmark } from "../features/storage";
+import {saveBookmarks, deleteBookmark, handleBookmarkState } from "../features/storage";
+import { handleUserSearch } from "../pages/home";
 const searchResultComponent = `<div
             class="word_results h-full overflow-auto p-6 lg:p-10 lg:mx-4 col-span-full row-span-3 xl:col-span-3 xl:row-span-full rounded-[20px] shadow-[5px_5px_4px_0_rgba(255,209,225,0.5)] dark:shadow-[2px_2px_4px_0_rgba(255,209,225,0.5)] border-[#FFD1E140] border 2xl:ml-[22%]"
           >
@@ -91,7 +92,7 @@ export function displayRequiredResult(page, searchRequest) {
       displaySearchResults(page, myResult);
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
       if (error.name === "TypeError" || error === 404) {
         console.error("Word not found");
         displayWordSearchErrorUI(page, searchRequest);
@@ -117,21 +118,13 @@ function displaySearchResults(page, data) {
   createBookmark(data.entryWord);
   bookmarkEventListener()
 }
-function toggleBookmarkButton() {
-  searchResultsUI
-    .querySelector(".bookmark-state")
-    .classList.toggle("fill-none");
-  searchResultsUI
-    .querySelector(".bookmark-state")
-    .classList.toggle("fill-[#CF688C]");
-   
-}
+
 function createBookmark(word) {
   buttonDiv.innerHTML = ''
   const bookmarkButton = document.createElement("button");
   bookmarkButton.className = "button button_add-bookmark relative";
   bookmarkButton.setAttribute("data-word", word);
-  bookmarkButton.innerHTML = ` <input type ="checkbox" id="checkbox" class="absolute right-1 top-1 left-1 bottom-1 checked:bg-[#CF688C]"/>
+  bookmarkButton.innerHTML = ` <input type ="checkbox" id="checkbox" class="w-4 h-[17px] left-[3px] top-[1px] right-1 absolute checked:bg-none cursor-pointer appearance-/none"/>
                  <svg
                   class="w-5 h-5"
                   viewBox="0 0 27 32"
@@ -142,6 +135,7 @@ function createBookmark(word) {
                    d="M3.09214 31.4245C2.20322 32.0195 0.963623 31.4285 0.963623 30.4098V5.41667C0.963623 2.42512 3.57062 0 6.78654 0H20.2211C23.437 0 26.044 2.42512 26.044 5.41667V30.4098C26.044 31.4285 24.8044 32.0195 23.9155 31.4245L13.5038 24.4563L3.09214 31.4245Z"
                    />
                  </svg>`;
+handleBookmarkState(bookmarkButton);
 buttonDiv.append(bookmarkButton);
 }
 export function removeSearchResults(page) {
@@ -153,17 +147,18 @@ const checkbox = searchResultsUI.querySelector("#checkbox");
 addBookmark.addEventListener("click",(e)=>{
   if(checkbox.checked){
   saveBookmarks(e)
-  searchResultsUI.querySelector(".bookmark-state").classList.remove("fill-none");
-  searchResultsUI
-    .querySelector(".bookmark-state")
-    .classList.add("fill-[#CF688C]");
+  toggleBookmarkIcon()
     }else{
   deleteBookmark(e);
-  searchResultsUI.querySelector(".bookmark-state").classList.add("fill-none");
-  searchResultsUI
-    .querySelector(".bookmark-state")
-    .classList.remove("fill-[#CF688C]");
+  toggleBookmarkIcon()
+  
     }
 });
+}
+function toggleBookmarkIcon(){
+searchResultsUI.querySelector(".bookmark-state").classList.toggle("fill-none");
+searchResultsUI
+  .querySelector(".bookmark-state")
+  .classList.toggle("fill-[#CF688C]");
 }
 

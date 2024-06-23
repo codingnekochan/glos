@@ -16,7 +16,6 @@ wordRecognition.interimResults = false;
 
 export function handleVoiceSearch(page) { // Indicate the start of voice recognition in the UI
   onVoiceSearchStartUI(page);
-  console.log("Starting voice recognition");
   wordRecognition.start();
 }
 
@@ -28,23 +27,17 @@ wordRecognition.addEventListener("nomatch", handleNoMatch);
 
 function handleSpeechStart(e) {
   onListenUI(homePage);
-  console.log("Listening...");
 }
 function handleSpeechResult(e) {
   // Ensure that we have a valid result
   try {
     if (e.results && e.results[0] && e.results[0][0]) {
       const transcript = e.results[0][0].transcript.trim();
-      console.log("Result: " + transcript);
       handleUserSearch(e, transcript);
       return transcript;
     }
-    else{
-      console.log('did not recognise')
-    }
   } catch (error) {
-    console.log(error);
-    console.error("No valid speech result found");
+    console.error(error);
     onVoiceSearchErrorUI(homePage);
   }
 }
@@ -52,7 +45,6 @@ function handleSpeechResult(e) {
 function handleSpeechEnd(e) {
   onVoiceSearchFinishUI(homePage);
   wordRecognition.stop();
-  console.log("Speech recognition ended");
 }
 
 function handleSpeechError(e) {
@@ -63,5 +55,4 @@ function handleSpeechError(e) {
 function handleNoMatch(e) {
   onVoiceSearchErrorUI(homePage);
   wordRecognition.abort();
-  console.log("No match found");
 };

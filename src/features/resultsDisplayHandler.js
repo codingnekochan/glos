@@ -24,20 +24,14 @@ the parts of speech; and the defintions and examples availabe for each part of
 speech.
 */
 export function displayDefinitionsList(page, data) {
-  // clears
   const entryWordMeaningsList = page.querySelector(
     ".search-word_meaning--list"
   );
   entryWordMeaningsList.innerHTML = "";
-  // clears syno
   const synonymsList = page.querySelector(".entry-word_synonyms--list");
   synonymsList.innerHTML = "";
-  console.log("synonym list cleared");
-
   const antonymsList = page.querySelector(".entry-word_antonyms--list");
   antonymsList.innerHTML = "";
-  console.log("antonym list cleared");
-
   data.entryWordMeanings.forEach((meaningsItem, index) => {
     const entryWordDefinitionsList = document.createElement("ol");
     entryWordDefinitionsList.className =

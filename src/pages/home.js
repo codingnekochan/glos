@@ -53,9 +53,7 @@ export function handleUserSearch(e, transcript) {
   e.preventDefault();
   removeSuggestions();
   const searchRequest = searchInput.value || transcript || "";
-  console.log(searchRequest);
   if (searchRequest === "") {
-    console.log("empty string");
     validationMessage.classList.remove("hidden");
     return;
   } else {
@@ -66,7 +64,6 @@ export function handleUserSearch(e, transcript) {
     setTimeout(() => {
       displayRequiredResult(homeContainer, searchRequest);
     }, 3000);
-    console.log(searchRequest);
     searchInput.value = "";
   }
 }

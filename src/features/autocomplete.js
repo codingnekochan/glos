@@ -21,7 +21,6 @@ export async function fetchWordSuggestions(userInput) {
 
 function retrieveWordSuggestions(results){
     const wordsList = results?.map((result)=>{
-        console.log(result.word)
         return result.word
     })
     return wordsList

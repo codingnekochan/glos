@@ -90,7 +90,6 @@ userMic.className =
 userMic.innerHTML = microphoneComponent;
 
 export function onVoiceSearchStartUI(page) {
-  console.log('mariam o')
   page.append(userMic);
   document.querySelector(".button_theme-switch").classList.add("hidden");
   page.querySelector(".home_search-form").classList.add("hidden");
@@ -99,7 +98,6 @@ export function onVoiceSearchStartUI(page) {
   
 }
 export function onListenUI(page) {
-  console.log('I hate myself')
   userMic.querySelectorAll("circle").forEach((circle) => {
     circle.classList.add("animate-pulse");
   });
@@ -113,7 +111,6 @@ export function onVoiceSearchFinishUI(page) {
 }
 export function onVoiceSearchCancel(page) {
   wordRecognition.abort();
-  console.log("word search aborted");
   document.querySelector(".button_theme-switch").classList.remove("hidden");
   document.querySelector(".home_search-form").classList.remove("hidden");
   page.querySelector(".listening_page--text").textContent = "";

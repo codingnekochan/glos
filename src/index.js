@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   // Home Page
   diplayHomePage(mainContainer);
   // Recent Page
-  // displayRecentPage(mainContainer);
+  displayRecentPage(mainContainer);
   //Bookmarks Page
   // displayBookmarksPage(mainContainer);
   //  handles the buttons that allow users customise the app
@@ -24,4 +24,3 @@ window.addEventListener('DOMContentLoaded',()=>{
   fontChangeButton.addEventListener("click", toggleFontChangeMenu);
   // create a database
 })
-console.log('hi');
