@@ -8,7 +8,7 @@
     "build": "webpack --mode production",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
-    "add": "git add dist && git commit -m 'Initial dist subtree commit'",
+    "add": "git add dist && git commit -m 'Initial dist subtree commit'"
   },
   "keywords": [],
   "author": "",
