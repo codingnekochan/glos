@@ -1,4 +1,3 @@
-
 const landingPageComponent = `<div class="home_landing w-full">
   <div class="main_logo mb-4 md:mb-8">
     <svg
@@ -17,7 +16,7 @@ const landingPageComponent = `<div class="home_landing w-full">
       />
     </svg>
   </div>
-  <div class="mx-auto w-[80%] md:w-[549px] xl:w-[50%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0  bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit">
+  <div data-page='home' class="search-bar mx-auto w-[80%] md:w-[549px] xl:w-[50%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0  bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] md:bg-inherit md:dark:bg-inherit">
     <button class="flex gap-4 items-center md:w-[455px] md:h-[70px] xl:w-[80%] max-w-[946px] 2xl:h-[120px] md:rounded-[90px] md:pl-10 md:bg-[#FFEDF4] md:dark:bg-[#333333]">
       <div class="search-icon hidden md:block">
         <svg
@@ -61,7 +60,7 @@ const landingPageComponent = `<div class="home_landing w-full">
   </div>
 </div>`;
 
-const homeLanding = document.createElement("div");
+export const homeLanding = document.createElement("div");
 homeLanding.innerHTML = landingPageComponent;
 homeLanding.className =
   "home_landing h-full w-full flex justify-center items-center";

@@ -1,4 +1,11 @@
 import { fetchWordSuggestions, debounceFetch } from "../features/autocomplete";
+import { homeContainer,homePage } from "../pages/home";
+import { displayRequiredResult } from "../components/searchResultsUI";
+import { onVoiceSearchCancel } from "../components/voiceSearchUI";
+import { displayLoader } from "../components/loaderUI";
+import { handleVoiceSearch, wordRecognition } from "../features/voiceSearch";
+import { saveRecents,displayRecentsList } from "../features/storage";
+import { recentPageCta,recentsContainer,recentsList } from "../pages/recent";
 //  xl:ml-32 2xl:ml-64
 const searchFormComponent = `    
          <div
@@ -68,16 +75,18 @@ const searchFormComponent = `
 const searchFormUI = document.createElement("section");
 searchFormUI.innerHTML = searchFormComponent;
 searchFormUI.className = "home_search-form w-full mt-6 md:mt-0";
-export const searchInput = searchFormUI.querySelector("#search_input");
-export const searchForm = searchFormUI.querySelector("#search_form");
-export const validationMessage = searchFormUI.querySelector(
+ const searchInput = searchFormUI.querySelector("#search_input");
+ const searchForm = searchFormUI.querySelector("#search_form");
+ const validationMessage = searchFormUI.querySelector(
   ".validation-message"
 );
 const suggestionBox = searchFormUI.querySelector(".search_suggestions");
 const suggestionList = searchFormUI.querySelector(".search_suggestions--list");
 let debouncedFetchSuggestions = debounceFetch(displayWordSuggestions, 300);
 export function displaySearchFormUI(page, container) {
-  return page.insertBefore(searchFormUI, container);
+  container.innerHTML = ''
+  page.insertBefore(searchFormUI, container);
+  searchInput.focus();
 }
 export function removeSearchFormUI(page) {
   page.remove(searchFormUI);
@@ -115,4 +124,36 @@ export function removeSuggestions() {
   suggestionList.innerHTML = "";
   suggestionBox.classList.remove("flex");
   suggestionBox.classList.add("hidden");
+}
+const voiceSearchButton = searchFormUI.querySelector(".button_voice-search");
+// Home Page EventListener
+searchForm.addEventListener("submit", handleUserSearch);
+voiceSearchButton.addEventListener("click", () => {
+  homeContainer.innerHTML = "";
+  handleVoiceSearch(homePage);
+  const cancelButton = document.querySelector(".button_listening-cancel");
+  cancelButton.addEventListener("click", () => {
+    wordRecognition.abort();
+    onVoiceSearchCancel(homePage);
+  });
+});
+
+export function handleUserSearch(e, transcript) {
+  e.preventDefault();
+  removeSuggestions();
+  const searchRequest = searchInput.value || transcript || "";
+  if (searchRequest === "") {
+    validationMessage.classList.remove("hidden");
+    return;
+  } else {
+    saveRecents({ word: searchRequest });
+    displayRecentsList(recentsList, recentPageCta, recentsContainer);
+    document.querySelector(".validation-message").classList.add("hidden");
+    homeContainer.innerHTML = "";
+    displayLoader(homeContainer);
+    setTimeout(() => {
+      displayRequiredResult(homeContainer, searchRequest);
+    }, 3000);
+    searchInput.value = "";
+  }
 }

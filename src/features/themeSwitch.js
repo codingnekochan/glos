@@ -3,19 +3,27 @@ const systemTheme = window.matchMedia(
 ).matches;
 const userTheme = localStorage.getItem("theme");
 let theme = "dark";
-export function defaultTheme(page) {
+export function defaultTheme(page,buttons) {
   if (userTheme === "dark" || (!userTheme && systemTheme)) {
     page.classList.remove("light");
     page.classList.add("dark");
+    buttons.forEach(button => {
+          button.classList.add("dark-theme");
+    });
     return;
   } else {
     page.classList.remove("dark");
     page.classList.add("light");
-  }
+  buttons.forEach((button) => {
+    button.classList.remove("dark-theme");
+  });  }
 }
-export function toggleDarkMode(page) {
+export function toggleDarkMode(page,buttons) {
   page.classList.toggle("dark");
-  if (page.classList.contains("dark")) {
+  buttons.forEach((button) => {
+    button.classList.toggle("dark-theme");
+  });
+    if (page.classList.contains("dark")) {
     theme = "dark";
   } else {
     theme = "light";

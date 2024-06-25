@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Courgette&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@100..900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="/public/icon.svg">
+    <link rel="icon" href="/public/icon.svg" />
     <title>Glos</title>
   </head>
   <body
@@ -40,7 +40,7 @@
           />
         </svg>
       </button>
-      <div class=" font-options xl:order-1">
+      <div class="font-options xl:order-1">
         <button
           class="py-2 flex items-center gap-2 md:gap-3 button button_font-change text-sm md:text-base md:pr-5"
         >
@@ -65,16 +65,16 @@
           >
             Sans Serif
           </button>
-          <br>
+          <br />
           <button
-            class="font-family font-['Libre_Calson_Text'] border-[1px] my-2 border-[#F8E9EE] py-2 h-[33px] w-[110px]  md:w-[200px] 2xl:w-[224px] md:h-[45px] hover:bg-[#F8E9EE] hover:text-black"
+            class="font-family font-['Libre_Calson_Text'] border-[1px] my-2 border-[#F8E9EE] py-2 h-[33px] w-[110px] md:w-[200px] 2xl:w-[224px] md:h-[45px] hover:bg-[#F8E9EE] hover:text-black"
             data-font="serif"
           >
             Serif
           </button>
-          <br>
+          <br />
           <button
-            class="font-family font-['Courier_Prime'] border-[1px] border-[#F8E9EE] py-2 h-[33px] w-[110px]  md:w-[200px] 2xl:w-[224px] md:h-[45px] hover:bg-[#F8E9EE] hover:text-black"
+            class="font-family font-['Courier_Prime'] border-[1px] border-[#F8E9EE] py-2 h-[33px] w-[110px] md:w-[200px] 2xl:w-[224px] md:h-[45px] hover:bg-[#F8E9EE] hover:text-black"
             data-font="mono-space"
           >
             Monospace
@@ -93,15 +93,16 @@
             Glos
           </h1>
           <ul
-            class="nav-tab flex justify-around items-center text-center list-none md:flex-col"
+            class="nav-tab flex justify-around items-center text-center list-none md:flex-col md:w-[115px]"
           >
             <!-- for mobile button shows fully and changes color on click -->
             <!-- for desktop button shows and has dropshadow on click,focus,active -->
 
             <li class="nav-button py-6 md:order-2 md:mb-11 md:py-0">
               <button
-                class="button button_bookmark flex flex-col justify-center items-center"
-                href=""
+              id="button_bookmarks"
+                class="button_nav button button_bookmark flex flex-col justify-center items-center md:flex-row md:gap-4"
+                data-page="bookmarks"
               >
                 <svg
                   class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8"
@@ -117,10 +118,12 @@
             </li>
             <li class="nav-button py-6 md:order-1 md:mb-11 md:py-0">
               <button
-                class="button button_home flex flex-col justify-center items-center md:hover:border-2"
+                id="button_home"
+                class="button_nav button_home flex flex-col justify-center items-center md:flex-row md:gap-4"
+                data-page="home"
               >
                 <svg
-                  class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8"
+                  class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8 active"
                   viewBox="0 0 33 32"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -133,7 +136,9 @@
             </li>
             <li class="nav-button text-center py-6 md:order-3 md:mb-11 md:py-0">
               <button
-                class="button button_recent flex flex-col justify-center items-center"
+              id="button_recents"
+                class="button_nav button_recent flex flex-col justify-center items-center md:flex-row md:gap-4"
+                data-page="recents"
               >
                 <svg
                   class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8"
@@ -150,14 +155,14 @@
           </ul>
         </div>
         <div
-          class="decor-line bg-[#333333] dark:bg-[#F8E9EE] hidden md:block md:fixed md:left-[115px] md:w-[3px] md:h-[100vh] xl:left-36 min-[2560px]:static"
+          class="decor-line bg-[#333333] dark:bg-[#F8E9EE] hidden md:block md:fixed md:left-[115px] md:w-[3px] md:h-[100vh] xl:left-36 min-[2560px]:static -z-10"
         ></div>
       </nav>
     </header>
     <main class="max-w-full h-full container"></main>
     <div class="dictionary-audio">
       <audio id="audio-file" class="audio-file">
-        <source id="pronunciation-audio" src="#" type="audio/mpeg"/>
+        <source id="pronunciation-audio" src="#" type="audio/mpeg" />
       </audio>
     </div>
   </body>

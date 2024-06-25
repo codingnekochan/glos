@@ -33,7 +33,6 @@ export function saveRecents(data) {
       .objectStore("Recents");
     let task = recentsStore.add(data);
     task.onsuccess = (e) => {
-      location.reload()
       console.log("search saved");
     };
     task.onerror = (e) => {
@@ -53,7 +52,7 @@ export function clearRecents() {
       .objectStore("Recents");
     let task = recentsStore.clear();
     task.onsuccess = (e) => {
-      location.reload()
+
       console.log("recents cleared");
     };
     task.onerror = (e) => {
@@ -105,8 +104,7 @@ export function saveBookmarks(e) {
       .objectStore("Bookmarks");
     let task = bookmarksStore.add(data);
     task.onsuccess = (e) => {
-      location.reload()
-      console.log('bookmark added')
+      console.log("bookmark added");
     };
     task.onerror = (e) => {
       console.error("error saving bookmark" + e.target.error);
@@ -133,7 +131,6 @@ export function deleteBookmark(e) {
         if (cursor.value.word === data.word) {
           let deleteTask = bookmarksStore.delete(cursor.key);
           deleteTask.onsuccess = (e) => {
-            location.reload()
             console.log("delete success");
           };
           deleteTask.onerror = (e) => {
@@ -169,7 +166,7 @@ export function handleBookmarkState(button) {
       if (cursor) {
         if (cursor.value.word !== data.word) {
           let removeFill =
-            button.children[1]?.children[0]?.classList.remove("fill-[#CF688C]");
+          button.children[1]?.children[0]?.classList.remove("fill-[#CF688C]");
           button.children[0].checked = false;
           button.children[1]?.children[0]?.classList.add("fill-none");
           cursor.continue();
@@ -201,7 +198,7 @@ export function clearBookmarks() {
       .objectStore("Bookmarks");
     let task = bookmarksStore.clear();
     task.onsuccess = (e) => {
-      location.reload();
+      console.log("bookmark cleared");
     };
     task.onerror = (e) => {
       console.error("error clearing bookmark" + e.target.error);
@@ -241,4 +238,4 @@ export function displayBookmarksList(list, cta, container) {
     console.error("error opening DB" + e.target.error);
   };
 }
-initializeDB()
+initializeDB();

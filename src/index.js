@@ -1,26 +1,35 @@
-import { diplayHomePage } from "./pages/home";
 import "./styles/main.css";
 import "./styles/animation.css";
 import { defaultTheme, toggleDarkMode } from "./features/themeSwitch";
 import { defaultFonts, toggleFontChangeMenu } from "./features/fontChange";
-import { displayRecentPage } from "./pages/recent";
-import { displayBookmarksPage } from "./pages/bookmark";
-window.addEventListener('DOMContentLoaded',()=>{
+import {
+  handleNavigation,
+  handlePopstate,
+  initialState,
+  updateContent,
+} from "./features/router";
+import { removeSearchFormUI } from "./components/searchFormUI";
+document.addEventListener("DOMContentLoaded", () => {
   const htmlBody = document.querySelector("html");
   const mainContainer = document.querySelector("main");
   const themeSwitchButton = document.querySelector(".button_theme-switch");
   const fontChangeButton = document.querySelector(".button_font-change");
+  const navigationButtons = document.querySelectorAll(".button_nav");
+  const homeButton = document.getElementById('button_home');
+
   // default appearance of the app
-  defaultTheme(htmlBody);
+  defaultTheme(htmlBody,navigationButtons);
   defaultFonts();
-  // Home Page
-  diplayHomePage(mainContainer);
-  // Recent Page
-  displayRecentPage(mainContainer);
-  //Bookmarks Page
-  // displayBookmarksPage(mainContainer);
+  initialState(mainContainer,homeButton);
   //  handles the buttons that allow users customise the app
-  themeSwitchButton.addEventListener("click", () => toggleDarkMode(htmlBody));
+  window.addEventListener("popstate", () => handlePopstate(mainContainer,navigationButtons));
+  themeSwitchButton.addEventListener("click", () => toggleDarkMode(htmlBody,navigationButtons));
   fontChangeButton.addEventListener("click", toggleFontChangeMenu);
-  // create a database
-})
+  navigationButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      homeButton.classList.remove('active')
+      handleNavigation(e, mainContainer);
+    });
+  });
+
+});

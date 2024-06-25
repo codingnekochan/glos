@@ -5,8 +5,8 @@ import {
   displaySearchedWord,
   displayDefinitionsList,
 } from "../features/resultsDisplayHandler";
-import {saveBookmarks, deleteBookmark, handleBookmarkState } from "../features/storage";
-import { handleUserSearch } from "../pages/home";
+import {saveBookmarks, deleteBookmark, handleBookmarkState, displayBookmarksList } from "../features/storage";
+import { bookmarkContainer, bookmarkList, bookmarksPageCta} from "../pages/bookmark";
 const searchResultComponent = `<div
             class="word_results h-full overflow-auto p-6 lg:p-10 lg:mx-4 col-span-full row-span-3 xl:col-span-3 xl:row-span-full rounded-[20px] shadow-[5px_5px_4px_0_rgba(255,209,225,0.5)] dark:shadow-[2px_2px_4px_0_rgba(255,209,225,0.5)] border-[#FFD1E140] border 2xl:ml-[22%]"
           >
@@ -124,7 +124,7 @@ function createBookmark(word) {
   const bookmarkButton = document.createElement("button");
   bookmarkButton.className = "button button_add-bookmark relative";
   bookmarkButton.setAttribute("data-word", word);
-  bookmarkButton.innerHTML = ` <input type ="checkbox" id="checkbox" class="w-4 h-[17px] left-[3px] top-[1px] right-1 absolute checked:bg-none cursor-pointer appearance-/none"/>
+  bookmarkButton.innerHTML = ` <input type ="checkbox" id="checkbox" class="w-4 h-[17px] left-[3px] top-[1px] right-1 absolute checked:bg-none cursor-pointer appearance-none"/>
                  <svg
                   class="w-5 h-5"
                   viewBox="0 0 27 32"
@@ -147,6 +147,7 @@ const checkbox = searchResultsUI.querySelector("#checkbox");
 addBookmark.addEventListener("click",(e)=>{
   if(checkbox.checked){
   saveBookmarks(e)
+  displayBookmarksList(bookmarkList,bookmarksPageCta,bookmarkContainer)
   toggleBookmarkIcon()
     }else{
   deleteBookmark(e);

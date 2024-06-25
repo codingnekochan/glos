@@ -4,7 +4,7 @@ import {
   onVoiceSearchStartUI,
   onVoiceSearchFinishUI,
 } from "../components/voiceSearchUI";
-import { handleUserSearch} from "../pages/home";
+import { handleUserSearch } from "../components/searchFormUI";
 import { homePage } from "../pages/home";
 
 const SpeechRecognition =
@@ -26,7 +26,7 @@ wordRecognition.addEventListener("error", handleSpeechError);
 wordRecognition.addEventListener("nomatch", handleNoMatch);
 
 function handleSpeechStart(e) {
-  onListenUI(homePage);
+  onListenUI();
 }
 function handleSpeechResult(e) {
   // Ensure that we have a valid result
@@ -38,21 +38,21 @@ function handleSpeechResult(e) {
     }
   } catch (error) {
     console.error(error);
-    onVoiceSearchErrorUI(homePage);
+    onVoiceSearchErrorUI();
   }
 }
 
 function handleSpeechEnd(e) {
-  onVoiceSearchFinishUI(homePage);
+  onVoiceSearchFinishUI();
   wordRecognition.stop();
 }
 
 function handleSpeechError(e) {
-  onVoiceSearchErrorUI(homePage);
+  onVoiceSearchErrorUI();
   wordRecognition.abort();
   console.error("Error occurred during speech recognition");
 }
 function handleNoMatch(e) {
-  onVoiceSearchErrorUI(homePage);
+  onVoiceSearchErrorUI();
   wordRecognition.abort();
 };

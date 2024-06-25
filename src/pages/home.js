@@ -7,63 +7,29 @@
  error pages#
  */
 
-import { landingPageUI } from "../components/landingPageUI";
-import { displayRequiredResult } from "../components/searchResultsUI";
+import { landingPageUI,homeLanding } from "../components/landingPageUI";
 import {
-  displaySearchFormUI,
-  removeSuggestions,
-  searchInput,
-  searchForm,
-  validationMessage,
+  displaySearchFormUI,removeSearchFormUI
 } from "../components/searchFormUI";
-import { onVoiceSearchCancel } from "../components/voiceSearchUI";
-import { displayLoader } from "../components/loaderUI";
-import { handleVoiceSearch, wordRecognition } from "../features/voiceSearch";
-import { saveRecents } from "../features/storage";
+
 // HOME PAGE
 export const homePage = document.createElement("section");
 homePage.className = "home w-full h-[90%] md:h-full flex flex-col";
 homePage.id = "home";
 export const homeContainer = document.createElement("section");
 homeContainer.className = "home_container h-full";
-homePage.append(homeContainer);
-displaySearchFormUI(homePage, homeContainer);
+const homeButton = document.getElementById("button_home");
 // Landing Page
-export function diplayHomePage(container) {
+export function displayHomePage(container) {
+  homePage.innerHTML = ''
   container.innerHTML = ''
+  homePage.append(homeContainer);
+  landingPageUI(homeContainer);
   container.append(homePage);
-  // landingPageUI(homePage);
 }
 
 // Search Page Component
-const voiceSearchButton = homePage.querySelector(".button_voice-search");
-// Home Page EventListener
-searchForm.addEventListener("submit", handleUserSearch);
-voiceSearchButton.addEventListener("click", () => {
-  homeContainer.innerHTML = "";
-  handleVoiceSearch(homePage);
-  const cancelButton = document.querySelector(".button_listening-cancel");
-  cancelButton.addEventListener("click", () => {
-    wordRecognition.abort();
-    onVoiceSearchCancel(homePage);
-  });
+const searchBar = homeLanding.querySelector(".search-bar");
+searchBar.addEventListener("click", ()=>{displaySearchFormUI(homePage,homeContainer)
+  homeButton.classList.add('active');
 });
-
-export function handleUserSearch(e, transcript) {
-  e.preventDefault();
-  removeSuggestions();
-  const searchRequest = searchInput.value || transcript || "";
-  if (searchRequest === "") {
-    validationMessage.classList.remove("hidden");
-    return;
-  } else {
-    saveRecents({word : searchRequest})
-    document.querySelector(".validation-message").classList.add("hidden");
-    homeContainer.innerHTML = "";
-    displayLoader(homeContainer);
-    setTimeout(() => {
-      displayRequiredResult(homeContainer, searchRequest);
-    }, 3000);
-    searchInput.value = "";
-  }
-}

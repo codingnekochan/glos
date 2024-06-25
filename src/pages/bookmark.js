@@ -6,10 +6,10 @@ bookmarksPage.className = "bookmark md:h-full mt-20 md:mt-36 xl:mt-28";
 bookmarksPage.id = "bookmark";
 bookmarksPage.innerHTML = pageTemplateComponent;
 const bookmarksPageInfo = bookmarksPage.querySelector(".page_info");
-const bookmarksPageCta = bookmarksPage.querySelector(".page_cta");
+export const bookmarksPageCta = bookmarksPage.querySelector(".page_cta");
 const bookmarksClearAlert = bookmarksPage.querySelector(".clear_alert");
-const bookmarkList = bookmarksPage.querySelector(".page_list");
-const bookmarkContainer = bookmarksPage.querySelector('.words_container');
+export const bookmarkList = bookmarksPage.querySelector(".page_list");
+export const bookmarkContainer = bookmarksPage.querySelector('.words_container');
 const bookmarkClearButton = bookmarksPage.querySelector('.clear_button');
 const bookmarkModal = bookmarksPage.querySelector('.modal-box')
 const cancelClearButton = bookmarksPage.querySelector('.clear_cancel');
@@ -40,4 +40,5 @@ function handleBookmarkEvents(){
   bookmarksPageCta.textContent =
   "You have not bookmarked any word yet! Click on the bookmark icon beside a word to bookmark and save for later!";
 }
+
 displayBookmarksList(bookmarkList,bookmarksPageCta,bookmarkContainer);

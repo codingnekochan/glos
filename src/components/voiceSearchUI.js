@@ -86,40 +86,40 @@ const microphoneComponent = `
 
 const userMic = document.createElement("div");
 userMic.className =
-  "home_listening w-full h-full flex flex-col justify-center items-center absolute top-0 left-0 bg-white dark:bg-black";
+  "home_listening w-full h-full flex flex-col justify-center items-center absolute top-0 left-0 bg-white dark:bg-black z-[30]";
 userMic.innerHTML = microphoneComponent;
 
 export function onVoiceSearchStartUI(page) {
   page.append(userMic);
   document.querySelector(".button_theme-switch").classList.add("hidden");
   page.querySelector(".home_search-form").classList.add("hidden");
-  page.querySelector(".listening_page--text").textContent =
+  userMic.querySelector(".listening_page--text").textContent =
     "Say a word to look up!";
   
 }
-export function onListenUI(page) {
+export function onListenUI() {
   userMic.querySelectorAll("circle").forEach((circle) => {
     circle.classList.add("animate-pulse");
   });
-  page.querySelector(".listening_page--text").textContent = "Listening...";
+  userMic.querySelector(".listening_page--text").textContent = "Listening...";
 }
-export function onVoiceSearchFinishUI(page) {
-  page.querySelector(".listening_page--text").textContent = "";
+export function onVoiceSearchFinishUI() {
+  userMic.querySelector(".listening_page--text").textContent = "";
   document.querySelector(".home_search-form").classList.remove("hidden");
   document.querySelector(".button_theme-switch").classList.remove("hidden");
   userMic.remove();
 }
-export function onVoiceSearchCancel(page) {
+export function onVoiceSearchCancel() {
   wordRecognition.abort();
   document.querySelector(".button_theme-switch").classList.remove("hidden");
   document.querySelector(".home_search-form").classList.remove("hidden");
-  page.querySelector(".listening_page--text").textContent = "";
+  userMic.querySelector(".listening_page--text").textContent = "";
   userMic.remove();
 }
-export function onVoiceSearchErrorUI(page) {
+export function onVoiceSearchErrorUI() {
   userMic.querySelectorAll("circle").forEach((circle) => {
     circle.classList.remove("animate-pulse");
   });
-  page.querySelector(".listening_page--text").textContent =
+  userMic.querySelector(".listening_page--text").textContent =
     "Sorry, didn’t get that.";
 }
