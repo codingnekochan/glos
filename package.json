@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "webpack --mode production",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
     "add": "git add dist && git commit -m 'Initial dist subtree commit'",
-    "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "keywords": [],
   "author": "",
