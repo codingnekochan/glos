@@ -1,15 +1,14 @@
 import { fetchWordSuggestions, debounceFetch } from "../features/autocomplete";
-import { homeContainer,homePage } from "../pages/home";
+import { displayHomePage, homeContainer, homePage } from "../pages/home";
 import { displayRequiredResult } from "../components/searchResultsUI";
-import { onVoiceSearchCancel } from "../components/voiceSearchUI";
 import { displayLoader } from "../components/loaderUI";
-import { handleVoiceSearch, wordRecognition } from "../features/voiceSearch";
-import { saveRecents,displayRecentsList } from "../features/storage";
-import { recentPageCta,recentsContainer,recentsList } from "../pages/recent";
+import { handleVoiceSearch } from "../features/voiceSearch";
+import { saveRecents, displayRecentsList } from "../features/storage";
+import { recentPageCta, recentsContainer, recentsList } from "../pages/recent";
 //  xl:ml-32 2xl:ml-64
 const searchFormComponent = `    
          <div
-            class="search_form-container relative left-4 md:static md:left-0 max-sm:h-[47px] md:mt-[100px] 2xl:mt-[120px] mx-auto w-[80%] md:w-[549px] xl:w-[65%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0 bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit"
+            class=" search_form-container relative md:static max-sm:h-[47px] md:mt-[120px] 2xl:mt-[120px] mx-auto w-[80%] md:w-[486px]  lg:w-[53%] xl:w-[65%] 2xl:w-[65%] max-w-[1106px] flex justify-between items-center md:gap-6 xl:gap-0 px-6 py-[18px] md:px-0 md:py-0 bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit"
           >
             <button class="button_back md:hidden relative right-14">
               <svg
@@ -28,20 +27,20 @@ const searchFormComponent = `
             <form
             id="search_form"
             action = "#"
-              class="search_form flex md:w-[455px] md:h-[70px] xl:w-[83%] z-10 max-w-[946px] 2xl:h-[120px] md:rounded-[90px] md:pl-10 md:bg-[#FFEDF4] md:dark:bg-[#333333]"
+              class="search_form flex md:min-w-[412px] md:h-[70px] md:ml-9 xl:ml-0 xl:w-[80%] 2xl:w-[80%] z-10 max-w-[946px] 2xl:h-[120px] md:rounded-[90px] md:pl-10 md:bg-[#FFEDF4] md:dark:bg-[#333333]"
             > 
               <label for= "search" class="sr-only">search form</label>
               <input
               name= "search"
               id = "search_input"
                 type="search"
-                class="search_input my-auto w-[85%] md:w-[60%] bg-inherit outline-none self-center placeholder:text-xs md:placeholder:text-sm xl:placeholder:text-lg 2xl:placeholder:text-xl"
+                class="search_input my-auto w-[85%] md:w-[60%] bg-inherit outline-none self-center placeholder:text-xs md:placeholder:text-sm xl:placeholder:text-lg 2xl:placeholder:text-xl text-base"
                 placeholder="Type in a word to look up..."
               />
             </form>
-            <button id="button_voice-search" class="button_voice-search mic-icon">
+            <button id="button_voice-search" class="button_voice-search mic-icon xl:0">
               <svg
-                class="w-[30px] h-[31px] md:w-[70px] md:h-[70px] 2xl:w-[120px] 2xl:h-[120px]"
+                class="w-[30px] h-[31px] md:w-[50px] md:h-[50px] xl:w-[61px] xl:h-[61px] 2xl:w-[104px] 2xl:h-[104px]"
                 viewBox="0 0 30 31"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,16 +57,16 @@ const searchFormComponent = `
                 ></path>
               </svg>
             </button>
-            <button class="cancel-to-home hidden text-xl text-[#CF688C] italic">
+            <button class="cancel-to-home hidden md:hidden text-xl text-[#CF688C] italic">
               <p>Cancel</p>
             </button>
           </div>
           <p class="absolute left-[30%] mt-2 validation-message hidden text-[#981010] text-xs lg:text-base">Please enter a word!</p>
           <div
-            class="hidden search_suggestions relative top-[-75px] md:top-[-80px] lg:top-[-81px] xl:top-[-83px] 2xl:top-[-130px] mx-auto w-[80%] md:w-[549px] xl:w-[80%] max-w-[1106px] justify-between items-center py-[18px] px-6 md:px-0 md:py-0 text-sm md:text-lg xl:text-xl 2xl:text-2xl rounded-t-[49px] rounded-b-[50px] search-container"
+            class=" hidden search_suggestions relative xl:left-0 top-[-75px] md:top-[-80px] lg:top-[-81px] xl:top-[-83px] 2xl:top-[-130px] mx-auto w-[80%] md:w-[486px] lg:w-[53%] 2xl:w-[80%] max-w-[1106px] justify-between items-center py-[18px] px-6 md:px-0 md:py-0 text-sm md:text-lg xl:text-xl 2xl:text-2xl rounded-t-[49px] rounded-b-[50px] search-container"
           >
             <ul
-              class="search_suggestions--list pt-16 md:pt-20 xl:pt-24 2xl:pt-[116px] pb-6 w-full md:w-[455px] xl:w-[80%] max-w-[946px] md:rounded-[50px] md:pl-14 text-black dark:text-white leading-loose px-6 md:bg-[#FFEDF4] md:dark:bg-[#333333]"
+              class="search_suggestions--list  md:ml-8  2xl:ml-0 pt-16 md:pt-20 xl:pt-24 2xl:pt-[116px] pb-6 w-full md:w-[418px] lg:w-[428px] xl:w-[80%] 2xl:w-[80%] max-w-[946px] md:rounded-[50px] md:pl-14 text-black dark:text-white leading-loose px-6 md:bg-[#FFEDF4] md:dark:bg-[#333333]"
             >
             </ul>
           </div>  
@@ -75,32 +74,48 @@ const searchFormComponent = `
 const searchFormUI = document.createElement("section");
 searchFormUI.innerHTML = searchFormComponent;
 searchFormUI.className = "home_search-form w-full mt-6 md:mt-0";
- const searchInput = searchFormUI.querySelector("#search_input");
- const searchForm = searchFormUI.querySelector("#search_form");
- const validationMessage = searchFormUI.querySelector(
-  ".validation-message"
+const searchFormContainer = searchFormUI.querySelector(
+  ".search_form-container"
 );
+const searchInput = searchFormUI.querySelector("#search_input");
+const searchForm = searchFormUI.querySelector("#search_form");
+const validationMessage = searchFormUI.querySelector(".validation-message");
+const voiceSearchButton = searchFormUI.querySelector(".button_voice-search");
 const suggestionBox = searchFormUI.querySelector(".search_suggestions");
 const suggestionList = searchFormUI.querySelector(".search_suggestions--list");
+const cancelButton = searchFormUI.querySelector(".cancel-to-home");
+const backButton = searchFormUI.querySelector('.button_back')
 let debouncedFetchSuggestions = debounceFetch(displayWordSuggestions, 300);
 export function displaySearchFormUI(page, container) {
-  container.innerHTML = ''
+  container.innerHTML = "";
+  document.querySelector(".page-logo").classList.add("md:block");
+  document.querySelector(".page-logo").classList.remove("md:hidden");
+  document
+    .querySelector(".nav-tab")
+    .classList.remove("md:mt-[116px]", "xl:mt-[96px]");
+  hideCancelButton();
   page.insertBefore(searchFormUI, container);
+  cancelButton.addEventListener("click",handleBackButtonEvents)
+  backButton.addEventListener('click',handleBackButtonEvents)
+  voiceSearchButton.classList.add("translate");
+  setTimeout(() => {
+    voiceSearchButton.classList.remove("translate");
+  }, 450);
   searchInput.focus();
 }
-export function removeSearchFormUI(page) {
-  page.remove(searchFormUI);
-}
-function displayWordSuggestions(userInput) {
+function displayWordSuggestions(userInput, selectedWord) {
   fetchWordSuggestions(userInput).then((wordSuggestions) => {
     wordSuggestions.forEach((suggestion) => {
       const suggestedWord = document.createElement("li");
+      suggestedWord.style.cursor = "pointer";
       suggestedWord.className = "search_suggestions--item z-[10]";
       suggestedWord.addEventListener("click", (e) => {
         if (suggestedWord) {
-          searchInput.value = e.target.textContent || "";
-          searchInput.focus();
-          return searchInput.value;
+          searchInput.value = "";
+          selectedWord = e.currentTarget.textContent || "";
+          console.log(selectedWord);
+          handleUserSearch(e, selectedWord);
+          return selectedWord;
         }
       });
       suggestedWord.textContent = suggestion;
@@ -111,6 +126,10 @@ function displayWordSuggestions(userInput) {
 
 searchInput.addEventListener("input", (container) => {
   suggestionList.innerHTML = "";
+  searchForm.classList.add("xl:w-[460px]");
+  suggestionList.classList.add("xl:w-[462px]", "xl:ml-[2.5%]");
+  searchFormContainer.classList.remove("xl:w-[65%]");
+  searchFormContainer.classList.add("xl:w-[50%]");
   let userInput = searchInput.value;
   container = document.querySelector(".home_container");
   container.innerHTML = "";
@@ -119,41 +138,53 @@ searchInput.addEventListener("input", (container) => {
   suggestionBox.classList.add("flex");
   debouncedFetchSuggestions(userInput);
 });
-
 export function removeSuggestions() {
   suggestionList.innerHTML = "";
   suggestionBox.classList.remove("flex");
   suggestionBox.classList.add("hidden");
 }
-const voiceSearchButton = searchFormUI.querySelector(".button_voice-search");
 // Home Page EventListener
 searchForm.addEventListener("submit", handleUserSearch);
-voiceSearchButton.addEventListener("click", () => {
+searchForm.addEventListener("click", hideCancelButton);
+voiceSearchButton.addEventListener("click", voiceSearchEvent);
+
+export function voiceSearchEvent() {
   homeContainer.innerHTML = "";
   handleVoiceSearch(homePage);
-  const cancelButton = document.querySelector(".button_listening-cancel");
-  cancelButton.addEventListener("click", () => {
-    wordRecognition.abort();
-    onVoiceSearchCancel(homePage);
-  });
-});
-
-export function handleUserSearch(e, transcript) {
+}
+export function handleUserSearch(e, transcript, selectedWord) {
   e.preventDefault();
   removeSuggestions();
-  const searchRequest = searchInput.value || transcript || "";
+  const searchRequest =
+    searchInput.value || transcript || selectedWord || "" || " ";
   if (searchRequest === "") {
     validationMessage.classList.remove("hidden");
     return;
   } else {
     saveRecents({ word: searchRequest });
     displayRecentsList(recentsList, recentPageCta, recentsContainer);
-    document.querySelector(".validation-message").classList.add("hidden");
+    validationMessage.classList.add("hidden");
     homeContainer.innerHTML = "";
+    document.querySelector(".font-options").classList.remove("hidden");
     displayLoader(homeContainer);
     setTimeout(() => {
       displayRequiredResult(homeContainer, searchRequest);
     }, 3000);
     searchInput.value = "";
   }
+}
+export function showCancelButton() {
+  cancelButton.classList.remove("md:hidden");
+    cancelButton.classList.add("md:block");
+  voiceSearchButton.classList.add("md:hidden");
+}
+export function hideCancelButton() {
+  cancelButton.classList.add("md:hidden");
+      cancelButton.classList.remove("md:block");
+  voiceSearchButton.classList.remove("md:hidden");
+}
+
+function handleBackButtonEvents(){
+ const mainContainer = document.querySelector("main");
+ displayHomePage(mainContainer);
 }

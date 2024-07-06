@@ -7,6 +7,4 @@ const loader = document.createElement("div");
   loaderPage.append(loader);
   page.append(loaderPage);
 }
-export function removeLoader() {
-  document.querySelector('.loader_page').remove();
-}
+

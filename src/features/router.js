@@ -3,10 +3,9 @@ import { displayHomePage} from "../pages/home";
 import { displayRecentPage } from "../pages/recent";
 
 
-export function initialState(container,button){
+export function initialState(container){
     const initialPath = history.state;
     updateContent(null,container)
-    button.focus()
     console.log('path initialzed:'+ initialPath)
 
 }
@@ -18,8 +17,12 @@ export function handlePopstate(container,buttons) {
   updateContent(path, container);
   buttons.forEach(button => {
     console.log(button)
-    if(button.getAttribute('data-page') === path ||path==='home'){
-     button.focus()
+    if(button.getAttribute('data-page') === path){
+     button.classList.add('active')
+     console.log('focused on'+ path);
+    }
+    else{
+      button.classList.remove('active')
     }
   });
   console.log(history.state);
@@ -51,5 +54,27 @@ export function updateContent(path, container) {
         displayHomePage(container);
         break;
     }
+  }
+}
+export function handleActivePage(button){
+ const activeButton = button.dataset.page
+  switch (activeButton) {
+    case "home":
+      document.querySelector(".button_bookmarks").classList.remove("active");
+      document.querySelector(".button_recents").classList.remove("active");
+      document.querySelector(".button_home").classList.add("active");
+      break;
+    case "recents":
+      document.querySelector(".button_bookmarks").classList.remove("active");
+      document.querySelector(".button_home").classList.remove("active");
+      document.querySelector(".button_recents").classList.add("active");
+      break;
+    case "bookmarks":
+    document.querySelector(".button_recents").classList.remove("active");
+    document.querySelector(".button_home").classList.remove("active");
+    document.querySelector(".button_bookmarks").classList.add("active");
+
+    default:
+      break;
   }
 }

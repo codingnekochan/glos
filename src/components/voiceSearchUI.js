@@ -1,5 +1,4 @@
-import { wordRecognition } from "../features/voiceSearch";
-
+import { homePage } from "../pages/home";
 const microphoneComponent = `
    <button class="button_listening-cancel self-end p-6 md:px-10 md:pt-10 md:pb-0">
           <svg
@@ -89,13 +88,13 @@ userMic.className =
   "home_listening w-full h-full flex flex-col justify-center items-center absolute top-0 left-0 bg-white dark:bg-black z-[30]";
 userMic.innerHTML = microphoneComponent;
 
-export function onVoiceSearchStartUI(page) {
-  page.append(userMic);
+export function onVoiceSearchStartUI() {
+  homePage.append(userMic);
   document.querySelector(".button_theme-switch").classList.add("hidden");
-  page.querySelector(".home_search-form").classList.add("hidden");
+  homePage.querySelector(".home_search-form").classList.add("hidden");
   userMic.querySelector(".listening_page--text").textContent =
     "Say a word to look up!";
-  
+  console.log('appended')
 }
 export function onListenUI() {
   userMic.querySelectorAll("circle").forEach((circle) => {
@@ -105,14 +104,13 @@ export function onListenUI() {
 }
 export function onVoiceSearchFinishUI() {
   userMic.querySelector(".listening_page--text").textContent = "";
-  document.querySelector(".home_search-form").classList.remove("hidden");
+  homePage.querySelector(".home_search-form").classList.remove("hidden");
   document.querySelector(".button_theme-switch").classList.remove("hidden");
   userMic.remove();
 }
 export function onVoiceSearchCancel() {
-  wordRecognition.abort();
   document.querySelector(".button_theme-switch").classList.remove("hidden");
-  document.querySelector(".home_search-form").classList.remove("hidden");
+  homePage.querySelector(".home_search-form").classList.remove("hidden");
   userMic.querySelector(".listening_page--text").textContent = "";
   userMic.remove();
 }

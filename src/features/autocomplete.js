@@ -15,8 +15,7 @@ export async function fetchWordSuggestions(userInput) {
   );
   const wordSuggestionsResult = await wordSuggestionsResponse.json();
   //ensures only 6 results are returned
-  const splicedResult = wordSuggestionsResult.slice(0,6)
-  return retrieveWordSuggestions(splicedResult)
+  return retrieveWordSuggestions(wordSuggestionsResult)
 }
 
 function retrieveWordSuggestions(results){

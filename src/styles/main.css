@@ -17,16 +17,16 @@
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  top: 20%;
+  top: 30%;
 }
 
 /* Tooltip text */
 .tool-tip .tool-tip_text {
-  width: 120px;
+  width: 140px;
   background-color: #555;
   color: #fff;
   text-align: center;
-  padding: 5px 0;
+  padding: 7px 0;
   border-radius: 6px;
 
   /* Position the tooltip text */
@@ -61,7 +61,6 @@
   z-index: 20;
 }
 .active.button_nav svg,
-.button_nav:focus svg,
 .button_nav:active svg,
 .button_nav:focus-visible svg,
 .button_nav:focus svg {
@@ -106,12 +105,30 @@
   .tool-tip {
     top: 5%;
   }
+  .active.button_home,
+  .button_home:active,
+  .button_home:focus-visible,
+  .button_home:focus {
+    margin-left: 87px;
+  }
+  .active.button_bookmarks,
+  .button_bookmarks:active,
+  .button_bookmarks:focus-visible,
+  .button_bookmarks:focus {
+    margin-left: 130px;
+  }
+  .active.button_recents,
+  .button_recents:active,
+  .button_recents:focus-visible,
+  .button_recents:focus {
+    margin-left: 90px;
+  }
+
   .active.button_nav,
   .button_nav:active,
   .button_nav:focus-visible,
   .button_nav:focus {
     padding: 22px 32px;
-    margin-left: 130px;
     background: white;
     border-radius: 50px;
     box-shadow: 2px 2px 4px 0 #cf688c;
@@ -129,27 +146,33 @@
     background: #b81e53;
     box-shadow: 2px 2px 4px 0 #ffffff;
   }
-.dark-theme.active.button_nav p,
+  .dark-theme.active.button_nav p,
   .dark-theme.button_nav:focus p,
   .dark-theme.button_nav:active p,
   .dark-theme.button_nav:focus-visible p {
     color: #ffffff;
   }
 }
-@media (min-width:1536px) {
+@media (min-width:1280) {
+  .active.button_nav,
+  .button_nav:active,
+  .button_nav:focus-visible,
+  .button_nav:focus {
+    padding: 22px 30px;
+  }
+}
+@media (min-width: 1536px) {
   .active.button_nav,
   .button_nav:active,
   .button_nav:focus-visible,
   .button_nav:focus {
     padding: 24px 32px;
-    margin-left: 130px;
-    border-radius: 50px;
   }
   .active#button_bookmarks,
   #button_bookmarks:active,
   #button_bookmarks:focus,
-  #button_bookmarks:focus-visible{
-    margin-left: 200px;
+  #button_bookmarks:focus-visible {
+    margin-left: 140px;
   }
   .active.button_nav p,
   .button_nav:focus p,

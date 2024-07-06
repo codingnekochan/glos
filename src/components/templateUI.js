@@ -1,23 +1,23 @@
 export const pageTemplateComponent = ` <div class="h-full page">
         <div class = 'page_intro'>
         <h2
-          class="page_info font-bold text-sm text-center px-6 md:text-xl xl:text-[28px] dark:text-[#F8E9EE]"
+          class="page_info font-bold text-sm text-center px-6 md:text-xl xl:text-2xl 2xl:text-[28px] dark:text-[#F8E9EE] xl:mt-20"
         >
         </h2>
         <p
           class="page_cta text-xs text-center text-[#8A8A8A] leading-4 px-20 mt-2 md:mt-4 md:w-[260px] md:px-0 mx-auto md:text-sm xl:w-full xl:text-xl xl:mt-6"
         >
         </p>
-        <div>     
+        </div>     
         <div
-          class="hidden words_container md:ml-[163px] lg:mx-[31%] xl:mx-[31%]"
+          class="hidden words_container ml-[10%] md:ml-[25%] lg:mx-[31%] xl:mx-[26%] xl:pl-[10%]"
         >
           <ul
-            class="page_list list-disc text-sm pl-[71px] md:pl-0 mt-6 md:mt-11 md:text-xl xl:mt-7"
+            class="page_list list-disc text-sm px-[81px] md:pl-10 mt-6 md:mt-11 md:text-xl xl:mt-7"
           >
           </ul>
           <button
-            class="button clear_button underline font-[Courgette] text-sm text-[#CF688C] pl-6 mt-6 md:pl-0 md:ml-[-5.05%] md:mt-11 md:text-2xl xl:mt-10 dark:text-[#DE98B0]"
+            class="button clear_button underline font-[Courgette] text-sm text-[#CF688C] mt-6 md:pl-0 md:ml-[5%] md:mt-11 md:text-2xl xl:mt-10 dark:text-[#DE98B0]"
           >
           </button>
         </div>

@@ -16,9 +16,9 @@
     class="font-[Inter] h-[100vh] flex flex-col md:flex-row dark:text-white bg:white dark:bg-black"
   >
     <div
-      class="buttons_container hidd/en flex gap-4 justify-end pt-6 pr-6 md:w-[300px] md:absolute md:top-0 md:right-0 md:pt-10 md:pr-10"
+      class="buttons_container flex gap-4 justify-end pt-6 pr-6 md:w-[300px] md:absolute md:top-0 md:right-0 md:pt-10 md:pr-10"
     >
-      <button class="button button_theme-switch xl:order-2">
+      <button class="button button_theme-switch xl:order-2 ">
         <svg
           class="theme_svg w-5 h-5 md:w-[35px] md:h-[35px] 2xl:w-[45px] 2xl:h-[45px]"
           viewBox="0 0 45 45"
@@ -40,9 +40,9 @@
           />
         </svg>
       </button>
-      <div class="font-options xl:order-1">
+      <div class="font-options xl:order-1 hidden">
         <button
-          class="py-2 flex items-center gap-2 md:gap-3 button button_font-change text-sm md:text-base md:pr-5"
+          class=" py-2 flex items-center gap-2 md:gap-3 button button_font-change text-sm md:text-base md:pr-5"
         >
           <p class="font_applied"></p>
           <svg
@@ -82,30 +82,30 @@
         </div>
       </div>
     </div>
-    <header class="min-[2560px]:w-[10%]">
+    <header class="w-[11%] lg:w-[10%] 2xl:w-[135px] mx-auto">
       <nav
-        class="w-full fixed flex flex-col-reverse left-0 bottom-0 z-100 md:z-0 shadow-[0px_-5px_4px_0_rgba(207,104,140,0.5)] md:static md:top-0 md:flex-row md:shadow-none min-[2560px]:justify-between bg-white dark:bg-black"
+        class="w-full fixed mx-auto flex flex-col-reverse left-0 bottom-0 z-100 md:z-0 shadow-[0px_-5px_4px_0_rgba(207,104,140,0.5)] md:static md:top-0 md:flex-row md:shadow-none min-[2560px]:justify-between bg-white dark:bg-black"
       >
-        <div class="nav-container min-[2560px]:mx-auto">
+        <div class="nav-container w-full mx-auto">
           <h1
-            class="page-logo font-['Courgette'] hidden md:block text-[#B81E53] dark:text-[#E9B9CA] text-4xl pt-12 pr-5 pl-9 pb-7 md:pr-4 md:pl-9 md:pt-12 md:text-[35px] xl:text-[45px] xl:pt-14 xl:pr-6 xl:pb-11"
+            class="page-logo font-['Courgette'] hidden md:block text-[#B81E53] dark:text-[#E9B9CA] md:pr-4 md:pl-9 md:pt-12 md:pb-7 lg:pt-10 lg:pb-5 md:text-[35px] xl:text-[40px] 2xl:text-[45px] 2xl:pt-14 2xl:pr-6 2xl:pb-11"
           >
             Glos
           </h1>
           <ul
-            class="nav-tab flex justify-around items-center text-center list-none md:flex-col md:w-[115px]"
+            class=" nav-tab flex justify-around items-center text-center list-none md:flex-col md:w-[115px] xl:w-[100px] 2xl:w-[115px] mx-auto"
           >
             <!-- for mobile button shows fully and changes color on click -->
             <!-- for desktop button shows and has dropshadow on click,focus,active -->
 
-            <li class="nav-button py-6 md:order-2 md:mb-11 md:py-0">
+            <li class="nav-button py-6 md:order-2 md:mb-11 xl:mb-9 2xl:mb-11 md:py-0">
               <button
               id="button_bookmarks"
-                class="button_nav button button_bookmark flex flex-col justify-center items-center md:flex-row md:gap-4"
+                class="button_nav button button_bookmarks flex flex-col justify-center items-center md:flex-row md:gap-4"
                 data-page="bookmarks"
               >
                 <svg
-                  class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8"
+                  class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 2xl:w-8 2xl:h-8"
                   viewBox="0 0 27 32"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -116,14 +116,14 @@
                 <p class="button-text text-xs pt-[2px] hidden">Bookmarks</p>
               </button>
             </li>
-            <li class="nav-button py-6 md:order-1 md:mb-11 md:py-0">
+            <li class="nav-button py-6 md:order-1 md:mt-2 md:mb-11 xl:mb-9 2xl:mb-11 md:py-0">
               <button
                 id="button_home"
                 class="button_nav button_home flex flex-col justify-center items-center md:flex-row md:gap-4"
                 data-page="home"
               >
                 <svg
-                  class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8 active"
+                  class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 2xl:w-8 2xl:h-8 active"
                   viewBox="0 0 33 32"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -134,14 +134,14 @@
                 <p class="button_text text-xs pt-[2px] hidden">Home</p>
               </button>
             </li>
-            <li class="nav-button text-center py-6 md:order-3 md:mb-11 md:py-0">
+            <li class="nav-button text-center py-6 md:order-3 md:mb-11 xl:mb-9 2xl:mb-11 md:py-0">
               <button
               id="button_recents"
-                class="button_nav button_recent flex flex-col justify-center items-center md:flex-row md:gap-4"
+                class="button_nav button_recents flex flex-col justify-center items-center md:flex-row md:gap-4"
                 data-page="recents"
               >
                 <svg
-                  class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8"
+                  class="fill-[#8A8A8A] w-6 h-6 md:w-7 md:h-7 2xl:w-8 2xl:h-8"
                   viewBox="0 0 33 30"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -155,11 +155,11 @@
           </ul>
         </div>
         <div
-          class="decor-line bg-[#333333] dark:bg-[#F8E9EE] hidden md:block md:fixed md:left-[115px] md:w-[3px] md:h-[100vh] xl:left-36 min-[2560px]:static -z-10"
+          class="decor-line bg-[#333333] dark:bg-[#F8E9EE] hidden md:block md:fixed md:left-[120px] md:w-[2px] 2xl:w-[3px] md:h-[100vh] xl:left-[10%] 2xl:left-36 -z-10"
         ></div>
       </nav>
     </header>
-    <main class="max-w-full h-full container"></main>
+    <main class="max-w-full container h-[90%] md:h-full"></main>
     <div class="dictionary-audio">
       <audio id="audio-file" class="audio-file">
         <source id="pronunciation-audio" src="#" type="audio/mpeg" />

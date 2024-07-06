@@ -2,7 +2,7 @@ import { pageTemplateComponent } from "../components/templateUI";
 import { clearBookmarks, displayBookmarksList } from "../features/storage";
 
 const bookmarksPage = document.createElement("section");
-bookmarksPage.className = "bookmark md:h-full mt-20 md:mt-36 xl:mt-28";
+bookmarksPage.className = "bookmark md:h-full mt-20 md:mt-36 xl:mt-16 2xl:mt-28";
 bookmarksPage.id = "bookmark";
 bookmarksPage.innerHTML = pageTemplateComponent;
 const bookmarksPageInfo = bookmarksPage.querySelector(".page_info");
@@ -22,8 +22,18 @@ bookmarkClearButton.addEventListener('click',showBookmarkModal);
 cancelClearButton.addEventListener('click', hideBookmarkModal);
 clearButton.addEventListener('click', handleBookmarkEvents)
 export function displayBookmarksPage(container) {
+        document.querySelector(".font-options").classList.add("hidden");
+  // document.querySelector(".button_recent").classList.remove("active");
+  // document.querySelector(".button_home").classList.remove("active");
+   document.querySelector(".page-logo").classList.add("md:block");
+   document.querySelector(".page-logo").classList.remove("md:hidden");
+   document
+     .querySelector(".nav-tab")
+     .classList.remove("md:mt-[116px]", "xl:mt-[96px]");
   container.innerHTML = "";
   container.append(bookmarksPage);
+  // document.querySelector(".button_bookmark").classList.add("active");
+
 }
 function showBookmarkModal(){
 bookmarkModal.classList.remove('hidden');

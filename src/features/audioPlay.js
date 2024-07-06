@@ -11,7 +11,6 @@ function handleAudioPlayback() {
   const audioFile = document.getElementById("audio-file");
   const audioSource = document.getElementById("pronunciation-audio");
   const toolTip = document.querySelector(".tool-tip");
-
   if (audioSource.src && audioSource.src !== window.location.href) {
     audioFile.play();
   } else {

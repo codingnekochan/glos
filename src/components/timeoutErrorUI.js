@@ -14,6 +14,3 @@ export function displayTimeoutErrorUI(page) {
   page.innerHTML = ''
   page.append(timeoutErrorUI);
 }
-export function removeTimeoutErrorUI(page) {
-  page.remove(timeoutErrorUI);
-}

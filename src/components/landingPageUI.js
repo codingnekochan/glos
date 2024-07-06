@@ -1,7 +1,10 @@
+// import { homePage, homeContainer } from "../pages/home";
+// import { voiceSearchEvent, displaySearchFormUI } from "./searchFormUI";
+
 const landingPageComponent = `<div class="home_landing w-full">
   <div class="main_logo mb-4 md:mb-8">
     <svg
-      class="w-[89px] h-[38px] mx-auto md:w-[186px] md:h-[70px] xl:w-[278px] xl:h-[125px]"
+      class="w-[89px] h-[38px] mx-auto md:w-[186px] md:h-[70px] xl:w-[200px] xl:h-[105px] 2xl:w-[278px] 2xl:h-[125px]"
       viewBox="0 0 89 38"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -16,8 +19,8 @@ const landingPageComponent = `<div class="home_landing w-full">
       />
     </svg>
   </div>
-  <div data-page='home' class="search-bar mx-auto w-[80%] md:w-[549px] xl:w-[50%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0  bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] md:bg-inherit md:dark:bg-inherit">
-    <button class="flex gap-4 items-center md:w-[455px] md:h-[70px] xl:w-[80%] max-w-[946px] 2xl:h-[120px] md:rounded-[90px] md:pl-10 md:bg-[#FFEDF4] md:dark:bg-[#333333]">
+  <div data-page='home' class="search-bar mx-auto w-[80%] md:w-[549px] xl:w-[67%] 2xl:w-[80%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0  bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm xl:text-lg 2xl:text-xl rounded-[90px] md:bg-inherit md:dark:bg-inherit">
+    <button id="text-search-button" class="flex gap-4 items-center md:w-[455px] md:h-[70px] xl:w-[85%] xl:h-[80px] max-w-[946px] 2xl:h-[120px] md:rounded-[90px] md:pl-10 md:bg-[#FFEDF4] md:dark:bg-[#333333]">
       <div class="search-icon hidden md:block">
         <svg
           class="w-10 h-10"
@@ -38,9 +41,9 @@ const landingPageComponent = `<div class="home_landing w-full">
       </div>
       <p>Type in a word to look up...</p>
     </button>
-    <button class="mic-icon">
+    <button id="voice-search-button" class="mic-icon">
       <svg
-        class="w-[30px] h-[31px] md:w-[70px] md:h-[70px] 2xl:w-[120px] 2xl:h-[120px]"
+        class="w-[30px] h-[31px] md:w-[70px] md:h-[70px] xl:w-[95px] xl:h-[95px] 2xl:w-[120px] 2xl:h-[120px]"
         viewBox="0 0 30 31"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -61,14 +64,17 @@ const landingPageComponent = `<div class="home_landing w-full">
 </div>`;
 
 export const homeLanding = document.createElement("div");
+
 homeLanding.innerHTML = landingPageComponent;
 homeLanding.className =
-  "home_landing h-full w-full flex justify-center items-center";
+  "home_landing h-full w-full flex justify-center items-center my-auto";
 
 export function landingPageUI(page) {
   page.innerHTML = "";
+  document.querySelector(".page-logo").classList.remove("md:block");
+  document
+    .querySelector(".page-logo")
+    .classList.add("md:hidden");
+  document.querySelector('.nav-tab').classList.add("md:mt-[116px]", "xl:mt-[96px]")
   page.append(homeLanding);
-}
-export function removeLandingPageUI() {
-  homeLanding.remove();
 }

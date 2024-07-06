@@ -31,3 +31,17 @@
   -webkit-mask-composite: source-out;
           mask-composite: subtract;
 }
+@media (min-width:768px) {
+  .translate{
+  animation: mictranslate 0.2s ease-out forwards ;
+}
+@keyframes mictranslate {
+  0%{
+    translate: 90px 310px;
+  }
+
+  100%{
+    translate : 0 0;
+  }
+}
+}

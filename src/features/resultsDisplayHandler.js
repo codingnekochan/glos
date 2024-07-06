@@ -58,7 +58,6 @@ export function displayDefinitionsList(page, data) {
         "text-sm",
         "md:text-base",
         "lg:text-lg",
-        "xl:text-xl",
         "2xl:text-2xl",
         "pl-2",
         "pb-2"
@@ -105,17 +104,3 @@ function displayAntonyms(meanings, list) {
     list.append(item);
   });
 }
-
-// <button class="button button_add-bookmark relative">
-// <input type ="checkbox" id="checkbox" class="absolute right-1 top-1 left-1 bottom-1 checked:bg-[#CF688C]"/>
-// <svg
-// class="w-5 h-5"
-// viewBox="0 0 27 32"
-// xmlns="http://www.w3.org/2000/svg"
-// >
-// <path
-// class="bookmark-state stroke-[#B81E53] stroke-2 fill-none dark:stroke-[#CF688C]"
-// d="M3.09214 31.4245C2.20322 32.0195 0.963623 31.4285 0.963623 30.4098V5.41667C0.963623 2.42512 3.57062 0 6.78654 0H20.2211C23.437 0 26.044 2.42512 26.044 5.41667V30.4098C26.044 31.4285 24.8044 32.0195 23.9155 31.4245L13.5038 24.4563L3.09214 31.4245Z"
-// />
-// </svg>
-// </button>
