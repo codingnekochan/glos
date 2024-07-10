@@ -1,5 +1,10 @@
 import { fetchWordSuggestions, debounceFetch } from "../features/autocomplete";
-import { displayHomePage, homeContainer, homePage } from "../pages/home";
+import {
+  clearHomePage,
+  displayHomePage,
+  homeContainer,
+  homePage,
+} from "../pages/home";
 import { displayRequiredResult } from "../components/searchResultsUI";
 import { displayLoader } from "../components/loaderUI";
 import { handleVoiceSearch } from "../features/voiceSearch";
@@ -35,7 +40,6 @@ const searchFormComponent = `
               id = "search_input"
                 type="search"
                 class="search_input my-auto w-[85%] md:w-[60%] bg-inherit outline-none self-center placeholder:text-xs md:placeholder:text-sm xl:placeholder:text-lg 2xl:placeholder:text-xl text-base"
-                placeholder="Type in a word to look up..."
               />
             </form>
             <button id="button_voice-search" class="button_voice-search mic-icon xl:0">
@@ -84,8 +88,9 @@ const voiceSearchButton = searchFormUI.querySelector(".button_voice-search");
 const suggestionBox = searchFormUI.querySelector(".search_suggestions");
 const suggestionList = searchFormUI.querySelector(".search_suggestions--list");
 const cancelButton = searchFormUI.querySelector(".cancel-to-home");
-const backButton = searchFormUI.querySelector('.button_back')
+const backButton = searchFormUI.querySelector(".button_back");
 let debouncedFetchSuggestions = debounceFetch(displayWordSuggestions, 300);
+
 export function displaySearchFormUI(page, container) {
   container.innerHTML = "";
   document.querySelector(".page-logo").classList.add("md:block");
@@ -95,13 +100,19 @@ export function displaySearchFormUI(page, container) {
     .classList.remove("md:mt-[116px]", "xl:mt-[96px]");
   hideCancelButton();
   page.insertBefore(searchFormUI, container);
-  cancelButton.addEventListener("click",handleBackButtonEvents)
-  backButton.addEventListener('click',handleBackButtonEvents)
-  voiceSearchButton.classList.add("translate");
-  setTimeout(() => {
-    voiceSearchButton.classList.remove("translate");
-  }, 450);
+  cancelButton.addEventListener("click", handleBackButtonEvents);
+  backButton.addEventListener("click", handleBackButtonEvents);
   searchInput.focus();
+  if (!localStorage.getItem("searchResults")) {
+    searchInput.placeholder = "Type in a word to look up...";
+    voiceSearchButton.classList.add("translate");
+    setTimeout(() => {
+      voiceSearchButton.classList.remove("translate");
+    }, 450);
+  } else {
+    const searchResults = JSON.parse(localStorage.getItem("searchResults"));
+    searchInput.placeholder = `Search results for '${searchResults.entryWord}'`;
+  }
 }
 function displayWordSuggestions(userInput, selectedWord) {
   fetchWordSuggestions(userInput).then((wordSuggestions) => {
@@ -146,6 +157,7 @@ export function removeSuggestions() {
 // Home Page EventListener
 searchForm.addEventListener("submit", handleUserSearch);
 searchForm.addEventListener("click", hideCancelButton);
+searchInput.addEventListener('input', hideCancelButton);
 voiceSearchButton.addEventListener("click", voiceSearchEvent);
 
 export function voiceSearchEvent() {
@@ -156,9 +168,12 @@ export function handleUserSearch(e, transcript, selectedWord) {
   e.preventDefault();
   removeSuggestions();
   const searchRequest =
-    searchInput.value || transcript || selectedWord || "" || " ";
-  if (searchRequest === "") {
+    transcript || selectedWord || searchInput.value ;
+  if (searchRequest ===  "" || searchRequest === ' ') {
     validationMessage.classList.remove("hidden");
+    setTimeout(()=>{
+      validationMessage.classList.add('hidden')
+    }, 1000)
     return;
   } else {
     saveRecents({ word: searchRequest });
@@ -170,21 +185,25 @@ export function handleUserSearch(e, transcript, selectedWord) {
     setTimeout(() => {
       displayRequiredResult(homeContainer, searchRequest);
     }, 3000);
+    searchInput.focus()
+    searchInput.placeholder = `Search results for '${searchRequest}'`;
     searchInput.value = "";
   }
 }
 export function showCancelButton() {
   cancelButton.classList.remove("md:hidden");
-    cancelButton.classList.add("md:block");
+  cancelButton.classList.add("md:block");
   voiceSearchButton.classList.add("md:hidden");
 }
 export function hideCancelButton() {
   cancelButton.classList.add("md:hidden");
-      cancelButton.classList.remove("md:block");
+  cancelButton.classList.remove("md:block");
   voiceSearchButton.classList.remove("md:hidden");
 }
 
-function handleBackButtonEvents(){
- const mainContainer = document.querySelector("main");
- displayHomePage(mainContainer);
+function handleBackButtonEvents() {
+  const mainContainer = document.querySelector("main");
+  clearHomePage(mainContainer);
+  localStorage.removeItem("searchResults");
+  displayHomePage(mainContainer);
 }

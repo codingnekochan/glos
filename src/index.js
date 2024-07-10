@@ -3,12 +3,14 @@ import "./styles/animation.css";
 import { defaultTheme, toggleDarkMode } from "./features/themeSwitch";
 import { defaultFonts, toggleFontChangeMenu } from "./features/fontChange";
 import {
-  handleActivePage,
   handleNavigation,
   handlePopstate,
   initialState,
 } from "./features/router";
 document.addEventListener("DOMContentLoaded", () => {
+  //clear storage
+  localStorage.removeItem("searchResults");
+
   const htmlBody = document.querySelector("html");
   const mainContainer = document.querySelector("main");
   const themeSwitchButton = document.querySelector(".button_theme-switch");
@@ -31,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
   navigationButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       // button.focus()
-      handleActivePage(button)
       handleNavigation(e, mainContainer);
     });
   });

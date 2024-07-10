@@ -53,38 +53,24 @@
   visibility: visible;
   animation: fadeInAndOut 2s ease forwards;
 }
-.active,
-.button_nav:active,
-.button_nav:focus-visible,
-.button_nav:focus {
+/* BUTTON STATES */
+.active {
   outline: none;
   z-index: 20;
 }
-.active.button_nav svg,
-.button_nav:active svg,
-.button_nav:focus-visible svg,
-.button_nav:focus svg {
+.active.button_nav svg {
   fill: #b81e53;
 }
-.active.button_nav p,
-.button_nav:focus p,
-.button_nav:active p,
-.button_nav:focus-visible p {
+.active.button_nav p {
   display: block;
   color: #b81e53;
   font-weight: bold;
   font-size: 11px;
 }
-.dark-theme.active.button_nav svg,
-.dark-theme.button_nav:active svg,
-.dark-theme.button_nav:focus-visible svg,
-.dark-theme.button_nav:focus svg {
+.dark-theme.active.button_nav svg {
   fill: #f8e9ee;
 }
-.dark-theme.active.button_nav p,
-.dark-theme.button_nav:focus p,
-.dark-theme.button_nav:active p,
-.dark-theme.button_nav:focus-visible p {
+.dark-theme.active.button_nav p {
   color: #cf688c;
 }
 @keyframes fadeInAndOut {
@@ -105,79 +91,46 @@
   .tool-tip {
     top: 5%;
   }
-  .active.button_home,
-  .button_home:active,
-  .button_home:focus-visible,
-  .button_home:focus {
+  .active.button_home {
     margin-left: 87px;
   }
-  .active.button_bookmarks,
-  .button_bookmarks:active,
-  .button_bookmarks:focus-visible,
-  .button_bookmarks:focus {
+  .active.button_bookmarks {
     margin-left: 130px;
   }
-  .active.button_recents,
-  .button_recents:active,
-  .button_recents:focus-visible,
-  .button_recents:focus {
+  .active.button_recents {
     margin-left: 90px;
   }
 
-  .active.button_nav,
-  .button_nav:active,
-  .button_nav:focus-visible,
-  .button_nav:focus {
+  .active.button_nav {
     padding: 22px 32px;
     background: white;
     border-radius: 50px;
     box-shadow: 2px 2px 4px 0 #cf688c;
   }
-  .active.button_nav p,
-  .button_nav:focus p,
-  .button_nav:active p,
-  .button_nav:focus-visible p {
+  .active.button_nav p {
     font-size: 20px;
   }
-  .dark-theme.active.button_nav,
-  .dark-theme.button_nav:active,
-  .dark-theme.button_nav:focus-visible,
-  .dark-theme.button_nav:focus {
+  .dark-theme.active.button_nav {
     background: #b81e53;
     box-shadow: 2px 2px 4px 0 #ffffff;
   }
-  .dark-theme.active.button_nav p,
-  .dark-theme.button_nav:focus p,
-  .dark-theme.button_nav:active p,
-  .dark-theme.button_nav:focus-visible p {
+  .dark-theme.active.button_nav p {
     color: #ffffff;
   }
 }
-@media (min-width:1280) {
-  .active.button_nav,
-  .button_nav:active,
-  .button_nav:focus-visible,
-  .button_nav:focus {
+@media (min-width: 1280) {
+  .active.button_nav {
     padding: 22px 30px;
   }
 }
 @media (min-width: 1536px) {
-  .active.button_nav,
-  .button_nav:active,
-  .button_nav:focus-visible,
-  .button_nav:focus {
+  .active.button_nav {
     padding: 24px 32px;
   }
-  .active#button_bookmarks,
-  #button_bookmarks:active,
-  #button_bookmarks:focus,
-  #button_bookmarks:focus-visible {
+  .active.button_bookmarks {
     margin-left: 140px;
   }
-  .active.button_nav p,
-  .button_nav:focus p,
-  .button_nav:active p,
-  .button_nav:focus-visible p {
+  .active.button_nav p {
     font-size: 24px;
   }
 }

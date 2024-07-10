@@ -5,8 +5,17 @@ import {
   displaySearchedWord,
   displayDefinitionsList,
 } from "../features/resultsDisplayHandler";
-import {saveBookmarks, deleteBookmark, handleBookmarkState, displayBookmarksList } from "../features/storage";
-import { bookmarkContainer, bookmarkList, bookmarksPageCta} from "../pages/bookmark";
+import {
+  saveBookmarks,
+  deleteBookmark,
+  handleBookmarkState,
+  displayBookmarksList,
+} from "../features/storage";
+import {
+  bookmarkContainer,
+  bookmarkList,
+  bookmarksPageCta,
+} from "../pages/bookmark";
 import { hideCancelButton, showCancelButton } from "./searchFormUI";
 const searchResultComponent = `<div
             class=" word_results h-full overflow-y-auto p-6 lg:px-10 lg:py-10 md:mx-4 col-span-full row-span-3 xl:col-span-3 xl:row-span-full rounded-[20px] shadow-[5px_5px_4px_0_rgba(255,209,225,0.5)] dark:shadow-[2px_2px_4px_0_rgba(255,209,225,0.5)] border-[#FFD1E140] border 2xl:ml-[22%]"
@@ -84,27 +93,27 @@ export const searchResultsUI = document.createElement("section");
 searchResultsUI.className =
   "word_results-container h-[90%] md:h-[810px] lg:min-h-[75%] lg:max-h-full xl:h-[500px] 2xl:h-[830px] home_results px-6 pb-10 lg:pb-0 lg:px-[6%] xl:px-0 xl:pb-0 2xl:pb-24 md:pl-12 xl:pl-24 md:pr-14 mt-4 md:mt-8 xl:mt-5 2xl:mt-9 grid grid-cols-4 grid-rows-5 gap-4 xl:grid-cols-5 xl:grid-rows-4 xl:gap-6";
 searchResultsUI.innerHTML = searchResultComponent;
-const buttonDiv = searchResultsUI.querySelector('.bookmark_button-container')
+const buttonDiv = searchResultsUI.querySelector(".bookmark_button-container");
 // handles events that happen when user clicks on bookmark
 // handles the display of either results or errors
 export function displayRequiredResult(page, searchRequest) {
   getSearchRequest(searchRequest)
     .then((myResult) => {
       displaySearchResults(page, myResult);
-      hideCancelButton()
+      hideCancelButton();
     })
     .catch((error) => {
       console.error(error);
       if (error.name === "TypeError" || error === 404) {
         console.error("Word not found");
-        showCancelButton()
+        showCancelButton();
         displayWordSearchErrorUI(page, searchRequest);
       } else if (
         error.name === "TimeoutError" ||
         error.name === "ERR_NETWORK"
       ) {
         console.error("Request timed out");
-        showCancelButton()
+        showCancelButton();
         displayTimeoutErrorUI(page);
       } else if (error.name === "AbortError") {
         console.error("User aborted fetch");
@@ -114,17 +123,17 @@ export function displayRequiredResult(page, searchRequest) {
     });
 }
 
-function displaySearchResults(page, data) {
+export function displaySearchResults(page, data) {
   page.innerHTML = "";
   page.append(searchResultsUI);
   displaySearchedWord(page, data);
   displayDefinitionsList(page, data);
   createBookmark(data.entryWord);
-  addBookmarkEventListener()
+  addBookmarkEventListener();
 }
 
 function createBookmark(word) {
-  buttonDiv.innerHTML = ''
+  buttonDiv.innerHTML = "";
   const bookmarkButton = document.createElement("button");
   bookmarkButton.className = "button button_add-bookmark relative";
   bookmarkButton.setAttribute("data-word", word);
@@ -139,28 +148,28 @@ function createBookmark(word) {
                    d="M3.09214 31.4245C2.20322 32.0195 0.963623 31.4285 0.963623 30.4098V5.41667C0.963623 2.42512 3.57062 0 6.78654 0H20.2211C23.437 0 26.044 2.42512 26.044 5.41667V30.4098C26.044 31.4285 24.8044 32.0195 23.9155 31.4245L13.5038 24.4563L3.09214 31.4245Z"
                    />
                  </svg>`;
-handleBookmarkState(bookmarkButton);
-buttonDiv.append(bookmarkButton);
+  handleBookmarkState(bookmarkButton);
+  buttonDiv.append(bookmarkButton);
 }
-function addBookmarkEventListener(){
-const addBookmark = searchResultsUI.querySelector(".button_add-bookmark");
-const checkbox = searchResultsUI.querySelector("#checkbox");
-addBookmark.addEventListener("click",(e)=>{
-  if(checkbox.checked){
-  saveBookmarks(e)
-  displayBookmarksList(bookmarkList,bookmarksPageCta,bookmarkContainer)
-  toggleBookmarkIcon()
-    }else{
-  deleteBookmark(e);
-  toggleBookmarkIcon()
-  
-  }
-});
+function addBookmarkEventListener() {
+  const addBookmark = searchResultsUI.querySelector(".button_add-bookmark");
+  const checkbox = searchResultsUI.querySelector("#checkbox");
+  addBookmark.addEventListener("click", (e) => {
+    if (checkbox.checked) {
+      saveBookmarks(e);
+      toggleBookmarkIcon();
+    } else {
+      deleteBookmark(e);
+      toggleBookmarkIcon();
+    }
+    displayBookmarksList(bookmarkList, bookmarksPageCta, bookmarkContainer);
+  });
 }
-function toggleBookmarkIcon(){
-searchResultsUI.querySelector(".bookmark-state").classList.toggle("fill-none");
-searchResultsUI
-  .querySelector(".bookmark-state")
-  .classList.toggle("fill-[#CF688C]");
+function toggleBookmarkIcon() {
+  searchResultsUI
+    .querySelector(".bookmark-state")
+    .classList.toggle("fill-none");
+  searchResultsUI
+    .querySelector(".bookmark-state")
+    .classList.toggle("fill-[#B81E53]", "dark:fill-[#CF688C]");
 }
-

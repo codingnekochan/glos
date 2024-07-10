@@ -1,10 +1,4 @@
 // THIS FILE MODULE HANDLES THE DISPLAY OF RESULTS RETRIEVED FROM API RESPONSE
-
-import {
-  bookmarkButtonComponent,
-  parent,
-  playAudioButton,
-} from "../components/searchResultsUI";
 import playAudio from "./audioPlay";
 /*this function diplays the searched word,phonetic sound, 
 it also adds the see-more link and audio file*/

@@ -52,7 +52,6 @@ export function clearRecents() {
       .objectStore("Recents");
     let task = recentsStore.clear();
     task.onsuccess = (e) => {
-
       console.log("recents cleared");
     };
     task.onerror = (e) => {
@@ -78,9 +77,9 @@ export function displayRecentsList(list, cta, container) {
         cta.textContent = "";
         container.classList.remove("hidden");
         const recentItem = document.createElement("li");
-        recentItem.className = "page_list--item";
+        recentItem.className = "page_list--item w-[30%]";
         recentItem.textContent = cursor.value.word;
-        list.append(recentItem);
+        list.insertAdjacentElement('afterbegin',recentItem);
         cursor.continue();
       }
     };
@@ -165,17 +164,21 @@ export function handleBookmarkState(button) {
       const cursor = e.target.result;
       if (cursor) {
         if (cursor.value.word !== data.word) {
-          let removeFill =
-          button.children[1]?.children[0]?.classList.remove("fill-[#CF688C]");
           button.children[0].checked = false;
           button.children[1]?.children[0]?.classList.add("fill-none");
+          let removeFill = button.children[1]?.children[0]?.classList.remove(
+            "fill-[#B81E53]",
+            "dark:fill-[#CF688C]"
+          );
           cursor.continue();
           return removeFill;
         } else {
           button.children[0].checked = true;
           button.children[1]?.children[0]?.classList.remove("fill-none");
-          let addFill =
-            button.children[1]?.children[0]?.classList.add("fill-[#CF688C]");
+          let addFill = button.children[1]?.children[0]?.classList.add(
+            "dark:fill-[#CF688C]",
+            "fill-[#B81E53]"
+          );
           return addFill;
         }
       }

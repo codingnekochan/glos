@@ -1,4 +1,5 @@
 import { pageTemplateComponent } from "../components/templateUI";
+import { handleActivePage } from "../features/router";
 import { clearBookmarks, displayBookmarksList } from "../features/storage";
 
 const bookmarksPage = document.createElement("section");
@@ -22,9 +23,8 @@ bookmarkClearButton.addEventListener('click',showBookmarkModal);
 cancelClearButton.addEventListener('click', hideBookmarkModal);
 clearButton.addEventListener('click', handleBookmarkEvents)
 export function displayBookmarksPage(container) {
-        document.querySelector(".font-options").classList.add("hidden");
-  // document.querySelector(".button_recent").classList.remove("active");
-  // document.querySelector(".button_home").classList.remove("active");
+  handleActivePage(bookmarksPage.id)
+  document.querySelector(".font-options").classList.add("hidden");
    document.querySelector(".page-logo").classList.add("md:block");
    document.querySelector(".page-logo").classList.remove("md:hidden");
    document
@@ -32,7 +32,6 @@ export function displayBookmarksPage(container) {
      .classList.remove("md:mt-[116px]", "xl:mt-[96px]");
   container.innerHTML = "";
   container.append(bookmarksPage);
-  // document.querySelector(".button_bookmark").classList.add("active");
 
 }
 function showBookmarkModal(){

@@ -18,11 +18,9 @@ export function handlePopstate(container,buttons) {
   buttons.forEach(button => {
     console.log(button)
     if(button.getAttribute('data-page') === path){
-     button.classList.add('active')
      console.log('focused on'+ path);
     }
     else{
-      button.classList.remove('active')
     }
   });
   console.log(history.state);
@@ -37,8 +35,8 @@ export function handleNavigation(e, container) {
   updateContent(path, container);
 }
 export function updateContent(path, container) {
-  if (path === "/" || path === "home") {
-    displayHomePage(container);    
+  if (path === "home") {
+    displayHomePage(container);
     console.log("Navigating to home page");
   } else {
     switch (path) {
@@ -56,25 +54,30 @@ export function updateContent(path, container) {
     }
   }
 }
-export function handleActivePage(button){
- const activeButton = button.dataset.page
-  switch (activeButton) {
+export function handleActivePage(pageID) {
+ const buttons = document.querySelectorAll(".button_nav");
+ buttons.forEach((button) => button.classList.remove("active"));
+  // Cache the buttons
+  const bookmarksButton = document.querySelector(".button_bookmarks");
+  const recentsButton = document.querySelector(".button_recents");
+  const homeButton = document.querySelector(".button_home");
+  // Add 'active' class to the clicked button
+  switch (pageID) {
     case "home":
-      document.querySelector(".button_bookmarks").classList.remove("active");
-      document.querySelector(".button_recents").classList.remove("active");
-      document.querySelector(".button_home").classList.add("active");
+      homeButton.classList.add("active");
+      console.log('home active')
       break;
-    case "recents":
-      document.querySelector(".button_bookmarks").classList.remove("active");
-      document.querySelector(".button_home").classList.remove("active");
-      document.querySelector(".button_recents").classList.add("active");
+    case "recent":
+      recentsButton.classList.add("active");
+      console.log('recent active')
       break;
-    case "bookmarks":
-    document.querySelector(".button_recents").classList.remove("active");
-    document.querySelector(".button_home").classList.remove("active");
-    document.querySelector(".button_bookmarks").classList.add("active");
-
+    case "bookmark":
+      bookmarksButton.classList.add("active");
+      console.log('bookmark active')
+      break;
     default:
+      homeButton.classList.add("active");
+      console.log('default')
       break;
   }
 }

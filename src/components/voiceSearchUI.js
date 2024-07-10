@@ -107,6 +107,7 @@ export function onVoiceSearchFinishUI() {
   homePage.querySelector(".home_search-form").classList.remove("hidden");
   document.querySelector(".button_theme-switch").classList.remove("hidden");
   userMic.remove();
+  console.log('removed')
 }
 export function onVoiceSearchCancel() {
   document.querySelector(".button_theme-switch").classList.remove("hidden");

@@ -1,4 +1,4 @@
-export const pageTemplateComponent = ` <div class="h-full page">
+export const pageTemplateComponent = ` <div class="h-fu/ll page">
         <div class = 'page_intro'>
         <h2
           class="page_info font-bold text-sm text-center px-6 md:text-xl xl:text-2xl 2xl:text-[28px] dark:text-[#F8E9EE] xl:mt-20"
@@ -10,10 +10,10 @@ export const pageTemplateComponent = ` <div class="h-full page">
         </p>
         </div>     
         <div
-          class="hidden words_container ml-[10%] md:ml-[25%] lg:mx-[31%] xl:mx-[26%] xl:pl-[10%]"
+          class="hidden words_container ml-[10%] md:ml-[25%]  lg:ml-[31%] lg:mr-[15%] xl:ml-[26%] xl:pl-[10%]"
         >
           <ul
-            class="page_list list-disc text-sm px-[81px] md:pl-10 mt-6 md:mt-11 md:text-xl xl:mt-7"
+            class="flex flex-col flex-wrap md:gap-0 page_list  list-disc text-sm pl-[40px] md:pl-10 mt-6 md:mt-11 md:text-xl xl:mt-7 max-h-[300px] md:max-h-[400px] 2xl:msx-h-[550px]"
           >
           </ul>
           <button

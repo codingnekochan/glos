@@ -1,4 +1,5 @@
 import { pageTemplateComponent } from "../components/templateUI";
+import { handleActivePage } from "../features/router";
 import { clearRecents, displayRecentsList } from "../features/storage";
 
 const recentsPage = document.createElement("section");
@@ -23,9 +24,8 @@ cancelRecentClearButton.addEventListener("click", hideRecentsModal);
 clearRecentButton.addEventListener("click", handleRecentsEvents);
 
 export function displayRecentPage(container) {
+  handleActivePage(recentsPage.id)
   document.querySelector(".font-options").classList.add("hidden");
-  // document.querySelector(".button_bookmark").classList.remove("active");
-  // document.querySelector(".button_home").classList.remove("active");
   document.querySelector(".page-logo").classList.add("md:block");
   document.querySelector(".page-logo").classList.remove("md:hidden");
   document
@@ -33,7 +33,6 @@ export function displayRecentPage(container) {
     .classList.remove("md:mt-[116px]", "xl:mt-[96px]");
   container.innerHTML = "";
   container.append(recentsPage);
-  // document.querySelector(".button_recent").classList.add("active");
 }
 function showRecentsModal() {
   recentsModal.classList.remove("hidden");

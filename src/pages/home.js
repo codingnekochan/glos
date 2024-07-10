@@ -7,9 +7,11 @@
  error pages#
  */
 
-import { landingPageUI,homeLanding} from "../components/landingPageUI";
+import { landingPageUI, homeLanding } from "../components/landingPageUI";
 import { displaySearchFormUI } from "../components/searchFormUI";
 import { voiceSearchEvent } from "../components/searchFormUI";
+import { displaySearchResults } from "../components/searchResultsUI";
+import { handleActivePage } from "../features/router";
 // HOME PAGE
 export const homePage = document.createElement("section");
 homePage.className = "home w-full h-[90%] md:h-full flex flex-col";
@@ -17,16 +19,25 @@ homePage.id = "home";
 export const homeContainer = document.createElement("section");
 homeContainer.className = "home_container h-full";
 
+export function clearHomePage(container) {
+  container.innerHTML = "";
+  homePage.innerHTML = "";
+  container.append(homePage);
+  homePage.append(homeContainer);
+}
 // Landing Page
 export function displayHomePage(container) {
-  document.querySelector(".font-options").classList.add("hidden");
-  homePage.innerHTML = ''
-  container.innerHTML = ''
-  homePage.append(homeContainer);
-  landingPageUI(homeContainer);
-  container.append(homePage);
-  document.querySelector(".button_home").classList.add("active");
-
+  handleActivePage(homePage.id);
+  clearHomePage(container);
+  if (!localStorage.getItem("searchResults")) {
+    document.querySelector(".font-options").classList.add("hidden");
+    landingPageUI(homeContainer);
+  } else {
+    const searchResults = JSON.parse(localStorage.getItem("searchResults"));
+    displaySearchFormUI(homePage, homeContainer);
+    displaySearchResults(homeContainer, searchResults);
+    console.log(localStorage.length);
+  }
 }
 const textsearchButton = homeLanding.querySelector("#text-search-button");
 const voiceSearchButton = homeLanding.querySelector("#voice-search-button");

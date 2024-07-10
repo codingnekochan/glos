@@ -1,16 +1,9 @@
 
 export async function getSearchRequest(searchRequest) {
-  const controller = new AbortController();
-  const userAbortSignal = controller.signal;
   const timeoutAbortSignal = AbortSignal.timeout(10000);
-  const abortSignalArray = AbortSignal.any([
-    userAbortSignal,
-    timeoutAbortSignal,
-  ]);
-
   const response = await fetch(
     `https://api.dictionaryapi.dev/api/v2/entries/en/${searchRequest}`,
-    { signal: abortSignalArray }
+    { signal: timeoutAbortSignal }
   );
   if (!response.ok) {
     throw response.status;
@@ -23,8 +16,7 @@ function consoleResult(results) {
   if (results.length === 1) {
     return retrieveResults(results[0]);
   } else if (results.length > 1) {
-    let firstResult =
-      results.find(findFirstSearchResult) || results[0];
+    let firstResult = results.find(findFirstSearchResult) || results[0];
     if (firstResult) {
       return retrieveResults(firstResult);
     }
@@ -37,7 +29,7 @@ function findFirstSearchResult(results) {
   }
 }
 function retrieveResults(result) {
-  return {
+  let wordObject = {
     entryWord: result.word,
     pronunciationKey:
       result.phonetic || findPhonetic(result) || "Not available",
@@ -45,13 +37,15 @@ function retrieveResults(result) {
     entryWordMeanings: printEntryWordMeanings(result),
     entryWordSource: result.sourceUrls?.[0] || "",
   };
+  localStorage.setItem("searchResults", JSON.stringify(wordObject));
+  return wordObject;
 }
 
 function findAudio(result) {
   let validAudio = result.phonetics?.find(findObjectWithValidAudio)?.audio;
   return validAudio;
 }
-function findPhonetic(result){
+function findPhonetic(result) {
   let validPhonetic = result.phonetics?.find(findObjectWithValidAudio)?.text;
   return validPhonetic;
 }

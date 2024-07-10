@@ -77,4 +77,5 @@ export function landingPageUI(page) {
     .classList.add("md:hidden");
   document.querySelector('.nav-tab').classList.add("md:mt-[116px]", "xl:mt-[96px]")
   page.append(homeLanding);
+
 }

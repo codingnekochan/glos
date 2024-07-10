@@ -23,13 +23,13 @@ export function handleVoiceSearch(page) { // Indicate the start of voice recogni
     wordRecognition.abort();
     onVoiceSearchCancel();
   });
-      wordRecognition.start();
+  wordRecognition.start();
 }
+// wordRecognition.addEventListener("audiostart", handleSpeechStart);
 wordRecognition.addEventListener('speechstart', handleSpeechStart);
 wordRecognition.addEventListener("result", handleSpeechResult);
 wordRecognition.addEventListener("speechend", handleSpeechEnd);
-wordRecognition.addEventListener("audiostart", handleSpeechStart);
-wordRecognition.addEventListener('audioend',handleSpeechEnd)
+// wordRecognition.addEventListener('audioend',handleSpeechEnd)
 wordRecognition.addEventListener("error", handleSpeechError);
 wordRecognition.addEventListener("nomatch", handleNoMatch);
 
@@ -38,6 +38,7 @@ function handleSpeechStart(e) {
 }
 function handleSpeechResult(e) {
   // Ensure that we have a valid result
+   onVoiceSearchFinishUI();
   try {
     if (e.results && e.results[0] && e.results[0][0]) {
       const transcript = e.results[0][0].transcript.trim();
@@ -52,7 +53,7 @@ function handleSpeechResult(e) {
 
 function handleSpeechEnd(e) {
   wordRecognition.stop();
-  onVoiceSearchFinishUI();
+  onVoiceSearchFinishUI()
 }
 
 function handleSpeechError(e) {
