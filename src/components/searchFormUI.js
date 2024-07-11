@@ -187,6 +187,7 @@ export function handleUserSearch(e, transcript, selectedWord) {
     }, 3000);
     searchInput.placeholder = `Search results for '${searchRequest}'`;
     searchInput.value = "";
+    searchInput.blur();
   }
 }
 export function showCancelButton() {
