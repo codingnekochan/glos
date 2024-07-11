@@ -25,11 +25,11 @@ export function handleVoiceSearch(page) { // Indicate the start of voice recogni
   });
   wordRecognition.start();
 }
-// wordRecognition.addEventListener("audiostart", handleSpeechStart);
+wordRecognition.addEventListener("audiostart", handleSpeechStart);
 wordRecognition.addEventListener('speechstart', handleSpeechStart);
 wordRecognition.addEventListener("result", handleSpeechResult);
 wordRecognition.addEventListener("speechend", handleSpeechEnd);
-// wordRecognition.addEventListener('audioend',handleSpeechEnd)
+wordRecognition.addEventListener('audioend',handleSpeechEnd)
 wordRecognition.addEventListener("error", handleSpeechError);
 wordRecognition.addEventListener("nomatch", handleNoMatch);
 
