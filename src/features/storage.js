@@ -2,7 +2,7 @@ const DBName = "GlosDatabase";
 const DBVersion = 1;
 let glosDB;
 // create database if it doesnt exist
-function initializeDB() {
+export function initializeDB() {
   const DBOpenRequest = indexedDB.open(DBName, DBVersion);
   DBOpenRequest.onupgradeneeded = (e) => {
     glosDB = e.target.result;
@@ -14,6 +14,7 @@ function initializeDB() {
     });
     bookmarksStore.createIndex("word", "word", { unique: true });
     recentsStore.createIndex("word", "word", { unique: true });
+    console.log('create DB')
   };
   DBOpenRequest.onsuccess = (e) => {
     glosDB = e.target.result;
@@ -79,7 +80,7 @@ export function displayRecentsList(list, cta, container) {
         const recentItem = document.createElement("li");
         recentItem.className = "page_list--item w-[30%]";
         recentItem.textContent = cursor.value.word;
-        list.insertAdjacentElement('afterbegin',recentItem);
+        list.insertAdjacentElement("afterbegin", recentItem);
         cursor.continue();
       }
     };
@@ -192,7 +193,7 @@ export function handleBookmarkState(button) {
     console.error("error opening DB") + e.target.error;
   };
 }
-export function clearBookmarks() {
+export function clearBookmarks(cta,container) {
   let request = indexedDB.open(DBName);
   request.onsuccess = (e) => {
     let glosDB = request.result;
@@ -201,6 +202,7 @@ export function clearBookmarks() {
       .objectStore("Bookmarks");
     let task = bookmarksStore.clear();
     task.onsuccess = (e) => {
+      checkBookmarkListLength(cta, container);
       console.log("bookmark cleared");
     };
     task.onerror = (e) => {
@@ -221,6 +223,7 @@ export function displayBookmarksList(list, cta, container) {
       .transaction(["Bookmarks"], "readonly")
       .objectStore("Bookmarks");
     let task = bookmarksStore.openCursor();
+    checkBookmarkListLength(cta,container)
     task.onsuccess = (e) => {
       const cursor = e.target.result;
       if (cursor) {
@@ -229,7 +232,7 @@ export function displayBookmarksList(list, cta, container) {
         const bookmarkItem = document.createElement("li");
         bookmarkItem.className = "page_list--item";
         bookmarkItem.textContent = cursor.value.word;
-        list.append(bookmarkItem);
+        list.insertAdjacentElement("afterbegin", bookmarkItem);
         cursor.continue();
       }
     };
@@ -241,4 +244,30 @@ export function displayBookmarksList(list, cta, container) {
     console.error("error opening DB" + e.target.error);
   };
 }
+
+function checkBookmarkListLength(cta,container){
+  let request = indexedDB.open(DBName);
+   request.onsuccess = (e) => {
+     let glosDB = request.result;
+     let bookmarksStore = glosDB
+       .transaction(["Bookmarks"], "readonly")
+       .objectStore("Bookmarks");
+     let bookmarkKeyLength = bookmarksStore.count();
+     bookmarkKeyLength.onsuccess = (e) => {
+       console.log(e.target.result);
+       if (e.target.result === 0) {
+         cta.textContent =
+           "You have not bookmarked any word yet! Click on the bookmark icon beside a word to bookmark and save for later!";
+         container.classList.add("hidden");
+       }
+     };
+     bookmarkKeyLength.onerror = (e) => {
+       console.log("cannot retrieve count" + e.target.error);
+     };
+   };
+   request.onerror = (e) => {
+     console.error("error opening DB" + e.target.error);
+   };
+}
+// initialize database
 initializeDB();

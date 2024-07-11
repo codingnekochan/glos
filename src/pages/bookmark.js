@@ -43,11 +43,8 @@ function hideBookmarkModal(){
   bookmarkModal.classList.remove("flex");
 }
 function handleBookmarkEvents(){
-  clearBookmarks();
+  clearBookmarks(bookmarksPageCta,bookmarkContainer);
   hideBookmarkModal();
-  bookmarkContainer.classList.add("hidden");
-  bookmarksPageCta.textContent =
-  "You have not bookmarked any word yet! Click on the bookmark icon beside a word to bookmark and save for later!";
 }
 
 displayBookmarksList(bookmarkList,bookmarksPageCta,bookmarkContainer);

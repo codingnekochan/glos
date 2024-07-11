@@ -33,6 +33,7 @@ export function displayHomePage(container) {
     document.querySelector(".font-options").classList.add("hidden");
     landingPageUI(homeContainer);
   } else {
+    document.querySelector(".font-options").classList.remove("hidden")
     const searchResults = JSON.parse(localStorage.getItem("searchResults"));
     displaySearchFormUI(homePage, homeContainer);
     displaySearchResults(homeContainer, searchResults);

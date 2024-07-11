@@ -13,7 +13,7 @@ import { recentPageCta, recentsContainer, recentsList } from "../pages/recent";
 //  xl:ml-32 2xl:ml-64
 const searchFormComponent = `    
          <div
-            class=" search_form-container relative md:static max-sm:h-[47px] md:mt-[120px] 2xl:mt-[120px] mx-auto w-[80%] md:w-[486px]  lg:w-[53%] xl:w-[65%] 2xl:w-[65%] max-w-[1106px] flex justify-between items-center md:gap-6 xl:gap-0 px-6 py-[18px] md:px-0 md:py-0 bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit"
+            class="search_form-container relative md:static max-sm:h-[47px] md:mt-[120px] 2xl:mt-[120px] ml-[52px] mr-6 md:mx-auto w-[80%] md:w-[486px]  lg:w-[53%] xl:w-[65%] 2xl:w-[65%] max-w-[1106px] flex justify-between items-center md:gap-6 xl:gap-0 px-6 py-[18px] md:px-0 md:py-0 bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit"
           >
             <button class="button_back md:hidden relative right-14">
               <svg

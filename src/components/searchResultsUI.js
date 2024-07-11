@@ -157,19 +157,28 @@ function addBookmarkEventListener() {
   addBookmark.addEventListener("click", (e) => {
     if (checkbox.checked) {
       saveBookmarks(e);
-      toggleBookmarkIcon();
+      addFillBookmarkIcon()
     } else {
       deleteBookmark(e);
-      toggleBookmarkIcon();
+      removeFillBookmarkIcon()
     }
     displayBookmarksList(bookmarkList, bookmarksPageCta, bookmarkContainer);
   });
 }
-function toggleBookmarkIcon() {
+
+function addFillBookmarkIcon(){
+   searchResultsUI
+    .querySelector(".bookmark-state")
+    .classList.remove("fill-none");
   searchResultsUI
     .querySelector(".bookmark-state")
-    .classList.toggle("fill-none");
+    .classList.add("fill-[#B81E53]", "dark:fill-[#CF688C]");
+}
+function removeFillBookmarkIcon(){
   searchResultsUI
     .querySelector(".bookmark-state")
-    .classList.toggle("fill-[#B81E53]", "dark:fill-[#CF688C]");
+    .classList.add("fill-none");
+  searchResultsUI
+    .querySelector(".bookmark-state")
+    .classList.remove("fill-[#B81E53]", "dark:fill-[#CF688C]");
 }
