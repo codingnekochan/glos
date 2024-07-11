@@ -13,7 +13,7 @@ import { recentPageCta, recentsContainer, recentsList } from "../pages/recent";
 //  xl:ml-32 2xl:ml-64
 const searchFormComponent = `    
          <div
-            class="search_form-container relative md:static max-sm:h-[47px] md:mt-[120px] 2xl:mt-[120px] ml-[52px] mr-6 md:mx-auto w-[80%] md:w-[486px]  lg:w-[53%] xl:w-[65%] 2xl:w-[65%] max-w-[1106px] flex justify-between items-center md:gap-6 xl:gap-0 px-6 py-[18px] md:px-0 md:py-0 bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit"
+            class="search_form-container relative md:static max-sm:h-[47px] md:mt-[140px] lg:mt-[120px] ml-[58px] md:ml-[120px] lg:mx-auto w-[84.2%] md:w-[486px]  lg:w-[53%] xl:w-[65%] 2xl:w-[65%] max-w-[1106px] flex justify-between items-center md:gap-6 xl:gap-0 px-6 py-[18px] md:px-0 md:py-0 bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm 2xl:text-xl rounded-[90px] search-container md:bg-inherit md:dark:bg-inherit"
           >
             <button class="button_back md:hidden relative right-14">
               <svg
@@ -39,7 +39,7 @@ const searchFormComponent = `
               name= "search"
               id = "search_input"
                 type="search"
-                class="search_input my-auto w-[85%] md:w-[60%] bg-inherit outline-none self-center placeholder:text-xs md:placeholder:text-sm xl:placeholder:text-lg 2xl:placeholder:text-xl text-base"
+                class="search_input my-auto pb-[1px] w-[85%] md:w-[60%] bg-inherit outline-none self-center placeholder:text-xs md:placeholder:text-sm xl:placeholder:text-lg 2xl:placeholder:text-xl text-base"
               />
             </form>
             <button id="button_voice-search" class="button_voice-search mic-icon xl:0">
@@ -67,7 +67,7 @@ const searchFormComponent = `
           </div>
           <p class="absolute left-[30%] mt-2 validation-message hidden text-[#981010] text-xs lg:text-base">Please enter a word!</p>
           <div
-            class=" hidden search_suggestions relative xl:left-0 top-[-75px] md:top-[-80px] lg:top-[-81px] xl:top-[-83px] 2xl:top-[-130px] mx-auto w-[80%] md:w-[486px] lg:w-[53%] 2xl:w-[80%] max-w-[1106px] justify-between items-center py-[18px] px-6 md:px-0 md:py-0 text-sm md:text-lg xl:text-xl 2xl:text-2xl rounded-t-[49px] rounded-b-[50px] search-container"
+            class=" hidden search_suggestions relative xl:left-0 top-[-75px] md:top-[-80px] lg:top-[-81px] xl:top-[-83px] 2xl:top-[-130px] md:ml-[120px] lg:mx-auto w-[80%] md:w-[486px] lg:w-[53%] 2xl:w-[80%] max-w-[1106px] justify-between items-center py-[18px] px-6 md:px-0 md:py-0 text-sm md:text-lg xl:text-xl 2xl:text-2xl rounded-t-[49px] rounded-b-[50px] search-container"
           >
             <ul
               class="search_suggestions--list  md:ml-8  2xl:ml-0 pt-16 md:pt-20 xl:pt-24 2xl:pt-[116px] pb-6 w-full md:w-[418px] lg:w-[428px] xl:w-[80%] 2xl:w-[80%] max-w-[946px] md:rounded-[50px] md:pl-14 text-black dark:text-white leading-loose px-6 md:bg-[#FFEDF4] md:dark:bg-[#333333]"
@@ -77,7 +77,7 @@ const searchFormComponent = `
 `;
 const searchFormUI = document.createElement("section");
 searchFormUI.innerHTML = searchFormComponent;
-searchFormUI.className = "home_search-form w-full mt-6 md:mt-0";
+searchFormUI.className = "home_search-form mt-6 md:mt-0 pr-6";
 const searchFormContainer = searchFormUI.querySelector(
   ".search_form-container"
 );

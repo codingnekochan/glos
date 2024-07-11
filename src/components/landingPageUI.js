@@ -19,7 +19,7 @@ const landingPageComponent = `<div class="home_landing w-full">
       />
     </svg>
   </div>
-  <div data-page='home' class="search-bar mx-auto w-[80%] md:w-[549px] xl:w-[67%] 2xl:w-[80%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0  bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm xl:text-lg 2xl:text-xl rounded-[90px] md:bg-inherit md:dark:bg-inherit">
+  <div data-page='home' class="search-bar mx-auto md:ml-[120px] lg:mx-auto w-[80%] md:w-[549px] xl:w-[67%] 2xl:w-[80%] max-w-[1106px] flex justify-between items-center px-6 py-[18px] md:px-0 md:py-0  bg-[#FFEDF4] dark:bg-[#333333] text-[#8A8A8A] dark:text-[#B0B0B0] text-xs md:text-sm xl:text-lg 2xl:text-xl rounded-[90px] md:bg-inherit md:dark:bg-inherit">
     <button id="text-search-button" class="flex gap-4 items-center md:w-[455px] md:h-[70px] xl:w-[85%] xl:h-[80px] max-w-[946px] 2xl:h-[120px] md:rounded-[90px] md:pl-10 md:bg-[#FFEDF4] md:dark:bg-[#333333]">
       <div class="search-icon hidden md:block">
         <svg
