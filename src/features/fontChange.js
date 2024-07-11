@@ -1,9 +1,14 @@
 import { searchResultsUI } from "../components/searchResultsUI";
+const body = document.querySelector('body')
 const fontFamilyList = document.querySelector(".font-list");
 const fontApplied = document.querySelector(".font_applied");
 const fontFamilyButtons = document.querySelectorAll(".font-family");
 const userFontFamily = localStorage.getItem("fontFamily");
 const fontUsed = localStorage.getItem("font");
+const blurBackground = document.createElement('div')
+blurBackground.className =
+  "background-blur w-full h-full absolute top-0 left-0 bg-[#00000099] hidden z-10";
+body.append(blurBackground)
 let fontFamily;
 let font;
 // font-changing buttons event listener
@@ -25,6 +30,8 @@ export function defaultFonts() {
 export function toggleFontChangeMenu() {
   fontFamilyList.classList.toggle("hidden");
   fontFamilyList.classList.toggle("block");
+  blurBackground.classList.toggle('hidden');
+  
   closeFontDropDown()
 }
 
@@ -65,6 +72,7 @@ function closeFontDropDown(){
     if(e.target !== fontApplied && e.target !== fontChangeButton){
     fontFamilyList.classList.remove("block");
     fontFamilyList.classList.add("hidden");
+    blurBackground.classList.add('hidden')
     }
   });
 }
