@@ -102,8 +102,8 @@ export function displaySearchFormUI(page, container) {
   page.insertBefore(searchFormUI, container);
   cancelButton.addEventListener("click", handleBackButtonEvents);
   backButton.addEventListener("click", handleBackButtonEvents);
-  searchInput.focus();
   if (!localStorage.getItem("searchResults")) {
+    searchInput.focus();
     searchInput.placeholder = "Type in a word to look up...";
     voiceSearchButton.classList.add("translate");
     setTimeout(() => {
@@ -185,7 +185,6 @@ export function handleUserSearch(e, transcript, selectedWord) {
     setTimeout(() => {
       displayRequiredResult(homeContainer, searchRequest);
     }, 3000);
-    searchInput.focus()
     searchInput.placeholder = `Search results for '${searchRequest}'`;
     searchInput.value = "";
   }
