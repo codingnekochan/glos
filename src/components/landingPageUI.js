@@ -1,6 +1,3 @@
-// import { homePage, homeContainer } from "../pages/home";
-// import { voiceSearchEvent, displaySearchFormUI } from "./searchFormUI";
-
 const landingPageComponent = `<div class="home_landing w-full">
   <div class="main_logo mb-4 md:mb-8">
     <svg

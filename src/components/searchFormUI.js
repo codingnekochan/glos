@@ -135,15 +135,15 @@ function displayWordSuggestions(userInput, selectedWord) {
   });
 }
 
-searchInput.addEventListener("input", (container) => {
+searchInput.addEventListener("input", () => {
+  let container = document.querySelector(".home_container");
+  let userInput = searchInput.value;
+  container.innerHTML = "";
   suggestionList.innerHTML = "";
   searchForm.classList.add("xl:w-[460px]");
   suggestionList.classList.add("xl:w-[462px]", "xl:ml-[2.5%]");
   searchFormContainer.classList.remove("xl:w-[65%]");
   searchFormContainer.classList.add("xl:w-[50%]");
-  let userInput = searchInput.value;
-  container = document.querySelector(".home_container");
-  container.innerHTML = "";
   validationMessage.classList.add("hidden");
   suggestionBox.classList.remove("hidden");
   suggestionBox.classList.add("flex");
@@ -174,7 +174,6 @@ export function handleUserSearch(e, transcript, selectedWord) {
     setTimeout(()=>{
       validationMessage.classList.add('hidden')
     }, 1000)
-    return;
   } else {
     saveRecents({ word: searchRequest });
     displayRecentsList(recentsList, recentPageCta, recentsContainer);

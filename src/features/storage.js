@@ -190,7 +190,7 @@ export function handleBookmarkState(button) {
     };
   };
   request.onerror = (e) => {
-    console.error("error opening DB") + e.target.error;
+    console.error("error opening DB" + e.target.error);
   };
 }
 export function clearBookmarks(cta,container) {

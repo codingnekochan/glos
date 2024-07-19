@@ -8,13 +8,9 @@ import {
   handlePopstate,
   initialState,
 } from "./features/router";
-import { initializeDB } from "./features/storage";
 document.addEventListener("DOMContentLoaded", () => {
   //clear storage
-
-  // initializeDB()
   localStorage.removeItem("searchResults");
-
   const htmlBody = document.querySelector("html");
   const mainContainer = document.querySelector("main");
   const themeSwitchButton = document.querySelector(".button_theme-switch");

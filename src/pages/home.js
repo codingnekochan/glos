@@ -8,8 +8,7 @@
  */
 
 import { landingPageUI, homeLanding } from "../components/landingPageUI";
-import { displaySearchFormUI } from "../components/searchFormUI";
-import { voiceSearchEvent } from "../components/searchFormUI";
+import { displaySearchFormUI,voiceSearchEvent } from "../components/searchFormUI";
 import { displaySearchResults } from "../components/searchResultsUI";
 import { handleActivePage } from "../features/router";
 // HOME PAGE

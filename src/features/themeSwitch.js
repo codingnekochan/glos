@@ -10,7 +10,6 @@ export function defaultTheme(page,buttons) {
     buttons.forEach(button => {
           button.classList.add("dark-theme");
     });
-    return;
   } else {
     page.classList.remove("dark");
     page.classList.add("light");

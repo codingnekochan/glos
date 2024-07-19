@@ -20,8 +20,6 @@ export function handlePopstate(container,buttons) {
     if(button.getAttribute('data-page') === path){
      console.log('focused on'+ path);
     }
-    else{
-    }
   });
   console.log(history.state);
 }
