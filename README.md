@@ -1,7 +1,4 @@
-# Glos
-this rad web app that's basically your personal word guru. Need to know what a word means or how to say it? Glos has got you covered.
-Got it! Here's an updated README template focused on your development process, technologies used, and the app's features:
-
+gi
 ---
 
 # Glos Dictionary Web App
