@@ -1,6 +1,3 @@
-gi
----
-
 # Glos Dictionary Web App
 
 Glos is a rad web application that is basically your personal word guru. Need to know what a word means or how to say it? Glos has got you covered. It is designed to provide comprehensive dictionary functionalities, including word definitions, audio pronunciations, synonyms, antonyms, voice search, bookmarking, and search history. It leverages modern web technologies and various APIs to deliver an efficient and user-friendly experience.
