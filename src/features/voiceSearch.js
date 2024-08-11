@@ -40,7 +40,7 @@ function handleSpeechResult(e) {
   // Ensure that we have a valid result
    onVoiceSearchFinishUI();
   try {
-    if (e.results && e.results[0] && e.results[0][0]) {
+    if (e?.results && e?.results[0] && e?.results[0][0]) {
       const transcript = e.results[0][0].transcript.trim();
       handleUserSearch(e, transcript);
       return transcript;
