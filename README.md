@@ -37,7 +37,7 @@ Glos is a rad web application that is basically your personal word guru. Need to
 
 
 ## Deployment
-The Glos Dictionary Web App is deployed on Vercel and can be accessed at [glosdictionary.vercel.app](https://glosdictionary.vercel.app).
+The Glos Dictionary Web App is deployed on Vercel and can be accessed at [glosdictionary.site](https://glosdictionary.site).
 
 ## License
 This project is licensed under the MIT License.
